@@ -68,7 +68,7 @@ public class World {
 		
 		while (stillRunning()) {
 			GameMap playersMap = actorLocations.locationOf(player).map();
-			playersMap.Draw(display);
+			playersMap.draw(display);
 			for (Actor actor : actorLocations) {
 				processActorTurn(actor);
 			}
