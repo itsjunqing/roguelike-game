@@ -1,6 +1,10 @@
 # Mac file
 .DS_Store
 
+# IntelliJ personal files
+.idea/
+src/.idea/
+
 # Compiled class file
 *.class
 
