@@ -25,7 +25,7 @@ public class DropItemAction extends Action {
 	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		actor.getInventory().remove(item);
+		actor.removeItemFromInventory(item);
 		map.locationOf(actor).addItem(item);
 		item.getAllowableActions().remove(this);
 		item.getAllowableActions().add(new PickUpItemAction(item));

@@ -30,11 +30,16 @@ public class AttackAction extends Action {
 
 		subject.hurt(damage);
 		if (!subject.isConscious()) {
-
+			//Drop all the items that are droppable. 
 			Item sleepingActor = new Item("Sleeping " + subject, '%');
 			map.locationOf(subject).addItem(sleepingActor);
 			for (Item item : subject.getInventory()) {
-				new DropItemAction(item).execute(subject, map);
+				for (Action action : item.getAllowableActions()) {
+					if (action instanceof DropItemAction) {
+						action.execute(subject, map);
+						break;
+					}
+				}
 			}
 			map.removeActor(subject);
 			result += System.lineSeparator() + subject + " is knocked out.";

@@ -15,10 +15,30 @@ public class Item implements Printable, Skilled {
 		allowableActions = new Actions(new PickUpItemAction(this));
 	}
 	
+	/***
+	 * 
+	 * @param name
+	 * @param displayChar
+	 * @return an item that cannot be picked up.
+	 */
 	public static Item newFurniture(String name, char displayChar)
 	{
 		Item item = new Item(name, displayChar);
 		item.allowableActions.clear();
+		return item;
+	}
+	
+	/***
+	 * 
+	 * @param name
+	 * @param displayChar
+	 * @return an item that has the drop action, suitable for placing in an inventory.
+	 */
+	public static Item newInventoryItem(String name, char displayChar)
+	{
+		Item item = new Item(name, displayChar);
+		item.allowableActions.clear();
+		item.allowableActions.add(new DropItemAction(item));
 		return item;
 	}
 

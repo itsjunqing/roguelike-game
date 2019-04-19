@@ -1,6 +1,7 @@
 package edu.monash.fit2099.engine;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 /**
@@ -16,7 +17,6 @@ public class Actions implements Iterable<Action> {
 	public Actions() {
 	}
 
-	
 	/**
 	 * Constructs a collection containing a single (non-null) Action.
 	 * 
@@ -26,15 +26,15 @@ public class Actions implements Iterable<Action> {
 		add(action);
 	}
 
-	
 	/**
-	 * Appends another Actions to this one.  This works like a copy constructor (but note that it
-	 * will do a shallow copy: the references are copied but the Actions themselves are not cloned.
+	 * Appends another Actions to this one. This works like a copy constructor (but
+	 * note that it will do a shallow copy: the references are copied but the
+	 * Actions themselves are not cloned.
 	 * 
 	 * @param actions the Actions to append
 	 */
 	public void add(Actions actions) {
-		for(Action action : actions) {
+		for (Action action : actions) {
 			add(action);
 		}
 	}
@@ -53,7 +53,9 @@ public class Actions implements Iterable<Action> {
 	}
 
 	/**
-	 * Returns an Iterator for the underlying collection.
+	 * Returns a read only Iterator for a copy of the underlying collection. The
+	 * means you can call add() and remove() while iterating without modifiying the
+	 * iterated collecion.
 	 * 
 	 * Implementing this method means that Actions implements the Iterable interface, which allows
 	 * you to use it in a foreach, e.g. <code>for (Action a: actions) {
@@ -65,7 +67,7 @@ public class Actions implements Iterable<Action> {
 	 */
 	@Override
 	public Iterator<Action> iterator() {
-		return actions.iterator();
+		return Collections.unmodifiableList(new ArrayList<Action>(actions)).iterator();
 	}
 
 	/**
@@ -77,6 +79,7 @@ public class Actions implements Iterable<Action> {
 
 	/**
 	 * Count the number of Actions in the collection.
+	 * 
 	 * @return the number of Actions in the collection.
 	 */
 	public int size() {
@@ -93,6 +96,7 @@ public class Actions implements Iterable<Action> {
 
 	/**
 	 * Return the <code>i</code>'th Action in the collection.
+	 * 
 	 * @param i index of the Action to retrieve
 	 * @return the <code>i</code>'th Action in the collection
 	 * @throws IndexOutOfBoundsException when <code>i</code> &gt;= <code>this.size()</code>

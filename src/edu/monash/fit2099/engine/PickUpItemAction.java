@@ -27,7 +27,7 @@ public class PickUpItemAction extends Action {
 	@Override
 	public String execute(Actor actor, GameMap map) {
 		map.locationOf(actor).removeItem(item);
-		actor.getInventory().add(item);
+		actor.addItemToInventory(item);
 		item.getAllowableActions().remove(this);
 		item.getAllowableActions().add(new DropItemAction(item));
 		return menuDescription(actor);
