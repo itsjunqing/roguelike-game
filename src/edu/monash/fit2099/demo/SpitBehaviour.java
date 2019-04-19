@@ -29,7 +29,7 @@ public class SpitBehaviour extends Action implements ActionFactory{
 
 			for (int x : xs) {
 				for (int y : ys) {
-					if(map.at(x, y).getGround().blocksThrownObjects())
+					if(map.at(x, y)	.getGround().blocksThrownObjects())
 						return null;
 				}
 			}
