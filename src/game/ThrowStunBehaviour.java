@@ -18,13 +18,13 @@ public class ThrowStunBehaviour extends Action implements ActionFactory {
         Location ninjaLocation = map.locationOf(actor);
         Location playerLocation = map.locationOf(target);
 
-        if (ninjaLocation.x() == playerLocation.x() || ninjaLocation.y() == playerLocation.y()) {
+        if ((Math.abs(ninjaLocation.x() - playerLocation.x())) + (Math.abs(ninjaLocation.y() - playerLocation.y())) <= 5) {
             Range xs = new Range(Math.min(ninjaLocation.x(), playerLocation.x()), Math.abs(ninjaLocation.x() - playerLocation.x()) + 1);
             Range ys = new Range(Math.min(ninjaLocation.y(), playerLocation.y()), Math.abs(ninjaLocation.y() - playerLocation.y()) + 1);
 
             for (int x : xs) {
                 for (int y : ys) {
-                    if(map.at(x, y).getGround().blocksThrownObjects())
+                    if (map.at(x, y).getGround().blocksThrownObjects())
                         return null;
                 }
             }
@@ -37,10 +37,17 @@ public class ThrowStunBehaviour extends Action implements ActionFactory {
     public String execute(Actor actor, GameMap map) {
 
         if (random.nextDouble() <= 0.50) {
-            return "Oh no, failed to stun " + actor;
+            return "Oh no, failed to stun " + target;
         } else {
-            getAction(actor, map);
-            return "Successfully stunned " + actor + " for two turns";
+//            Actions actions = new Actions();
+//            actions.add(new SkipTurnAction());
+//            System.out.println();
+//            System.out.println("Player is stunned.");
+//            target.playTurn(actions, map, new Display()).execute(target, map);
+//            System.out.println();
+//            System.out.println("Player is stunned.");
+//            target.playTurn(actions, map, new Display()).execute(target, map);
+            return "Successfully stunned " + target + " for two turns";
         }
     }
 

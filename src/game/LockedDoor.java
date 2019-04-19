@@ -1,14 +1,11 @@
 package game;
 
 import edu.monash.fit2099.demo.WindowSmashAction;
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Ground;
-import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.*;
 
 public class LockedDoor extends Ground {
 
-    public LockedDoor(char displayChar) {
+    public LockedDoor() {
         super('+');
     }
 
@@ -19,7 +16,12 @@ public class LockedDoor extends Ground {
 
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
-        return new Actions(new WindowSmashAction(direction, location));
+        for (Item item : actor.getInventory()){
+            if (item instanceof Key){
+                return new Actions(new UnlockDoorAction(direction, location, (Key) item));
+            }
+        }
+        return null;
     }
 
     @Override
