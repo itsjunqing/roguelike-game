@@ -11,7 +11,7 @@ public class Application {
 		World world = new World(new Display());
 
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new LockedDoor());
-		GameMap gameMap, boss;
+		GameMap gameMap;
 
 		List<String> map = Arrays.asList(
 				".......................",
@@ -40,7 +40,8 @@ public class Application {
 //		gameMap.addActor(goon, 3, 3);
 		Q q = new Q("Queue");
 		gameMap.addActor(q, 3, 3);
-		world.run();
+
+			
 		world.run();
 	}
 }

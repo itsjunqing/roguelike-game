@@ -16,6 +16,9 @@ public class LockedDoor extends Ground {
 
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
+        if (actor.getInventory().isEmpty()){
+            return null;
+        }
         for (Item item : actor.getInventory()){
             if (item instanceof Key){
                 return new Actions(new UnlockDoorAction(direction, location, (Key) item));
