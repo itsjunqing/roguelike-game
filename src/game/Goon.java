@@ -15,7 +15,4 @@ public class Goon extends Enemy {
         return new IntrinsicWeapon(super.getDamage() * 2, "punches");
     }
 
-    public int getDamage() {
-        return this.getIntrinsicWeapon().damage();
-    }
 }

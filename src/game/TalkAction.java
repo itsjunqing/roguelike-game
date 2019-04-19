@@ -14,7 +14,7 @@ public class TalkAction extends Action {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        return null;
+        return actor + ": " + message;
     }
 
     @Override

@@ -51,7 +51,7 @@ public class Application {
 
         Bug bug = new Bug();
         bug.addItemToInventory(Item.newInventoryItem("rock", '*'));
-        bug.actionFactories.add(new SpitBehaviour(player));
+        bug.actionFactories.add(new     SpitBehaviour(player));
         bug.actionFactories.add(new FollowBehaviour(player));
         gameMap.addActor(bug, 0, 2);
 

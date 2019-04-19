@@ -8,6 +8,8 @@ import java.util.List;
 
 public abstract class Enemy extends Actor {
 
+    private final int BASE_DAMAGE = 5;
+
     public Enemy(String name, char displayChar, int priority, int hitPoints) {
         super(name, displayChar, priority, hitPoints);
     }
@@ -24,10 +26,10 @@ public abstract class Enemy extends Actor {
 
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(5, "scratches");
+        return new IntrinsicWeapon(BASE_DAMAGE, "scratches");
     }
 
     public int getDamage() {
-        return getIntrinsicWeapon().damage();
+        return BASE_DAMAGE;
     }
 }
