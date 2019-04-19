@@ -1,22 +1,21 @@
 package game;
 
 import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.IntrinsicWeapon;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Goon extends Actor {
-
-    private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();
+public class Goon extends Enemy {
 
     public Goon(String name, Actor player) {
-        super(name, 'o', 10, 100);
-        addBehaviours(new FollowBehaviour(player));
+        super(name, 'o', 10, 50);
+        addBehaviour(new FollowBehaviour(player));
     }
 
-    public void addBehaviours(ActionFactory behaviour) {
-        actionFactories.add(behaviour);
+    @Override
+    protected IntrinsicWeapon getIntrinsicWeapon() {
+        return new IntrinsicWeapon(super.getDamage() * 2, "punches");
     }
 
-
+    public int getDamage() {
+        return this.getIntrinsicWeapon().damage();
+    }
 }
