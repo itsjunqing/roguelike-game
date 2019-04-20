@@ -30,10 +30,4 @@ public class DoctorMaybe extends Enemy {
         actions.add(new SkipTurnAction());
         return super.playTurn(actions, map, display);
     }
-
-    @Override
-    public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
-        return new Actions(new AttackAction(otherActor, this));
-    }
-
 }

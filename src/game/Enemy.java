@@ -12,6 +12,7 @@ public abstract class Enemy extends Actor {
 
     public Enemy(String name, char displayChar, int priority, int hitPoints) {
         super(name, displayChar, priority, hitPoints);
+        addItemToInventory(new Key("Key"));
     }
 
     private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();

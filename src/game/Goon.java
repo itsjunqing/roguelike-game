@@ -11,7 +11,6 @@ public class Goon extends Enemy {
 
     public Goon(String name, Actor player) {
         super(name, 'o', 10, 50);
-        super.addItemToInventory(new Key("key"));
         insults.add("Weak!");
         insults.add("Slow!");
         insults.add("You're not going to win this!");

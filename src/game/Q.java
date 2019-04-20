@@ -3,7 +3,7 @@ package game;
 import edu.monash.fit2099.engine.*;
 
 public class Q extends Actor {
-
+    private boolean pass = false;
 
     public Q(String name) {
         super(name, 'Q', 8, 1000);
@@ -12,27 +12,32 @@ public class Q extends Actor {
 
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
-        boolean dissapear = false;
-        Location qLocation = map.locationOf(this);
-        actions.clear();
+        if (!pass) {
+            Location qLocation = map.locationOf(this);
+            actions.clear();
 
-        for (Exit exit : qLocation.getExits()) {
-            Location destination = exit.getDestination();
-            if (map.isAnActorAt(destination)) {
-                Actor actor = map.actorAt(destination);
-                for (Item item : this.getInventory()) {
-                    if (item instanceof RocketPlans) {
-                        display.println(disappear(map));
-                        return new GiveItemAction(actor, new RocketBody("Rocket body"));
+            for (Exit exit : qLocation.getExits()) {
+                Location destination = exit.getDestination();
+                if (map.isAnActorAt(destination)) {
+                    Actor actor = map.actorAt(destination);
+                    for (Item item : this.getInventory()) {
+                        if (item instanceof RocketPlans) {
+                            pass = true;
+                            return new GiveItemAction(actor, new RocketBody("Rocket body"));
+                        }
                     }
+                } else {
+                    Ground adjacentGround = map.groundAt(destination);
+                    actions.add(adjacentGround.getMoveAction(this, destination, exit.getName(), exit.getHotKey()));
                 }
-            } else {
-                Ground adjacentGround = map.groundAt(destination);
-                actions.add(adjacentGround.getMoveAction(this, destination, exit.getName(), exit.getHotKey()));
             }
+            actions.add(new SkipTurnAction());
+            return super.playTurn(actions, map, display);
         }
-        actions.add(new SkipTurnAction());
-        return super.playTurn(actions, map, display);
+        else{
+            display.println(disappear(map));
+            return new SkipTurnAction();
+        }
     }
 
 
@@ -57,7 +62,7 @@ public class Q extends Actor {
 
     private String disappear(GameMap map) {
         map.removeActor(this);
-        return this + " disappears into the air ~~~~";
+        return this + " disappears into the air with a cheery wave ~~~~";
     }
 
 

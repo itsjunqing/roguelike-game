@@ -16,12 +16,14 @@ public class Ninja extends Enemy {
 
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
+        actions.clear();
         for (ActionFactory factory : getActionFactories()) {
             Action action = factory.getAction(this, map);
-            if(action != null)
+            if(action != null) {
                 return action;
+            }
         }
-
+        actions.add(new SkipTurnAction());
         return super.playTurn(actions,  map,  display);
     }
 }
