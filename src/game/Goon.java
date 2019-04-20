@@ -42,7 +42,7 @@ public class Goon extends Enemy {
                         return new TalkAction(insults.get(random.nextInt(insults.size())), this);
                     }
                 }
-            }else {
+            } else {
                 Ground adjacentGround = map.groundAt(destination);
                 routesList.add(adjacentGround.getMoveAction(this, destination, exit.getName(), exit.getHotKey()));
             }

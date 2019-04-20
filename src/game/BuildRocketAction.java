@@ -8,9 +8,6 @@ public class BuildRocketAction extends Action {
     private RocketEngine rocketEngine;
     private Location rocketLocation;
 
-//    public BuildRocketAction() {
-//    }
-
     public BuildRocketAction(RocketBody rocketBody, RocketEngine rocketEngine, Location rocketLocation) {
         this.rocketBody = rocketBody;
         this.rocketEngine = rocketEngine;
@@ -22,9 +19,6 @@ public class BuildRocketAction extends Action {
         rocketLocation.removeItem(rocketBody);
         rocketLocation.removeItem(rocketEngine);
         rocketLocation.addItem(new Rocket("Falcon Wings"));
-//        map.locationOf(actor).removeItem(rocketBody);
-//        map.locationOf(actor).removeItem(rocketEngine);
-//        map.locationOf(actor).addItem(new Rocket("Falcon Wings"));
         return menuDescription(actor);
     }
 

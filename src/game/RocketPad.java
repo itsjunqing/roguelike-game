@@ -4,9 +4,6 @@ import edu.monash.fit2099.engine.*;
 
 public class RocketPad extends Ground {
 
-//    private RocketEngine rocketEngine;
-//    private RocketBody rocketBody;
-
     public RocketPad() {
         super('=');
     }
@@ -14,8 +11,6 @@ public class RocketPad extends Ground {
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
         Actions actions = super.allowableActions(actor, location, direction);
-//        boolean bodyPresent = false;
-//        boolean enginePresent = false;
 
         RocketBody rocketBody = null;
         RocketEngine rocketEngine = null;
@@ -32,11 +27,6 @@ public class RocketPad extends Ground {
             actions.add(new BuildRocketAction(rocketBody, rocketEngine, location));
             return actions;
         }
-
-//        if (bodyPresent && enginePresent) {
-//            actions.add(new BuildRocketAction());
-//            return actions;
-//        }
 
         return actions;
     }

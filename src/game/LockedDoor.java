@@ -1,6 +1,5 @@
 package game;
 
-import edu.monash.fit2099.demo.WindowSmashAction;
 import edu.monash.fit2099.engine.*;
 
 public class LockedDoor extends Ground {

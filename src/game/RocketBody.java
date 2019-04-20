@@ -12,11 +12,4 @@ public class RocketBody extends Item {
         allowableActions.add(new DropItemAction(this));
     }
 
-//    @Override
-//    public Actions getAllowableActions() {
-//        Actions actions = super.getAllowableActions();
-//        actions.clear();
-//        actions.add(new DropItemAction(this));
-//        return actions;
-//    }
 }

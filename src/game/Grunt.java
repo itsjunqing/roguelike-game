@@ -32,7 +32,7 @@ public class Grunt extends Enemy {
                 if (actor instanceof  Player) {
                     actions.add(new AttackAction(this, actor));
                 }
-            }else {
+            } else {
                 Ground adjacentGround = map.groundAt(destination);
                 actions.add(adjacentGround.getMoveAction(this, destination, exit.getName(), exit.getHotKey()));
             }

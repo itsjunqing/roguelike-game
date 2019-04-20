@@ -2,9 +2,6 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Ninja extends Enemy {
 
     public Ninja(String name, Actor player) {

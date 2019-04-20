@@ -6,13 +6,6 @@ public class Rocket extends Item {
 
     public Rocket(String name) {
         super(name, '^');
-        super.allowableActions.clear();
+        allowableActions.clear();
     }
-
-//    @Override
-//    public Actions getAllowableActions() {
-//        Actions actions = super.allowableActions;
-//        actions.clear();
-//        return actions;
-//    }
 }
