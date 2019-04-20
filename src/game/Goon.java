@@ -1,13 +1,54 @@
 package game;
 
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.IntrinsicWeapon;
+import edu.monash.fit2099.engine.*;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Goon extends Enemy {
+    private ArrayList<String> insults = new ArrayList<>();
+    private Random random = new Random();
 
     public Goon(String name, Actor player) {
         super(name, 'o', 10, 50);
+        super.addItemToInventory(new Key("key"));
+        insults.add("Weak!");
+        insults.add("Slow!");
+        insults.add("You're not going to win this!");
+        insults.add("I'm stronger than you!");
+        insults.add("You'll never get me!");
         addBehaviour(new FollowBehaviour(player));
+    }
+
+    @Override
+    public Action playTurn(Actions actions, GameMap map, Display display) {
+        Location qLocation = map.locationOf(this);
+        Actions routesList = new Actions();
+
+
+        for (ActionFactory factory : getActionFactories()) {
+            Action action = factory.getAction(this, map);
+            if(action != null)
+                return action;
+        }
+
+        for (Exit exit : qLocation.getExits()) {
+            Location destination = exit.getDestination();
+            if (map.isAnActorAt(destination)) {
+                Actor actor = map.actorAt(destination);
+                if (actor instanceof Player){
+                    routesList.add(new AttackAction(this, actor));
+                    if (random.nextDouble() <= 0.1) {
+                        return new TalkAction(insults.get(random.nextInt(insults.size())), this);
+                    }
+                }
+            }else {
+                Ground adjacentGround = map.groundAt(destination);
+                routesList.add(adjacentGround.getMoveAction(this, destination, exit.getName(), exit.getHotKey()));
+            }
+        }
+
+        return routesList.get(random.nextInt(routesList.size()));
     }
 
     @Override

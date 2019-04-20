@@ -27,7 +27,7 @@ public class Application {
 				".......................");
 		gameMap = new GameMap(groundFactory, map);
 		gameMap.addItem(new RocketPlans("Rocket plans"), 1, 2);
-		gameMap.addItem(new RocketEngine("Rocket engine"), 1, 3);
+//		gameMap.addItem(new RocketEngine("Rocket engine"), 1, 3);
 //		Location padLocation = new Location(gameMap, 5, 5);
 //		gameMap.add(new RocketPad(), padLocation);
 		world.addMap(gameMap);
@@ -39,11 +39,19 @@ public class Application {
 		
 //		Grunt grunt = new Grunt("Mongo", player);
 //		gameMap.addActor(grunt, 0, 0);
-//
-//		Grunt grunt2 = new Grunt("Norbert", player);
-//		gameMap.addActor(grunt2,  3, 3);
+
+//        Ninja ninja = new Ninja("Ninja", player);
+//        gameMap.addActor(ninja, 0, 0);
+
+		Grunt grunt2 = new Grunt("Norbert", player);
+		gameMap.addActor(grunt2,  3, 3);
+
+//		DoctorMaybe drMaybe = new DoctorMaybe("Maybe");
+//		gameMap.addActor(drMaybe, 0, 0);
+
 //		Goon goon = new Goon("Goonie", player);
 //		gameMap.addActor(goon, 3, 3);
+
 		Q q = new Q("Queue");
 		gameMap.addActor(q, 2, 6);
 

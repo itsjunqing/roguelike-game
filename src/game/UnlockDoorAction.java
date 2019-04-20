@@ -19,7 +19,8 @@ public class UnlockDoorAction extends Action {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        map.add(new LockedRoom(), doorLocation);
+        map.add(new Floor(), doorLocation);
+        actor.removeItemFromInventory(key);
         return "The door is unlocked";
     }
 

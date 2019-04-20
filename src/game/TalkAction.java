@@ -7,19 +7,21 @@ import edu.monash.fit2099.engine.GameMap;
 public class TalkAction extends Action {
 
     private String message;
+    private Actor target;
 
-    public TalkAction(String message) {
+    public TalkAction(String message, Actor target) {
         this.message = message;
+        this.target = target;
     }
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        return actor + ": " + message;
+        return target + ": " + message;
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " talks";
+        return actor + " talks to " + target;
     }
 
     @Override

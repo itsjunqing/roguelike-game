@@ -7,6 +7,7 @@ public class RocketBody extends Item {
 
     public RocketBody(String name) {
         super(name, '[');
+
         allowableActions.clear();
         allowableActions.add(new DropItemAction(this));
     }

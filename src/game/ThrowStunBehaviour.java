@@ -39,14 +39,15 @@ public class ThrowStunBehaviour extends Action implements ActionFactory {
         if (random.nextDouble() <= 0.50) {
             return "Oh no, failed to stun " + target;
         } else {
-//            Actions actions = new Actions();
-//            actions.add(new SkipTurnAction());
-//            System.out.println();
-//            System.out.println("Player is stunned.");
-//            target.playTurn(actions, map, new Display()).execute(target, map);
-//            System.out.println();
-//            System.out.println("Player is stunned.");
-//            target.playTurn(actions, map, new Display()).execute(target, map);
+            Actions actions = new Actions();
+            actions.add(new SkipTurnAction());
+            System.out.println();
+            System.out.println("Player is stunned.");
+            target.playTurn(actions, map, new Display()).execute(target, map);
+            System.out.println();
+            System.out.println("Player is stunned.");
+            target.playTurn(actions, map, new Display()).execute(target, map);
+
             return "Successfully stunned " + target + " for two turns";
         }
     }
