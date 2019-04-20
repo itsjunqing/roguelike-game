@@ -19,7 +19,7 @@ public class TalkAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return "";
+        return actor + " talks";
     }
 
     @Override

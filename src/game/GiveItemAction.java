@@ -14,19 +14,14 @@ public class GiveItemAction extends Action {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        for (Item itemInInventory : target.getInventory()) {
-            if (itemInInventory instanceof RocketPlans) {
-                target.removeItemFromInventory(itemInInventory);
-                target.addItemToInventory(item);
-                break;
-            }
-        }
-        return actor + " has given " + item + " to " + target;
+        target.addItemToInventory(item);
+        actor.removeItemFromInventory(item);
+        return menuDescription(actor);
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        return "";
+        return actor + " gives " + item + " to " + target;
     }
 
     @Override
