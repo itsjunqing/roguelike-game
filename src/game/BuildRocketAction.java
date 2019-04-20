@@ -6,31 +6,31 @@ public class BuildRocketAction extends Action {
 
     private RocketBody rocketBody;
     private RocketEngine rocketEngine;
+    private Location rocketLocation;
 
-    public BuildRocketAction() {
-    }
+//    public BuildRocketAction() {
+//    }
 
-    public BuildRocketAction(RocketBody rocketBody) {
+    public BuildRocketAction(RocketBody rocketBody, RocketEngine rocketEngine, Location rocketLocation) {
         this.rocketBody = rocketBody;
-    }
-
-    public BuildRocketAction(RocketEngine rocketEngine) {
         this.rocketEngine = rocketEngine;
+        this.rocketLocation = rocketLocation;
     }
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        if (actor.getInventory().contains(rocketBody) && actor.getInventory().contains(rocketEngine)) {
-            actor.getInventory().remove(rocketBody);
-            actor.getInventory().remove(rocketEngine);
-            map.locationOf(actor).addItem(new Rocket("Rocket"));
-        }
+        rocketLocation.removeItem(rocketBody);
+        rocketLocation.removeItem(rocketEngine);
+        rocketLocation.addItem(new Rocket("Falcon Wings"));
+//        map.locationOf(actor).removeItem(rocketBody);
+//        map.locationOf(actor).removeItem(rocketEngine);
+//        map.locationOf(actor).addItem(new Rocket("Falcon Wings"));
         return menuDescription(actor);
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " has built a rocket";
+        return actor + " builds a rocket";
     }
 
     @Override

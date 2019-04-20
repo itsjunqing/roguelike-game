@@ -16,7 +16,7 @@ public abstract class Enemy extends Actor {
 
     private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();
 
-    protected void addBehaviour(ActionFactory behaviour) {
+    public void addBehaviour(ActionFactory behaviour) {
         actionFactories.add(behaviour);
     }
 

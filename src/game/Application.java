@@ -10,7 +10,7 @@ public class Application {
 	public static void main(String[] args) {
 		World world = new World(new Display());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new LockedDoor());
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new LockedDoor(), new RocketPad());
 		GameMap gameMap;
 
 		List<String> map = Arrays.asList(
@@ -18,7 +18,7 @@ public class Application {
 				"....#####....######....",
 				"....#...#....#....#....",
 				"....#...+....#....#....",
-				"....#####....##.###....",
+				"...=#####....##.###....",
 				".......................",
 				".......................",
 				".......................",
@@ -27,6 +27,9 @@ public class Application {
 				".......................");
 		gameMap = new GameMap(groundFactory, map);
 		gameMap.addItem(new RocketPlans("Rocket plans"), 1, 2);
+		gameMap.addItem(new RocketEngine("Rocket engine"), 1, 3);
+//		Location padLocation = new Location(gameMap, 5, 5);
+//		gameMap.add(new RocketPad(), padLocation);
 		world.addMap(gameMap);
 		
 		Actor player = new Player("Player", '@', 1, 100);
@@ -42,7 +45,7 @@ public class Application {
 //		Goon goon = new Goon("Goonie", player);
 //		gameMap.addActor(goon, 3, 3);
 		Q q = new Q("Queue");
-		gameMap.addActor(q, 3, 3);
+		gameMap.addActor(q, 2, 6);
 
 			
 		world.run();
