@@ -1,7 +1,6 @@
 package game;
 
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.IntrinsicWeapon;
+import edu.monash.fit2099.engine.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,5 +31,25 @@ public abstract class Enemy extends Actor {
 
     public int getDamage() {
         return BASE_DAMAGE;
+    }
+
+    protected Actions checkPlayer(Actions actions, Actor enemy, GameMap map){
+
+        Location qLocation = map.locationOf(this);
+
+        for (Exit exit : qLocation.getExits()) {
+            Location destination = exit.getDestination();
+            if (map.isAnActorAt(destination)) {
+                Actor actor = map.actorAt(destination);
+                if (actor instanceof Player) {
+                    actions.add(new AttackAction(enemy, actor));
+                }
+            }else {
+                Ground adjacentGround = map.groundAt(destination);
+                actions.add(adjacentGround.getMoveAction(enemy, destination, exit.getName(), exit.getHotKey()));
+            }
+        }
+        actions.add(new SkipTurnAction());
+        return actions;
     }
 }

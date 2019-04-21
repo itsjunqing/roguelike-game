@@ -2,9 +2,6 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
-
-
-
 public class Grunt extends Enemy {
 
     // Grunts have 50 hitpoints and are always represented with a g
@@ -15,27 +12,37 @@ public class Grunt extends Enemy {
 
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
-        Location qLocation = map.locationOf(this);
         actions.clear();
 
-		for (ActionFactory factory : getActionFactories()) {
+        for (ActionFactory factory : getActionFactories()) {
 			Action action = factory.getAction(this, map);
 			if(action != null)
 				return action;
 		}
 
-        for (Exit exit : qLocation.getExits()) {
-            Location destination = exit.getDestination();
-            if (map.isAnActorAt(destination)) {
-                Actor actor = map.actorAt(destination);
-                if (actor instanceof  Player) {
-                    actions.add(new AttackAction(this, actor));
-                }
-            } else {
-                Ground adjacentGround = map.groundAt(destination);
-                actions.add(adjacentGround.getMoveAction(this, destination, exit.getName(), exit.getHotKey()));
-            }
-        }
+		super.checkPlayer(actions, this, map);
+
+//        Location qLocation = map.locationOf(this);
+//        actions.clear();
+//
+//		for (ActionFactory factory : getActionFactories()) {
+//			Action action = factory.getAction(this, map);
+//			if(action != null)
+//				return action;
+//		}
+//
+//        for (Exit exit : qLocation.getExits()) {
+//            Location destination = exit.getDestination();
+//            if (map.isAnActorAt(destination)) {
+//                Actor actor = map.actorAt(destination);
+//                if (actor instanceof  Player) {
+//                    actions.add(new AttackAction(this, actor));
+//                }
+//            } else {
+//                Ground adjacentGround = map.groundAt(destination);
+//                actions.add(adjacentGround.getMoveAction(this, destination, exit.getName(), exit.getHotKey()));
+//            }
+//        }
         return super.playTurn(actions, map, display);
         }
 

@@ -20,7 +20,7 @@ public class ThrowStunBehaviour extends Action implements ActionFactory {
         Location playerLocation = map.locationOf(target);
 
         boolean horizontalThrow = (ninjaLocation.y() == playerLocation.y()) && (Math.abs(ninjaLocation.x()-playerLocation.x()) <= 5);
-        boolean verticalThrow = (ninjaLocation.x() == playerLocation.x()) && (Math.abs(ninjaLocation.y()-ninjaLocation.y()) <= 5);
+        boolean verticalThrow = (ninjaLocation.x() == playerLocation.x()) && (Math.abs(ninjaLocation.y()-playerLocation.y()) <= 5);
 
         if (horizontalThrow || verticalThrow) {
             Range xs = new Range(Math.min(ninjaLocation.x(), playerLocation.x()), Math.abs(ninjaLocation.x() - playerLocation.x()) + 1);
@@ -51,9 +51,9 @@ public class ThrowStunBehaviour extends Action implements ActionFactory {
 
         if (!stunExists) {
             map.addItem(new StunPowderBomb("Stun Bomb"), playerLocation.x(), playerLocation.y());
-            return "Stun powder bomb is added to location of " + target;
+            return target + " is stunned for 2 turns.";
         }
-        return "Player is already stunned";
+        return "Player is already stunned.";
     }
 
     @Override

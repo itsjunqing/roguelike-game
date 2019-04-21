@@ -21,9 +21,7 @@ public class Goon extends Enemy {
 
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
-        Location qLocation = map.locationOf(this);
-        Actions routesList = new Actions();
-
+        actions.clear();
 
         for (ActionFactory factory : getActionFactories()) {
             Action action = factory.getAction(this, map);
@@ -31,23 +29,44 @@ public class Goon extends Enemy {
                 return action;
         }
 
-        for (Exit exit : qLocation.getExits()) {
-            Location destination = exit.getDestination();
-            if (map.isAnActorAt(destination)) {
-                Actor actor = map.actorAt(destination);
-                if (actor instanceof Player){
-                    routesList.add(new AttackAction(this, actor));
-                    if (random.nextDouble() <= 0.1) {
+        super.checkPlayer(actions, this, map);
+
+        for (Action action : actions){
+            if (action instanceof AttackAction){
+                if (random.nextDouble() <= 0.1) {
                         return new TalkAction(insults.get(random.nextInt(insults.size())), this);
                     }
-                }
-            } else {
-                Ground adjacentGround = map.groundAt(destination);
-                routesList.add(adjacentGround.getMoveAction(this, destination, exit.getName(), exit.getHotKey()));
             }
         }
 
-        return routesList.get(random.nextInt(routesList.size()));
+
+//        Location qLocation = map.locationOf(this);
+//        Actions routesList = new Actions();
+//
+//
+//        for (ActionFactory factory : getActionFactories()) {
+//            Action action = factory.getAction(this, map);
+//            if(action != null)
+//                return action;
+//        }
+//
+//        for (Exit exit : qLocation.getExits()) {
+//            Location destination = exit.getDestination();
+//            if (map.isAnActorAt(destination)) {
+//                Actor actor = map.actorAt(destination);
+//                if (actor instanceof Player){
+//                    routesList.add(new AttackAction(this, actor));
+//                    if (random.nextDouble() <= 0.1) {
+//                        return new TalkAction(insults.get(random.nextInt(insults.size())), this);
+//                    }
+//                }
+//            } else {
+//                Ground adjacentGround = map.groundAt(destination);
+//                routesList.add(adjacentGround.getMoveAction(this, destination, exit.getName(), exit.getHotKey()));
+//            }
+//        }
+//
+        return super.playTurn(actions, map, display);
     }
 
     @Override

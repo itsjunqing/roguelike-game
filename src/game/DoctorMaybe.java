@@ -16,18 +16,27 @@ public class DoctorMaybe extends Enemy {
 
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
-        Location qLocation = map.locationOf(this);
         actions.clear();
-        for (Exit exit : qLocation.getExits()) {
-            Location destination = exit.getDestination();
-            if (map.isAnActorAt(destination)) {
-                Actor actor = map.actorAt(destination);
-                if (actor instanceof Player){
-                    actions.add(new AttackAction(this, actor));
-                }
+        super.checkPlayer(actions, this, map);
+
+        for (Action action : actions){
+            if (action instanceof MoveActorAction){
+                actions.remove(action);
             }
         }
-        actions.add(new SkipTurnAction());
+
+//        Location qLocation = map.locationOf(this);
+//        actions.clear();
+//        for (Exit exit : qLocation.getExits()) {
+//            Location destination = exit.getDestination();
+//            if (map.isAnActorAt(destination)) {
+//                Actor actor = map.actorAt(destination);
+//                if (actor instanceof Player){
+//                    actions.add(new AttackAction(this, actor));
+//                }
+//            }
+//        }
+
         return super.playTurn(actions, map, display);
     }
 }

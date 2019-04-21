@@ -68,5 +68,4 @@ public class Q extends Actor {
         return this + " disappears into the air with a cheery wave ~~~~";
     }
 
-
 }
