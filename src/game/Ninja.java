@@ -31,9 +31,11 @@ public class Ninja extends Enemy {
      */
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
+        actions.clear();
 
         if (hasStunPowderBomb(map) && stunThrown) {
             stunThrown = false;
+            super.addActions(actions, player, map);
 
             /*
             I might be thinking to remove the skipturnaction here. because playturn executes random actions,
@@ -48,7 +50,7 @@ public class Ninja extends Enemy {
             for (Action action : actions) {
                 if (action instanceof SkipTurnAction) {
                     actions.remove(action);
-                } else if (action instanceof DropItemAction) {
+                } else if (action instanceof AttackAction) {
                     actions.remove(action);
                 }
             }
@@ -56,7 +58,6 @@ public class Ninja extends Enemy {
             return super.playTurn(actions, map, display);
         }
 
-        actions.clear();
         for (ActionFactory factory : getActionFactories()) {
             Action action = factory.getAction(this, map);
             if (action != null) {

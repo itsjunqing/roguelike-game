@@ -5,7 +5,7 @@ import edu.monash.fit2099.engine.*;
 public class DoctorMaybe extends Enemy {
 
     public DoctorMaybe(String name) {
-        super(name, 'D', 10, 25);
+        super(name, 'D', 10, 10);
         super.addItemToInventory(new RocketEngine("Rocket Engine"));
     }
 

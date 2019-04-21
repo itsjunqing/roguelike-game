@@ -6,6 +6,21 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Goon extends Enemy {
+
+    private ArrayList<String> insults = new ArrayList<>();
+
+    private Random random = new Random();
+
+    public Goon(String name, Actor player) {
+        super(name, 'o', 10, 5);
+        insults.add("Weak!");
+        insults.add("Slow!");
+        insults.add("You're not going to win this!");
+        insults.add("I'm stronger than you!");
+        insults.add("You'll never get me!");
+        addBehaviour(new FollowBehaviour(player));
+    }
+
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
         actions.clear();
@@ -27,7 +42,6 @@ public class Goon extends Enemy {
         }
         return super.playTurn(actions, map, display);
     }
-
 //        Location qLocation = map.locationOf(this);
 //        Actions routesList = new Actions();
 //
@@ -55,19 +69,6 @@ public class Goon extends Enemy {
 //        }
 //
 
-    private ArrayList<String> insults = new ArrayList<>();
-
-    private Random random = new Random();
-
-    public Goon(String name, Actor player) {
-        super(name, 'o', 10, 50);
-        insults.add("Weak!");
-        insults.add("Slow!");
-        insults.add("You're not going to win this!");
-        insults.add("I'm stronger than you!");
-        insults.add("You'll never get me!");
-        addBehaviour(new FollowBehaviour(player));
-    }
 
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {

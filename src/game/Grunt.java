@@ -6,7 +6,7 @@ public class Grunt extends Enemy {
 
     // Grunts have 50 hitpoints and are always represented with a g
     public Grunt(String name, Actor player) {
-        super(name, 'g', 5, 50);
+        super(name, 'g', 5, 5);
         addBehaviour(new FollowBehaviour(player));
     }
 
