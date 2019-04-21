@@ -7,7 +7,6 @@ public class Q extends Actor {
 
     public Q(String name) {
         super(name, 'Q', 8, 1000);
-        // this is duplicated code? added rocket body into inventory but not removed when giving to player
         addItemToInventory(new RocketBody("Rocket body"));
     }
 
@@ -24,8 +23,11 @@ public class Q extends Actor {
                     for (Item item : this.getInventory()) {
                         if (item instanceof RocketPlans) {
                             pass = true;
-                            // not getting rocket body from inventory?
-                            return new GiveItemAction(actor, new RocketBody("Rocket body"));
+                            for (Item body : this.getInventory()){
+                                if (body instanceof RocketBody){
+                                    return new GiveItemAction(actor, body);
+                                }
+                            }
                         }
                     }
                 } else {

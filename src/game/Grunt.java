@@ -20,7 +20,7 @@ public class Grunt extends Enemy {
 				return action;
 		}
 
-		super.checkPlayer(actions, this, map);
+		super.addActions(actions, this, map);
 
 //        Location qLocation = map.locationOf(this);
 //        actions.clear();

@@ -5,10 +5,12 @@ import edu.monash.fit2099.engine.*;
 public class Ninja extends Enemy {
 
     boolean stunThrown = false;
+    private Actor player;
 
     public Ninja(String name, Actor player) {
         super(name, 'N', 15, 50);
         addBehaviour(new ThrowStunBehaviour(player));
+        this.player = player;
     }
 
     @Override

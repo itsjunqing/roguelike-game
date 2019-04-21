@@ -17,7 +17,7 @@ public class DoctorMaybe extends Enemy {
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
         actions.clear();
-        super.checkPlayer(actions, this, map);
+        super.addActions(actions, this, map);
 
         for (Action action : actions){
             if (action instanceof MoveActorAction){

@@ -29,7 +29,7 @@ public class Goon extends Enemy {
                 return action;
         }
 
-        super.checkPlayer(actions, this, map);
+        super.addActions(actions, this, map);
 
         for (Action action : actions){
             if (action instanceof AttackAction){

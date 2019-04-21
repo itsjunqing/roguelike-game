@@ -33,7 +33,7 @@ public abstract class Enemy extends Actor {
         return BASE_DAMAGE;
     }
 
-    protected Actions checkPlayer(Actions actions, Actor enemy, GameMap map){
+    protected Actions addActions(Actions actions, Actor enemy, GameMap map){
 
         Location qLocation = map.locationOf(this);
 
