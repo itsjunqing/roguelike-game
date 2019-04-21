@@ -32,7 +32,7 @@ public class Application {
 //		gameMap.add(new RocketPad(), padLocation);
 		world.addMap(gameMap);
 		
-		Actor player = new Player("Player", '@', 1, 100);
+		Actor player = new GamePlayer("Player", '@', 1, 100);
 
 		world.addPlayer(player, gameMap, 2, 2);
 
