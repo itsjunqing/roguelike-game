@@ -6,39 +6,27 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Goon extends Enemy {
-    private ArrayList<String> insults = new ArrayList<>();
-    private Random random = new Random();
-
-    public Goon(String name, Actor player) {
-        super(name, 'o', 10, 50);
-        insults.add("Weak!");
-        insults.add("Slow!");
-        insults.add("You're not going to win this!");
-        insults.add("I'm stronger than you!");
-        insults.add("You'll never get me!");
-        addBehaviour(new FollowBehaviour(player));
-    }
-
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
         actions.clear();
 
         for (ActionFactory factory : getActionFactories()) {
             Action action = factory.getAction(this, map);
-            if(action != null)
+            if (action != null)
                 return action;
         }
 
         super.addActions(actions, this, map);
 
-        for (Action action : actions){
-            if (action instanceof AttackAction){
+        for (Action action : actions) {
+            if (action instanceof AttackAction) {
                 if (random.nextDouble() <= 0.1) {
-                        return new TalkAction(insults.get(random.nextInt(insults.size())), this);
-                    }
+                    return new TalkAction(insults.get(random.nextInt(insults.size())), this);
+                }
             }
         }
-
+        return super.playTurn(actions, map, display);
+    }
 
 //        Location qLocation = map.locationOf(this);
 //        Actions routesList = new Actions();
@@ -66,7 +54,19 @@ public class Goon extends Enemy {
 //            }
 //        }
 //
-        return super.playTurn(actions, map, display);
+
+    private ArrayList<String> insults = new ArrayList<>();
+
+    private Random random = new Random();
+
+    public Goon(String name, Actor player) {
+        super(name, 'o', 10, 50);
+        insults.add("Weak!");
+        insults.add("Slow!");
+        insults.add("You're not going to win this!");
+        insults.add("I'm stronger than you!");
+        insults.add("You'll never get me!");
+        addBehaviour(new FollowBehaviour(player));
     }
 
     @Override

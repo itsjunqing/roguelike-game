@@ -33,8 +33,7 @@ public abstract class Enemy extends Actor {
         return BASE_DAMAGE;
     }
 
-    protected Actions addActions(Actions actions, Actor enemy, GameMap map){
-
+    protected Actions addActions(Actions actions, Actor enemy, GameMap map) {
         Location qLocation = map.locationOf(this);
 
         for (Exit exit : qLocation.getExits()) {
@@ -44,7 +43,7 @@ public abstract class Enemy extends Actor {
                 if (actor instanceof Player) {
                     actions.add(new AttackAction(enemy, actor));
                 }
-            }else {
+            } else {
                 Ground adjacentGround = map.groundAt(destination);
                 actions.add(adjacentGround.getMoveAction(enemy, destination, exit.getName(), exit.getHotKey()));
             }

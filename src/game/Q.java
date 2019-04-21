@@ -23,8 +23,8 @@ public class Q extends Actor {
                     for (Item item : this.getInventory()) {
                         if (item instanceof RocketPlans) {
                             pass = true;
-                            for (Item body : this.getInventory()){
-                                if (body instanceof RocketBody){
+                            for (Item body : this.getInventory()) {
+                                if (body instanceof RocketBody) {
                                     return new GiveItemAction(actor, body);
                                 }
                             }
@@ -35,11 +35,9 @@ public class Q extends Actor {
                     actions.add(adjacentGround.getMoveAction(this, destination, exit.getName(), exit.getHotKey()));
                 }
             }
-            // what does this do? i've forgotten. option for the system to choose whether to move the Q or not to move the Q?
             actions.add(new SkipTurnAction());
             return super.playTurn(actions, map, display);
-        }
-        else{
+        } else {
             display.println(disappear(map));
             return new SkipTurnAction();
         }
@@ -58,7 +56,7 @@ public class Q extends Actor {
                 break;
             }
         }
-        if (!hasrocketplans){
+        if (!hasrocketplans) {
             actions.add(new TalkAction("I can give you something that will help, come back to me when you've the plans.", this));
         }
         return actions;

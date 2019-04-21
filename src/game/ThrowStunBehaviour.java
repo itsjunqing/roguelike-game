@@ -40,20 +40,21 @@ public class ThrowStunBehaviour extends Action implements ActionFactory {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        Location playerLocation = map.locationOf(target);
-        boolean stunExists = false;
-
-        for (Item item : playerLocation.getItems()) {
-            if (item instanceof StunPowderBomb) {
-                stunExists = true;
+        if (random.nextDouble() <= 0.5) {
+            Location playerLocation = map.locationOf(target);
+            boolean stunExists = false;
+            for (Item item : playerLocation.getItems()) {
+                if (item instanceof StunPowderBomb) {
+                    stunExists = true;
+                }
             }
+            if (!stunExists) {
+                map.addItem(new StunPowderBomb("Stun Bomb"), playerLocation.x(), playerLocation.y());
+                return target + " is stunned for 2 turns.";
+            }
+            return target + " is already stunned.";
         }
-
-        if (!stunExists) {
-            map.addItem(new StunPowderBomb("Stun Bomb"), playerLocation.x(), playerLocation.y());
-            return target + " is stunned for 2 turns.";
-        }
-        return "Player is already stunned.";
+        return "Failed to stun " + target;
     }
 
     @Override
@@ -66,30 +67,3 @@ public class ThrowStunBehaviour extends Action implements ActionFactory {
         return "";
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-//if (random.nextDouble() <= 0.50) {
-//        return "Oh no, failed to stun " + target;
-//        } else {
-//        Actions actions = new Actions();
-//        actions.add(new SkipTurnAction());
-//        System.out.println();
-//        System.out.println("Player is stunned.");
-//        target.playTurn(actions, map, new Display()).execute(target, map);
-//        System.out.println();
-//        System.out.println("Player is stunned.");
-//        target.playTurn(actions, map, new Display()).execute(target, map);
-//
-//        return "Successfully stunned " + target + " for two turns";
-//        }

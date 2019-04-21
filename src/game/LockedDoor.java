@@ -17,8 +17,8 @@ public class LockedDoor extends Ground {
     public Actions allowableActions(Actor actor, Location location, String direction) {
         Actions actions = super.allowableActions(actor, location, direction);
 
-        for (Item item : actor.getInventory()){
-            if (item instanceof Key){
+        for (Item item : actor.getInventory()) {
+            if (item instanceof Key) {
                 actions.add(new UnlockDoorAction(direction, location, (Key) item));
             }
         }

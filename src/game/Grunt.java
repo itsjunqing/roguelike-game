@@ -15,12 +15,12 @@ public class Grunt extends Enemy {
         actions.clear();
 
         for (ActionFactory factory : getActionFactories()) {
-			Action action = factory.getAction(this, map);
-			if(action != null)
-				return action;
-		}
+            Action action = factory.getAction(this, map);
+            if (action != null)
+                return action;
+        }
 
-		super.addActions(actions, this, map);
+        super.addActions(actions, this, map);
 
 //        Location qLocation = map.locationOf(this);
 //        actions.clear();
@@ -44,6 +44,6 @@ public class Grunt extends Enemy {
 //            }
 //        }
         return super.playTurn(actions, map, display);
-        }
+    }
 
 }

@@ -31,8 +31,8 @@ public class Ninja extends Enemy {
      */
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
-        actions.clear();
-        if (stunThrown) {
+
+        if (hasStunPowderBomb(map) && stunThrown) {
             stunThrown = false;
 
             /*
@@ -44,18 +44,19 @@ public class Ninja extends Enemy {
             my approach is that clearing off the actions and repeat the find exit to get the list of possible movements
             without the skipturn
              */
-//            actions.remove(new SkipTurnAction());
-//            return super.playTurn(actions, map, display);
 
-            for (Exit exit : map.locationOf(this).getExits()) {
-                Location destination = exit.getDestination();
-                Ground adjacentGround = map.groundAt(destination);
-                actions.add(adjacentGround.allowableActions(this, destination, exit.getName()));
-                actions.add(adjacentGround.getMoveAction(this, destination, exit.getName(), exit.getHotKey()));
+            for (Action action : actions) {
+                if (action instanceof SkipTurnAction) {
+                    actions.remove(action);
+                } else if (action instanceof DropItemAction) {
+                    actions.remove(action);
+                }
             }
+
             return super.playTurn(actions, map, display);
         }
 
+        actions.clear();
         for (ActionFactory factory : getActionFactories()) {
             Action action = factory.getAction(this, map);
             if (action != null) {
@@ -63,12 +64,18 @@ public class Ninja extends Enemy {
                 return action;
             }
         }
-        // what does this line do?
         actions.add(new SkipTurnAction());
-        return super.playTurn(actions,  map,  display);
+        return super.playTurn(actions, map, display);
     }
 
-
+    private boolean hasStunPowderBomb(GameMap map) {
+        for (Item item : map.locationOf(player).getItems()) {
+            if (item instanceof StunPowderBomb) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 
 }
