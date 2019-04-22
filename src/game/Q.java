@@ -46,17 +46,17 @@ public class Q extends Actor {
 
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
-        boolean hasrocketplans = false;
+        boolean hasRocketPlans = false;
         Actions actions = new Actions();
         for (Item itemInInventory : otherActor.getInventory()) {
             if (itemInInventory instanceof RocketPlans) {
                 actions.add(new TalkAction("Hand the rocket plans over, I don't have all day", this));
                 actions.add(new GiveItemAction(this, itemInInventory));
-                hasrocketplans = true;
+                hasRocketPlans = true;
                 break;
             }
         }
-        if (!hasrocketplans) {
+        if (!hasRocketPlans) {
             actions.add(new TalkAction("I can give you something that will help, come back to me when you've the plans.", this));
         }
         return actions;

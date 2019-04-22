@@ -8,7 +8,6 @@ import java.util.Random;
 public class Goon extends Enemy {
 
     private ArrayList<String> insults = new ArrayList<>();
-
     private Random random = new Random();
 
     public Goon(String name, Actor player) {
@@ -72,7 +71,7 @@ public class Goon extends Enemy {
 
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(super.getDamage() * 2, "punches");
+        return new IntrinsicWeapon(BASE_DAMAGE * 2, "punches");
     }
 
 }

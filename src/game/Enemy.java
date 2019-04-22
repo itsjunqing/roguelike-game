@@ -7,16 +7,15 @@ import java.util.List;
 
 public abstract class Enemy extends Actor {
 
-    private final int BASE_DAMAGE = 5;
+    static final int BASE_DAMAGE = 5;
+    private List<ActionFactory> actionFactories = new ArrayList<>();
 
-    public Enemy(String name, char displayChar, int priority, int hitPoints) {
+    protected Enemy(String name, char displayChar, int priority, int hitPoints) {
         super(name, displayChar, priority, hitPoints);
         addItemToInventory(new Key("Key"));
     }
 
-    private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();
-
-    public void addBehaviour(ActionFactory behaviour) {
+    protected void addBehaviour(ActionFactory behaviour) {
         actionFactories.add(behaviour);
     }
 
@@ -29,11 +28,8 @@ public abstract class Enemy extends Actor {
         return new IntrinsicWeapon(BASE_DAMAGE, "scratches");
     }
 
-    public int getDamage() {
-        return BASE_DAMAGE;
-    }
 
-    protected Actions addActions(Actions actions, Actor enemy, GameMap map) {
+    protected void addActions(Actions actions, Actor enemy, GameMap map) {
         Location qLocation = map.locationOf(this);
 
         for (Exit exit : qLocation.getExits()) {
@@ -49,6 +45,6 @@ public abstract class Enemy extends Actor {
             }
         }
         actions.add(new SkipTurnAction());
-        return actions;
+//        return actions;
     }
 }

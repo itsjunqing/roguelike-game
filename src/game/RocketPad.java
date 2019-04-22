@@ -27,7 +27,6 @@ public class RocketPad extends Ground {
             actions.add(new BuildRocketAction(rocketBody, rocketEngine, location));
             return actions;
         }
-
         return actions;
     }
 }

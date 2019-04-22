@@ -4,18 +4,21 @@ import edu.monash.fit2099.engine.*;
 
 public class Ninja extends Enemy {
 
-    boolean stunThrown = false;
+    private boolean stunThrown = false;
     private Actor player;
 
     public Ninja(String name, Actor player) {
         super(name, 'N', 15, 50);
-        addBehaviour(new ThrowStunBehaviour(player));
         this.player = player;
+        addBehaviour(new ThrowStunBehaviour(player));
     }
 
+    /*
+    Changing the attack name of the Ninja, overall implementation remain unchanged
+     */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(super.getDamage(), "slices");
+        return new IntrinsicWeapon(BASE_DAMAGE, "slices");
     }
 
     /*
@@ -37,16 +40,6 @@ public class Ninja extends Enemy {
             stunThrown = false;
             super.addActions(actions, player, map);
 
-            /*
-            I might be thinking to remove the skipturnaction here. because playturn executes random actions,
-            there might be possibility where the ninja has thrown stun and does not move one step.
-            so i was thinking to remove the skipturnaction, but it didn't work, as the new Skipturnaction initialize a new instance and
-            it can't be removed from the action (different memory).
-
-            my approach is that clearing off the actions and repeat the find exit to get the list of possible movements
-            without the skipturn
-             */
-
             for (Action action : actions) {
                 if (action instanceof SkipTurnAction) {
                     actions.remove(action);
@@ -54,7 +47,6 @@ public class Ninja extends Enemy {
                     actions.remove(action);
                 }
             }
-
             return super.playTurn(actions, map, display);
         }
 

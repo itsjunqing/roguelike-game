@@ -13,13 +13,11 @@ public class Grunt extends Enemy {
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
         actions.clear();
-
         for (ActionFactory factory : getActionFactories()) {
             Action action = factory.getAction(this, map);
             if (action != null)
                 return action;
         }
-
         super.addActions(actions, this, map);
 
 //        Location qLocation = map.locationOf(this);

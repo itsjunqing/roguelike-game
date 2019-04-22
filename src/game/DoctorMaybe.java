@@ -11,7 +11,7 @@ public class DoctorMaybe extends Enemy {
 
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon( (int) Math.round(super.getDamage() * 0.5), "knocks");
+        return new IntrinsicWeapon( (int) Math.round(BASE_DAMAGE * 0.5), "knocks");
     }
 
     @Override
