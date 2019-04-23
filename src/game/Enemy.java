@@ -30,9 +30,9 @@ public abstract class Enemy extends Actor {
 
 
     protected void addActions(Actions actions, Actor enemy, GameMap map) {
-        Location qLocation = map.locationOf(this);
+        Location location = map.locationOf(this);
 
-        for (Exit exit : qLocation.getExits()) {
+        for (Exit exit : location.getExits()) {
             Location destination = exit.getDestination();
             if (map.isAnActorAt(destination)) {
                 Actor actor = map.actorAt(destination);

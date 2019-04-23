@@ -32,12 +32,8 @@ public class Goon extends Enemy {
 
         super.addActions(actions, this, map);
 
-        for (Action action : actions) {
-            if (action instanceof AttackAction) {
-                if (random.nextDouble() <= 0.1) {
-                    return new TalkAction(insults.get(random.nextInt(insults.size())), this);
-                }
-            }
+        if (random.nextDouble() <= 1.0) {
+            return new TalkAction(insults.get(random.nextInt(insults.size())), this);
         }
         return super.playTurn(actions, map, display);
     }
