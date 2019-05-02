@@ -5,6 +5,12 @@ import edu.monash.fit2099.engine.Item;
 
 public class RocketBody extends Item {
 
+    /**
+     * Constructor to create a rocket body with a name.
+     * This RocketBody is by default in the actor's inventory (e.g. Q), so the item can only have DropItemAction.
+     *
+     * @param name name of the rocket body
+     */
     public RocketBody(String name) {
         super(name, '[');
         allowableActions.clear();

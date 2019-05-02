@@ -2,9 +2,6 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
-/**
- * Special action used by the player to build thee Rocket.
- */
 public class BuildRocketAction extends Action {
 
     private RocketBody rocketBody;
@@ -12,10 +9,10 @@ public class BuildRocketAction extends Action {
     private Location rocketLocation;
 
     /**
-     * Constructor to create an Action that would build a Rcoket on the Location.
-     * @param rocketBody    the rocket body that is required to build the rocket
-     * @param rocketEngine  the rocket engine that is required to build the rocket
-     * @param rocketLocation    the Location that the Rocket would be built
+     * Constructor to create an Action that will build a rocket on a Location
+     * @param rocketBody a rocket body
+     * @param rocketEngine a rocket engine
+     * @param rocketLocation location to build the rocket
      */
     public BuildRocketAction(RocketBody rocketBody, RocketEngine rocketEngine, Location rocketLocation) {
         this.rocketBody = rocketBody;
@@ -24,14 +21,11 @@ public class BuildRocketAction extends Action {
     }
 
     /**
-     * Allows the player to build the rocket
+     * Builds a rocket on the rocket location.
      *
-     * Overrider Action.execute()
-     *
-     * @see Action#execute(Actor, GameMap)
      * @param actor The actor performing the action.
      * @param map The map the actor is on.
-     * @return  a description of the Action suitable for the menu
+     * @return a suitable description to display in the UI
      */
     @Override
     public String execute(Actor actor, GameMap map) {
@@ -42,12 +36,10 @@ public class BuildRocketAction extends Action {
     }
 
     /**
-     * Returns a description of building the rocket action that is suitable to display
-     * in the menu
+     * A string describing the action suitable for displaying in the UI menu.
      *
-     * @see Action#menuDescription(Actor)
      * @param actor The actor performing the action.
-     * @return  a String describing the Action
+     * @return a string, e.g. "Player builds a rocket"
      */
     @Override
     public String menuDescription(Actor actor) {
@@ -55,8 +47,9 @@ public class BuildRocketAction extends Action {
     }
 
     /**
-     * Returns the empty String as no hotkey is permanently assigned to building the rocket
-     * @return  an empty String
+     * Returns the empty string, as rocket building does not have a dedicated hotkey.
+     *
+     * @return the empty string
      */
     @Override
     public String hotKey() {

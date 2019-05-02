@@ -11,12 +11,27 @@ public class UnlockDoorAction extends Action {
     private Location doorLocation;
     private Key key;
 
+    /**
+     * Constructor to create an Action that will unlock a LockedDoor to a Location in a given Direction.
+     *
+     * @param direction direction to unlock the door
+     * @param doorLocation the location of the door
+     * @param key key to unlock the door
+     */
     public UnlockDoorAction(String direction, Location doorLocation, Key key) {
         this.direction = direction;
         this.doorLocation = doorLocation;
         this.key = key;
     }
 
+    /**
+     * Unlocks the door by removing the door from the location and replace it with a Floor type.
+     * The key is also removed from the player's inventory.
+     *
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return a string statement that tells the door is unlocked
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         map.add(new Floor(), doorLocation);
@@ -24,11 +39,22 @@ public class UnlockDoorAction extends Action {
         return "The door is unlocked";
     }
 
+    /**
+     * A string describing the action suitable for displaying in the UI menu.
+     *
+     * @param actor The actor performing the action.
+     * @return a string, e.g. "Player unlocks the door to the west"
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor + " unlocks the door to the " + direction;
     }
 
+    /**
+     * Returns the empty string, as item giving does not have a dedicated hotkey.
+     *
+     * @return the empty string
+     */
     @Override
     public String hotKey() {
         return "";
