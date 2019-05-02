@@ -7,14 +7,27 @@ public class Ninja extends Enemy {
     private boolean stunThrown = false;
     private Actor player;
 
+    // pls rephrase this, check line 14, is it necessary?
+
+    /**
+     * Constructor to create an Actor of type Enemy: Ninja with a name.
+     * It takes in a Player of type Actor to represent the target for the Ninja to throw the stun.
+     * By default, it has the ability of throwing a stun to a player.
+     *
+     * @param name   name of the Ninja
+     * @param player the target player for Ninja to throw the stun
+     */
     public Ninja(String name, Actor player) {
         super(name, 'N', 15, 50);
         this.player = player;
         addBehaviour(new ThrowStunBehaviour(player));
     }
 
-    /*
-    Changing the attack name of the Ninja, overall implementation remain unchanged
+    /**
+     * Returns a new IntrinsicWeapon with the same BASE_DAMAGE of Enemy, but different attack name.
+     * Overall implementation remains unchanged.
+     *
+     * @return a new IntrinsicWeapon with a different name
      */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
@@ -60,6 +73,7 @@ public class Ninja extends Enemy {
         actions.add(new SkipTurnAction());
         return super.playTurn(actions, map, display);
     }
+
 
     private boolean hasStunPowderBomb(GameMap map) {
         for (Item item : map.locationOf(player).getItems()) {
