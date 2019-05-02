@@ -2,6 +2,9 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
+/**
+ * An Action that builds a Rocket.
+ */
 public class BuildRocketAction extends Action {
 
     private RocketBody rocketBody;
@@ -47,7 +50,7 @@ public class BuildRocketAction extends Action {
     }
 
     /**
-     * Returns the empty string, as rocket building does not have a dedicated hotkey.
+     * Returns an empty string, as rocket building does not have a dedicated hotkey.
      *
      * @return the empty string
      */

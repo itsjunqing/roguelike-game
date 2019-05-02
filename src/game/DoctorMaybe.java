@@ -2,12 +2,15 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
+/**
+ * Class representing DoctorMaybe as a form of an Enemy.
+ */
 public class DoctorMaybe extends Enemy {
 
     /**
      * Constructor to create a new Enemy of type DoctorMaybe with a name
      *
-     * @param name the name of the DoctorMaybe
+     * @param name - the name of the DoctorMaybe
      */
     public DoctorMaybe(String name) {
         super(name, 'D', 10, 10);
@@ -15,20 +18,19 @@ public class DoctorMaybe extends Enemy {
     }
 
     /**
-     * Creates a new IntrinsicWeapon that halves the base damage with a new Description.
+     * Creates a new IntrinsicWeapon with half the damage of a base enemy damage with a new description.
      *
-     * @return a freshly-instantiated IntrinsicWeapon
+     * @return an IntrinsicWeapon suitable for DoctorMaybe
      */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon((int) Math.round(BASE_DAMAGE * 0.5), "knocks");
-    }
+        return new IntrinsicWeapon((int) Math.round(BASE_DAMAGE * 0.5), "zaps"
 
     // pls rephrase the description
 
     /**
-     * Allows the DoctorMaybe to attack if the actor next to it is a Player and
-     * does not allow it to move anywhere.
+     * Allows DoctorMaybe to only attack the Player or skips its turn. If the player is not beside DoctorMaybe,
+     * DoctorMaybe is only allows to skip its turn.
      *
      * @param actions collection of possible Actions for this Actor
      * @param map     the map containing the Actor
