@@ -48,11 +48,11 @@ public class Application {
 //		DoctorMaybe drMaybe = new DoctorMaybe("Maybe");
 //		gameMap.addActor(drMaybe, 6, 2);
 
-		Goon goon = new Goon("Goonie", player);
-		gameMap.addActor(goon, 3, 3);
+//		Goon goon = new Goon("Goonie", player);
+//		gameMap.addActor(goon, 3, 3);
 
-//		Q q = new Q("Q");
-//		gameMap.addActor(q, 2, 6);
+		Q q = new Q("Q");
+		gameMap.addActor(q, 1, 1);
 
 		world.run();
 	}

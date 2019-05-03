@@ -2,6 +2,9 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
+/**
+ * An Action that gives an Actor an Item while removing the Item from the other Actor's inventory.
+ */
 public class GiveItemAction extends Action {
 
     private Actor target;
@@ -10,8 +13,8 @@ public class GiveItemAction extends Action {
     /**
      * Constructor to create an Action that gives an actor an item.
      *
-     * @param target an actor to give the item
-     * @param item   item to give
+     * @param target    an actor to give the item
+     * @param item  item to give
      */
     public GiveItemAction(Actor target, Item item) {
         this.target = target;
@@ -19,8 +22,8 @@ public class GiveItemAction extends Action {
     }
 
     /**
-     * Gives an item to the target by putting that item into actor's inventory
-     * and remove that item from the giver's inventory.
+     * Gives an item to the target by putting that item into the target's inventory
+     * and removes the item from the giver's inventory.
      *
      * @param actor The actor performing the action.
      * @param map   The map the actor is on.

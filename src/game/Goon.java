@@ -5,11 +5,20 @@ import edu.monash.fit2099.engine.*;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Class representing Goon as a form of an Enemy.
+ */
 public class Goon extends Enemy {
 
     private ArrayList<String> insults = new ArrayList<>();
     private Random random = new Random();
 
+    /**
+     * Constructor to create an Enemy of type Goon with a name
+     *
+     * @param name  the name of the Goon
+     * @param player    the Actor for the Goon to follow
+     */
     public Goon(String name, Actor player) {
         super(name, 'o', 10, 5);
         insults.add("Weak!");
@@ -20,6 +29,16 @@ public class Goon extends Enemy {
         addBehaviour(new FollowBehaviour(player));
     }
 
+    /**
+     * Allows the Goon to move towards the player if FollowBehaviour is active. Gives Goon the ability
+     * to shout an insult to the player with a 10% chance of success. Will return a list of possible actions
+     * if FollowBehaviour is inactive and shouting an insult is unsuccessful.
+     *
+     * @param actions   collection of possible actions for Goon in the turn
+     * @param map   the map containing the Actor
+     * @param display   the object that performs the console I/O
+     * @return  the Action to be performed, e.g. attacking the player when it is next to it
+     */
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
         actions.clear();
@@ -64,7 +83,11 @@ public class Goon extends Enemy {
 //        }
 //
 
-
+    /**
+     * Creates a new IntrinsicWeapon with twice the damage of a base enemy damage and a new description when it attacks
+     *
+     * @return an IntrinsicWeapon suitable for Goon
+     */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(BASE_DAMAGE * 2, "punches");

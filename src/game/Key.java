@@ -3,6 +3,9 @@ package game;
 import edu.monash.fit2099.engine.DropItemAction;
 import edu.monash.fit2099.engine.Item;
 
+/**
+ * Class representing a Key that can be dropped by Actors.
+ */
 public class Key extends Item {
 
     /**

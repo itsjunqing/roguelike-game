@@ -37,7 +37,7 @@ public class GamePlayer extends Player {
      * @param actions the actions to display
      * @param map the map to display
      * @param display the object that performs the console I/O
-     * @return
+     * @return a list of actions that the player is able to perform
      */
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
