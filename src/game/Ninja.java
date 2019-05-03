@@ -2,6 +2,9 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
+/**
+ * Class representing a Ninja.
+ */
 public class Ninja extends Enemy {
 
     private boolean stunThrown = false;
@@ -75,6 +78,12 @@ public class Ninja extends Enemy {
     }
 
 
+    /**
+     * Checks f the player's location has a StunPowderBomb.
+     *
+     * @param map the map which the player is in it.
+     * @return true if StunPowderBomb exists on the player's location and false otherwise
+     */
     private boolean hasStunPowderBomb(GameMap map) {
         for (Item item : map.locationOf(player).getItems()) {
             if (item instanceof StunPowderBomb) {

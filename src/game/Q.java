@@ -2,6 +2,9 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
+/**
+ * Class representing a non-player character Q.
+ */
 public class Q extends Actor {
 
     private boolean pass = false;

@@ -2,6 +2,9 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
+/**
+ * Class representing a locked door that prevents player from entering it.
+ */
 public class LockedDoor extends Ground {
 
     /**

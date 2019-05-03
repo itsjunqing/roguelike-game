@@ -3,6 +3,9 @@ package game;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 
+/**
+ * Class representing a wall that blocks player from going after it.
+ */
 public class Wall extends Ground {
 
     /**

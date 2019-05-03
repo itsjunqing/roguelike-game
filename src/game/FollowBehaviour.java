@@ -3,7 +3,7 @@ package game;
 import edu.monash.fit2099.engine.*;
 
 /**
- * Class representing the behaviour of following an Actor around.
+ * Class representing the behaviour of following an Actor.
  */
 public class FollowBehaviour implements ActionFactory {
 
@@ -22,9 +22,9 @@ public class FollowBehaviour implements ActionFactory {
      * Moves the Actor one step nearer to the targeted Actor to be followed
      *
      * @param actor the actor to be moved
-     * @param map the map which the actor is on
+     * @param map   the map which the actor is on
      * @return an Action that moves the actor or null to signify that the Actor does not require to follow the
-     *          targeted Actor
+     * targeted Actor
      */
     @Override
     public Action getAction(Actor actor, GameMap map) {

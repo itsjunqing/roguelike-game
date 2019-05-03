@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Class representing Goon as a form of an Enemy.
+ * Class representing a Goon.
  */
 public class Goon extends Enemy {
 
@@ -16,8 +16,8 @@ public class Goon extends Enemy {
     /**
      * Constructor to create an Enemy of type Goon with a name
      *
-     * @param name  the name of the Goon
-     * @param player    the Actor for the Goon to follow
+     * @param name   the name of the Goon
+     * @param player the Actor for the Goon to follow
      */
     public Goon(String name, Actor player) {
         super(name, 'o', 10, 5);
@@ -34,10 +34,10 @@ public class Goon extends Enemy {
      * to shout an insult to the player with a 10% chance of success. Will return a list of possible actions
      * if FollowBehaviour is inactive and shouting an insult is unsuccessful.
      *
-     * @param actions   collection of possible actions for Goon in the turn
-     * @param map   the map containing the Actor
-     * @param display   the object that performs the console I/O
-     * @return  the Action to be performed, e.g. attacking the player when it is next to it
+     * @param actions collection of possible actions for Goon in the turn
+     * @param map     the map containing the Actor
+     * @param display the object that performs the console I/O
+     * @return the Action to be performed, e.g. attacking the player when it is next to it
      */
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
@@ -86,7 +86,7 @@ public class Goon extends Enemy {
     /**
      * Creates a new IntrinsicWeapon with twice the damage of a base enemy damage and a new description when it attacks
      *
-     * @return an IntrinsicWeapon suitable for Goon
+     * @return an IntrinsicWeapon for Goon
      */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {

@@ -5,6 +5,9 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
 
+/**
+ * An Action that unlocks a LockeDoor with a Key.
+ */
 public class UnlockDoorAction extends Action {
 
     private String direction;
@@ -14,9 +17,9 @@ public class UnlockDoorAction extends Action {
     /**
      * Constructor to create an Action that will unlock a LockedDoor to a Location in a given Direction.
      *
-     * @param direction direction to unlock the door
+     * @param direction    direction to unlock the door
      * @param doorLocation the location of the door
-     * @param key key to unlock the door
+     * @param key          key to unlock the door
      */
     public UnlockDoorAction(String direction, Location doorLocation, Key key) {
         this.direction = direction;
@@ -28,8 +31,8 @@ public class UnlockDoorAction extends Action {
      * Unlocks the door by removing the door from the location and replace it with a Floor type.
      * The key is also removed from the player's inventory.
      *
-     * @param actor The actor performing the action.
-     * @param map The map the actor is on.
+     * @param actor the actor performing the action.
+     * @param map   the map the actor is on.
      * @return a string statement that tells the door is unlocked
      */
     @Override
@@ -42,7 +45,7 @@ public class UnlockDoorAction extends Action {
     /**
      * A string describing the action suitable for displaying in the UI menu.
      *
-     * @param actor The actor performing the action.
+     * @param actor the actor performing the action.
      * @return a string, e.g. "Player unlocks the door to the west"
      */
     @Override
@@ -51,9 +54,9 @@ public class UnlockDoorAction extends Action {
     }
 
     /**
-     * Returns the empty string, as item giving does not have a dedicated hotkey.
+     * Returns am empty string, as item giving does not have a dedicated hotkey.
      *
-     * @return the empty string
+     * @return am empty string
      */
     @Override
     public String hotKey() {

@@ -2,6 +2,9 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
+/**
+ * Class representing a special location on the map for building rocket.
+ */
 public class RocketPad extends Ground {
 
     /**
