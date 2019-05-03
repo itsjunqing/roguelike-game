@@ -3,6 +3,9 @@ package game;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 
+/**
+ * Class representing a Wall that does not allow an Actor access.
+ */
 public class Wall extends Ground {
 
     /**
@@ -24,7 +27,7 @@ public class Wall extends Ground {
     }
 
     /**
-     * Blocks any object thrown towards the wall.
+     * Blocks any object thrown over the wall.
      *
      * @return true
      */

@@ -14,7 +14,8 @@ public class Goon extends Enemy {
     private Random random = new Random();
 
     /**
-     * Constructor to create an Enemy of type Goon with a name
+     * Constructor to create an Enemy of type Goon with a name.
+     * Adds an ability for the Goon to follow the player around.
      *
      * @param name  the name of the Goon
      * @param player    the Actor for the Goon to follow

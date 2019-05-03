@@ -4,6 +4,9 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 
+/**
+ * An Action that allows the Actor to 'speak' by printing a message on the display.
+ */
 public class TalkAction extends Action {
 
     private String message;
@@ -14,7 +17,8 @@ public class TalkAction extends Action {
     // 'target' and 'actor' is not being clarified clearly, pls clarify the differences too.
 
     /**
-     * Constructor to create an Action that talks to a target Actor with a message.
+     * Constructor to create an Action that takes in the Actor that will talk and the Actor that the other Actor is
+     * talking to.
      *
      * @param message a message to talk to the actor
      * @param target  the actor to be talked

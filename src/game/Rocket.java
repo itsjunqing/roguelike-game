@@ -2,6 +2,9 @@ package game;
 
 import edu.monash.fit2099.engine.Item;
 
+/**
+ * Class representing a Rocket.
+ */
 public class Rocket extends Item {
 
     /**

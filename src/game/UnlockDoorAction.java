@@ -5,6 +5,9 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
 
+/**
+ * An Action that unlocks locked doors and enable Actors to go through them.
+ */
 public class UnlockDoorAction extends Action {
 
     private String direction;
@@ -12,7 +15,7 @@ public class UnlockDoorAction extends Action {
     private Key key;
 
     /**
-     * Constructor to create an Action that will unlock a LockedDoor to a Location in a given Direction.
+     * Constructor to create an Action that will unlock a LockedDoor on a Location in a given Direction.
      *
      * @param direction direction to unlock the door
      * @param doorLocation the location of the door
@@ -25,8 +28,8 @@ public class UnlockDoorAction extends Action {
     }
 
     /**
-     * Unlocks the door by removing the door from the location and replace it with a Floor type.
-     * The key is also removed from the player's inventory.
+     * Unlocks the door by removing the door from the location and replace it with a Floor.
+     * The key is also removed from the actor's inventory.
      *
      * @param actor The actor performing the action.
      * @param map The map the actor is on.

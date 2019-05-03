@@ -2,6 +2,9 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
+/**
+ * Class representing Ninja as a form of an Enemy.
+ */
 public class Ninja extends Enemy {
 
     private boolean stunThrown = false;
@@ -10,12 +13,12 @@ public class Ninja extends Enemy {
     // pls rephrase this, check line 14, is it necessary?
 
     /**
-     * Constructor to create an Actor of type Enemy: Ninja with a name.
+     * Constructor to create an Enemy of type Ninja with a name.
      * It takes in a Player of type Actor to represent the target for the Ninja to throw the stun.
-     * By default, it has the ability of throwing a stun to a player.
+     * Adds an ability for Ninja to throw a stun on the Player.
      *
      * @param name   name of the Ninja
-     * @param player the target player for Ninja to throw the stun
+     * @param player the target actor for Ninja to throw the stun
      */
     public Ninja(String name, Actor player) {
         super(name, 'N', 15, 50);
@@ -24,10 +27,9 @@ public class Ninja extends Enemy {
     }
 
     /**
-     * Returns a new IntrinsicWeapon with the same BASE_DAMAGE of Enemy, but different attack name.
-     * Overall implementation remains unchanged.
+     * Creates a new IntrinsicWeapon with the base enemy damage and a new description when it attacks.
      *
-     * @return a new IntrinsicWeapon with a different name
+     * @return an IntrinsicWeapon suitable for Ninja
      */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
@@ -44,6 +46,18 @@ public class Ninja extends Enemy {
 
     if ninja has not thrown stun and unable to throw stun, means ninja is in hide, unable to see player, so ninja will only
     execute the skipturnaction.
+     */
+
+    /**
+     * Checks if the player is stunned and checks if it threw the stun the previous turn. If the player is stunned and
+     * it stunned the player in the previous turn, then it will move 1 step in a random direction. If the player is not
+     * stunned, it checks if it is able to stun the player and stuns the player if it is able to. It will just skip
+     * its turn for any other scenarios.
+     *
+     * @param actions collection of possible Actions for this Actor
+     * @param map     the map containing the Actor
+     * @param display the I/O object to which messages may be written
+     * @return  the Action to be performed, e.g. attacking the player when it is next to it
      */
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
@@ -74,7 +88,12 @@ public class Ninja extends Enemy {
         return super.playTurn(actions, map, display);
     }
 
-
+    /**
+     * Checks the location of the player if there exists a stun powder bomb.
+     *
+     * @param map   the map containing the player
+     * @return  a boolean stating if the stun powder bomb exists
+     */
     private boolean hasStunPowderBomb(GameMap map) {
         for (Item item : map.locationOf(player).getItems()) {
             if (item instanceof StunPowderBomb) {

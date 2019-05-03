@@ -4,6 +4,9 @@ import edu.monash.fit2099.engine.*;
 
 import java.util.Random;
 
+/**
+ * Class representing the behaviour of stunning the player.
+ */
 public class ThrowStunBehaviour extends Action implements ActionFactory {
 
     private Actor target;
@@ -18,11 +21,8 @@ public class ThrowStunBehaviour extends Action implements ActionFactory {
         this.target = target;
     }
 
-    // pls rephrase this
-
     /**
-     * Checks if the actor is able to throw a stun to the target
-     * by verifying if target's position is within five squares of the actor's position.
+     * Checks if the actor is able to throw a stun on the target by checking if the target is in range of the actor.
      *
      * @param actor the actor performing the throwing stun
      * @param map   the map which the actor is on
@@ -52,10 +52,8 @@ public class ThrowStunBehaviour extends Action implements ActionFactory {
         return null;
     }
 
-    // rephrase this? idk
-
     /**
-     * Throws a StunPowderBomb to the target with a chance of 50%.
+     * Adds a StunPowderBomb on the location of the target that will be stunned with a 50% chance of success.
      *
      * @param actor The actor performing the action.
      * @param map   The map the actor is on.

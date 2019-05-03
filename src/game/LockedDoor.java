@@ -2,6 +2,9 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
+/**
+ * Class representing a LockedDoor that allow an Actor access and can only be unlocked with a Key.
+ */
 public class LockedDoor extends Ground {
 
     /**
@@ -12,7 +15,7 @@ public class LockedDoor extends Ground {
     }
 
     /**
-     * Stops the actor from entering the LockedDoor.
+     * Prevents actors from entering the LockedDoor.
      *
      * @param actor actor approaching the door
      * @return false
@@ -25,9 +28,9 @@ public class LockedDoor extends Ground {
     /**
      * Allows actor to unlock the door if it detects the actor has a key in its inventory.
      *
-     * @param actor     the Actor acting
-     * @param location  the current Location
-     * @param direction the direction of the Ground from the Actor
+     * @param actor     the Actor beside the LockedDoor
+     * @param location  the Location of the LockedDoor
+     * @param direction the direction the Actor is beside the LockedDoor
      * @return a collection of Action which the actor adjacent to it can perform
      */
     @Override
@@ -43,7 +46,7 @@ public class LockedDoor extends Ground {
     }
 
     /**
-     * Blocks any object thrown towards the door.
+     * Prevents objects to be thrown over the door.
      *
      * @return true
      */

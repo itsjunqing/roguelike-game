@@ -3,6 +3,9 @@ package game;
 import edu.monash.fit2099.engine.DropItemAction;
 import edu.monash.fit2099.engine.Item;
 
+/**
+ * Class representing a RocketBody required to build a Rocket.
+ */
 public class RocketBody extends Item {
 
     /**

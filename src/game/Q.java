@@ -2,12 +2,15 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
+/**
+ * Class representing Q as a Non-Playable Character
+ */
 public class Q extends Actor {
 
     private boolean pass = false;
 
     /**
-     * Constructor to create an Actor of type NPC: Q with a name.
+     * Constructor to create Q as a Non-Playable Character with a name.
      * Q will have an instance of the RocketBody item in its inventory by default.
      *
      * @param name name of the Q
@@ -20,15 +23,15 @@ public class Q extends Actor {
     // pls rephrase this
 
     /**
-     * Plays a turn by checking if player is next to it.
-     * If the player is not adjacent to it, it moves and wanders in random direction.
-     * If the player is adjacent to it, and RocketPlans is in its own inventory,
-     * it gives the RocketBody to the player and disappears in the next turn.
+     * It first checks if Q has already given the RocketBody to an Actor. If Q has not given the RocketBody, then it
+     * checks if there is an Actor is beside Q. If an Actor is beside Q, it then checks if the Actor contains
+     * RocketPlans in its inventory. If the Actor contains RocketPlans, Q will then give the RocketBody to the Actor.
+     * If the RocketBody has already been given, it removes Q from the map.
      *
-     * @param actions collection of possible Actions for this Actor
+     * @param actions collection of possible Actions for Q
      * @param map     the map containing the Actor
      * @param display the I/O object to which messages may be written
-     * @return
+     * @return  the Action to be performed, e.g. attacking the player when it is next to it
      */
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {

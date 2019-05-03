@@ -8,7 +8,8 @@ import edu.monash.fit2099.engine.*;
 public class Grunt extends Enemy {
 
     /**
-     * Constructor to create an Enemy of type Grunt with a name
+     * Constructor to create an Enemy of type Grunt with a name.
+     * Adds an ability for the Grunt to follow the player around.
      *
      * @param name  the name of the Grunt
      * @param player    the Actor for the Grunt to follow

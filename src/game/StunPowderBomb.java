@@ -2,6 +2,9 @@ package game;
 
 import edu.monash.fit2099.engine.Item;
 
+/**
+ * Class representing a StunPowderBomb that can stun the Actor.
+ */
 public class StunPowderBomb extends Item {
 
     /**
