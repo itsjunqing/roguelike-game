@@ -3,7 +3,7 @@ package game;
 import edu.monash.fit2099.engine.*;
 
 /**
- * Class representing Grunt as a form of Enemy.
+ * Class representing a Grunt.
  */
 public class Grunt extends Enemy {
 
@@ -11,8 +11,8 @@ public class Grunt extends Enemy {
      * Constructor to create an Enemy of type Grunt with a name.
      * Adds an ability for the Grunt to follow the player around.
      *
-     * @param name  the name of the Grunt
-     * @param player    the Actor for the Grunt to follow
+     * @param name   the name of the Grunt
+     * @param player the Actor for the Grunt to follow
      */
     // Grunts have 50 hitpoints and are always represented with a g
     public Grunt(String name, Actor player) {
@@ -21,13 +21,13 @@ public class Grunt extends Enemy {
     }
 
     /**
-     *Allows the Grunt to move towards the player if FollowBehaviour is active. Will return a list of actions if
-     * FollowBehaviour is inactive.
+     * Allows the Grunt to move towards the player if FollowBehaviour is active.
+     * Returns a list of actions if FollowBehaviour is inactive.
      *
-     * @param actions   collection of possible actions by Grunt in that turn
-     * @param map   the map containing the Actor
-     * @param display   the object that contains the console I/O
-     * @return  the Action to be performed, e.g. attacking the player when it is next to it
+     * @param actions collection of possible actions by Grunt in that turn
+     * @param map     the map containing the Actor
+     * @param display the object that contains the console I/O
+     * @return the Action to be performed, e.g. attacking the player when it is next to it
      */
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {

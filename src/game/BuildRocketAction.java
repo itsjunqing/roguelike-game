@@ -13,8 +13,9 @@ public class BuildRocketAction extends Action {
 
     /**
      * Constructor to create an Action that will build a rocket on a Location
-     * @param rocketBody a rocket body
-     * @param rocketEngine a rocket engine
+     *
+     * @param rocketBody     a rocket body
+     * @param rocketEngine   a rocket engine
      * @param rocketLocation location to build the rocket
      */
     public BuildRocketAction(RocketBody rocketBody, RocketEngine rocketEngine, Location rocketLocation) {
@@ -26,8 +27,8 @@ public class BuildRocketAction extends Action {
     /**
      * Builds a rocket on the rocket location.
      *
-     * @param actor The actor performing the action.
-     * @param map The map the actor is on.
+     * @param actor the actor performing the action.
+     * @param map   the map the actor is on.
      * @return a suitable description to display in the UI
      */
     @Override
@@ -41,7 +42,7 @@ public class BuildRocketAction extends Action {
     /**
      * A string describing the action suitable for displaying in the UI menu.
      *
-     * @param actor The actor performing the action.
+     * @param actor the actor performing the action.
      * @return a string, e.g. "Player builds a rocket"
      */
     @Override

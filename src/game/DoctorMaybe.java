@@ -3,14 +3,14 @@ package game;
 import edu.monash.fit2099.engine.*;
 
 /**
- * Class representing DoctorMaybe as a form of an Enemy.
+ * Class representing DoctorMaybe as a type of an Enemy.
  */
 public class DoctorMaybe extends Enemy {
 
     /**
      * Constructor to create a new Enemy of type DoctorMaybe with a name
      *
-     * @param name  the name of the DoctorMaybe
+     * @param name the name of the DoctorMaybe
      */
     public DoctorMaybe(String name) {
         super(name, 'D', 10, 10);

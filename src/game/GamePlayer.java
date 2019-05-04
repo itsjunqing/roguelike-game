@@ -10,12 +10,12 @@ public class GamePlayer extends Player {
     private int stunCount = 0;
 
     /**
-     * Constructor.
+     * Constructor to create a Player.
      *
-     * @param name Name to call the player in the UI
-     * @param displayChar Character to represent the player in the UI
-     * @param priority How early in the turn the player can act
-     * @param hitPoints Player's starting number of hitpoints
+     * @param name        name of the player in the UI
+     * @param displayChar character to represent the player in the UI
+     * @param priority    how early in the turn the player can act
+     * @param hitPoints   player's starting number of hitpoints
      */
     public GamePlayer(String name, char displayChar, int priority, int hitPoints) {
         super(name, displayChar, priority, hitPoints);
@@ -30,12 +30,13 @@ public class GamePlayer extends Player {
     */
 
     // Check on the description of the return statement.
+
     /**
      * Checks if the player is able to move. If the player is 'stunned' and unable to move, then it forces the Player
-     * to skip a turn. If the player is not 'stunned', then it displays a menu to the user gets their selected option.
+     * to skip a turn. If the player is not 'stunned', it displays a menu to the user gets their selected option.
      *
      * @param actions the actions to display
-     * @param map the map to display
+     * @param map     the map to display
      * @param display the object that performs the console I/O
      * @return a list of actions that the player is able to perform
      */
