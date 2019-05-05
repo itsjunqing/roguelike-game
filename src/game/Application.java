@@ -54,6 +54,9 @@ public class Application {
 		Q q = new Q("Q");
 		gameMap.addActor(q, 14, 9);
 
+		Wizard wizard = new Wizard("Gandalf");
+		gameMap.addActor(wizard, 4, 6);
+
 		world.run();
 	}
 }

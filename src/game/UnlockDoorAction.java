@@ -31,8 +31,8 @@ public class UnlockDoorAction extends Action {
      * Unlocks the door by removing the door from the location and replace it with a Floor.
      * The key is also removed from the actor's inventory.
      *
-     * @param actor The actor performing the action.
-     * @param map The map the actor is on.
+     * @param actor the actor performing the action.
+     * @param map the map the actor is on.
      * @return a string statement that tells the door is unlocked
      */
     @Override
@@ -54,9 +54,9 @@ public class UnlockDoorAction extends Action {
     }
 
     /**
-     * Returns the empty string, as item giving does not have a dedicated hotkey.
+     * Returns an empty string, as item giving does not have a dedicated hotkey.
      *
-     * @return the empty string
+     * @return an empty string
      */
     @Override
     public String hotKey() {

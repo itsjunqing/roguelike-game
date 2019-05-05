@@ -31,8 +31,8 @@ public class TalkAction extends Action {
     /**
      * Prints out the target's talk message
      *
-     * @param actor The actor performing the action.
-     * @param map   The map the actor is on.
+     * @param actor the actor performing the action.
+     * @param map   the map the actor is on.
      * @return a suitable description to display in the UI
      */
     @Override
@@ -52,9 +52,9 @@ public class TalkAction extends Action {
     }
 
     /**
-     * Returns the empty string, as talking does not have a dedicated hotkey.
+     * Returns an empty string, as talking does not have a dedicated hotkey.
      *
-     * @return the empty string
+     * @return an empty string
      */
     @Override
     public String hotKey() {

@@ -81,7 +81,7 @@ public class ThrowStunBehaviour extends Action implements ActionFactory {
     /**
      * A string describing the action suitable for displaying in the UI menu.
      *
-     * @param actor The actor performing the action.
+     * @param actor the actor performing the action.
      * @return a string, e.g. "Player is stunned for 2 turns"
      */
     @Override
@@ -90,9 +90,9 @@ public class ThrowStunBehaviour extends Action implements ActionFactory {
     }
 
     /**
-     * Returns the empty string, as throwing stun does not have a dedicated hotkey.
+     * Returns an empty string, as throwing stun does not have a dedicated hotkey.
      *
-     * @return the empty string
+     * @return an empty string
      */
     @Override
     public String hotKey() {
