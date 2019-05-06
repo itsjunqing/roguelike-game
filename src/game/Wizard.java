@@ -13,7 +13,13 @@ public class Wizard extends Enemy {
      * @param name a String representing the name of the Wizard
      */
     public Wizard(String name){
-        super(name, 'w', 20, 25);
+        super(name, 'w', 20, 5);
+        super.addItemToInventory(new Apple("Apple"));
+        for (Item item : this.getInventory()){
+            if (item instanceof Key){
+                this.removeItemFromInventory(item);
+            }
+        }
     }
 
     /**
@@ -23,7 +29,7 @@ public class Wizard extends Enemy {
      * @param actions collection of possible Actions for this Actor
      * @param map     the map containing the Actor
      * @param display the I/O object to which messages may be written
-     * @returnthe Action to be performed, e.g. move the Wizard to another place
+     * @return the Action to be performed, e.g. move the Wizard to another place
      */
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
@@ -41,6 +47,7 @@ public class Wizard extends Enemy {
                 }
             }
         }
+
         super.addActions(actions, this, map);
         for (Action action : actions) {
             if (action instanceof AttackAction) {
