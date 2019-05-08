@@ -3,14 +3,14 @@ package game;
 import edu.monash.fit2099.engine.*;
 
 /**
- * Class representing the Player.
+ * Class representing the GamePlayer.
  */
 public class GamePlayer extends Player {
 
     private int stunCount = 0;
 
     /**
-     * Constructor to create a Player.
+     * Constructor to create a GamePlayer.
      *
      * @param name        name of the player in the UI
      * @param displayChar character to represent the player in the UI
@@ -21,19 +21,9 @@ public class GamePlayer extends Player {
         super(name, displayChar, priority, hitPoints);
     }
 
-    /*
-    when player is executing its turn, he has to check whether if he is already stunned or not,
-    if he's already stunned, then he will not be able to move
-    this checking of stun MUST be done in the player's playturn method itself, because playturn method itself
-    returns the action to be executed during that turn. in other words, playturn functions to check the action
-    that it can be executed in that particular turn. this can't be put outside of this class
-    */
-
-    // Check on the description of the return statement.
-
     /**
-     * Checks if the player is able to move. If the player is 'stunned' and unable to move, then it forces the Player
-     * to skip a turn. If the player is not 'stunned', it displays a menu to the user gets their selected option.
+     * Play a turn by displaying a menu to the user and getting their selected Action returned.
+     * If it is stunned, the player can only skip its current action.
      *
      * @param actions the actions to display
      * @param map     the map to display

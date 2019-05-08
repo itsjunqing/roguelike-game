@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.*;
  */
 public class Q extends Actor {
 
-    private boolean pass = false;
+    private boolean passedItem = false;
 
     /**
      * Constructor to create Q as a Non-Playable Character with a name.
@@ -20,13 +20,14 @@ public class Q extends Actor {
         addItemToInventory(new RocketBody("Rocket body"));
     }
 
-    // pls rephrase this
-
     /**
-     * It first checks if Q has already given the RocketBody to an Actor. If Q has not given the RocketBody, then it
-     * checks if there is an Actor is beside Q. If an Actor is beside Q, it then checks if the Actor contains
-     * RocketPlans in its inventory. If the Actor contains RocketPlans, Q will then give the RocketBody to the Actor.
-     * If the RocketBody has already been given, it removes Q from the map.
+     * Returns the Action to be performed during its turn.
+     * If it has passed the RocketBody to the Player, it disappears and skips its action.
+     * Otherwise, it exchanges a RocketBody with a RocketPlans if the player next to it has a RocketPlans.
+     *
+     *
+     * This includes disappearing and skipping its action after it has passed the RocketBody to the Player.
+     * It checks if the player has a RocketPlans and exchange it with a RocketBody, otherwise it wanders randomly in the map.
      *
      * @param actions collection of possible Actions for Q
      * @param map     the map containing the Actor
@@ -35,7 +36,7 @@ public class Q extends Actor {
      */
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
-        if (!pass) {
+        if (!passedItem) {
             Location qLocation = map.locationOf(this);
             actions.clear();
 
@@ -45,7 +46,7 @@ public class Q extends Actor {
                     Actor actor = map.actorAt(destination);
                     for (Item item : this.getInventory()) {
                         if (item instanceof RocketPlans) {
-                            pass = true;
+                            passedItem = true;
                             for (Item body : this.getInventory()) {
                                 if (body instanceof RocketBody) {
                                     return new GiveItemAction(actor, body);
@@ -68,9 +69,10 @@ public class Q extends Actor {
 
 
     /**
-     * Returns a collection of Action that otherActor can do to the current Actor (Q).
-     * If the player next to it has rocket plans, it returns collection with TalkAction and GiveItemAction.
-     * Or else, it just return a collection with TalkAction.
+     * Returns a collection of Action that player can do to the current Actor (Q).
+     * If the player next to it has rocket plans, it returns a collection of TalkAction with a message of handing over rocket plans
+     * and GiveItemAction for player to give the rocket plans to Q.
+     * Or else, it returns a collection of TalkAction with a message of requesting rocket plans.
      *
      * @param otherActor the Actor that talks to Q
      * @param direction  String representing the direction of the other Actor

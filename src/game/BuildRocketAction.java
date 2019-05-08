@@ -25,7 +25,7 @@ public class BuildRocketAction extends Action {
     }
 
     /**
-     * Builds a rocket on the rocket location.
+     * Builds a rocket on the rocket location and removes the rocket body and rocket engine from it.
      *
      * @param actor the actor performing the action.
      * @param map   the map the actor is on.

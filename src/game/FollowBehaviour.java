@@ -19,6 +19,7 @@ public class FollowBehaviour implements ActionFactory {
     }
 
     /**
+     * Return the Action to be executed
      * Moves the Actor one step nearer to the targeted Actor to be followed
      *
      * @param actor the actor to be moved

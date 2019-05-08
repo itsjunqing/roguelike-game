@@ -27,8 +27,6 @@ public class DoctorMaybe extends Enemy {
         return new IntrinsicWeapon((int) Math.round(BASE_DAMAGE * 0.5), "zaps");
     }
 
-    // pls rephrase the description
-
     /**
      * Allows DoctorMaybe to only attack the Player or skips its turn. If the player is not beside DoctorMaybe,
      * DoctorMaybe is only allows to skip its turn.

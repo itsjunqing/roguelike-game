@@ -17,9 +17,9 @@ public class UnlockDoorAction extends Action {
     /**
      * Constructor to create an Action that will unlock a LockedDoor on a Location in a given Direction.
      *
-     * @param direction direction to unlock the door
+     * @param direction    direction to unlock the door
      * @param doorLocation the location of the door
-     * @param key key to unlock the door
+     * @param key          key to unlock the door
      */
     public UnlockDoorAction(String direction, Location doorLocation, Key key) {
         this.direction = direction;
@@ -32,7 +32,7 @@ public class UnlockDoorAction extends Action {
      * The key is also removed from the actor's inventory.
      *
      * @param actor the actor performing the action.
-     * @param map the map the actor is on.
+     * @param map   the map the actor is on.
      * @return a string statement that tells the door is unlocked
      */
     @Override

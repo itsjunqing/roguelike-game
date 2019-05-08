@@ -22,7 +22,7 @@ public class ThrowStunBehaviour extends Action implements ActionFactory {
     }
 
     /**
-     * Checks if the actor is able to throw a stun on the target by checking if the target is in range of the actor.
+     * Returns the Action of throwing stun if the target is within the range of the Actor.
      *
      * @param actor the actor performing the throwing stun
      * @param map   the map which the actor is on

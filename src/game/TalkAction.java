@@ -12,13 +12,8 @@ public class TalkAction extends Action {
     private String message;
     private Actor target;
 
-    // read here:
-    // pls rephrase the the description for all the methods in this class as it seems a little vague / confused if the
-    // 'target' and 'actor' is not being clarified clearly, pls clarify the differences too.
-
     /**
-     * Constructor to create an Action that takes in the Actor that will talk and the Actor that the other Actor is
-     * talking to.
+     * Constructor to create an Action that takes in the Actor that performs the talk and the other Actor that is talking to.
      *
      * @param message a message to talk to the actor
      * @param target  the actor to be talked
@@ -29,10 +24,10 @@ public class TalkAction extends Action {
     }
 
     /**
-     * Prints out the target's talk message
+     * Prints out the target's talk message.
      *
-     * @param actor the actor performing the action.
-     * @param map   the map the actor is on.
+     * @param actor the actor performing the action
+     * @param map   the map the actor is on
      * @return a suitable description to display in the UI
      */
     @Override
