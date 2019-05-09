@@ -2,6 +2,8 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
+import java.util.ArrayList;
+
 /**
  * Class representing Ninja as a form of an Enemy.
  */
@@ -9,6 +11,7 @@ public class Ninja extends Enemy {
 
     private boolean stunThrown = false;
     private Actor player;
+    private static ArrayList<Item> stunPowderBombs = new ArrayList<>();
 
     // pls rephrase this, check line 14, is it necessary?
 
@@ -65,15 +68,7 @@ public class Ninja extends Enemy {
 
         if (hasStunPowderBomb(map) && stunThrown) {
             stunThrown = false;
-            super.addActions(actions, player, map);
-
-            for (Action action : actions) {
-                if (action instanceof SkipTurnAction) {
-                    actions.remove(action);
-                } else if (action instanceof AttackAction) {
-                    actions.remove(action);
-                }
-            }
+            super.addActions(actions, this, map);
             return super.playTurn(actions, map, display);
         }
 
@@ -96,12 +91,29 @@ public class Ninja extends Enemy {
      */
     private boolean hasStunPowderBomb(GameMap map) {
         for (Item item : map.locationOf(player).getItems()) {
-            if (item instanceof StunPowderBomb) {
+            if (stunPowderBombs.contains(item)) {
                 return true;
             }
         }
         return false;
     }
 
+//    @Override
+//    protected void addActions(Actions actions, GameMap map) {
+//        Location location = map.locationOf(this);
+//        for (Exit exit : location.getExits()) {
+//            Location destination = exit.getDestination();
+//            Ground adjacentGround = map.groundAt(destination);
+//            actions.add(adjacentGround.getMoveAction(this, destination, exit.getName(), exit.getHotKey()));
+//        }
+//    }
 
+
+    public static void addStunPowderBomb(Item stunPowderBomb) {
+        stunPowderBombs.add(stunPowderBomb);
+    }
+
+    public static void removeStunPowderBomb(Item stunPowderBomb) {
+        stunPowderBombs.remove(stunPowderBomb);
+    }
 }

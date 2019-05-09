@@ -20,6 +20,7 @@ public class RocketBody extends Item {
         super(name, ROCKET_BODY_CHAR);
         allowableActions.clear();
         allowableActions.add(new DropItemAction(this));
+        RocketPad.addRocketBody(this);
     }
 
 }

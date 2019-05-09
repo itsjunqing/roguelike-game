@@ -2,6 +2,8 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
+import java.util.ArrayList;
+
 import static game.Key.KEY_CHAR;
 
 /**
@@ -9,6 +11,7 @@ import static game.Key.KEY_CHAR;
  */
 public class LockedDoor extends Ground {
 
+    private static ArrayList<Item> keys = new ArrayList<>();
     /**
      * Constructor to create a LockedDoor.
      */
@@ -40,6 +43,10 @@ public class LockedDoor extends Ground {
         Actions actions = super.allowableActions(actor, location, direction);
 
         for (Item item : actor.getInventory()) {
+            if (keys.contains(item)) {
+                actions.add(new UnlockDoorAction(direction, location, item));
+            }
+
             if (item.getDisplayChar() == KEY_CHAR) {
                 actions.add(new UnlockDoorAction(direction, location, item));
             }
@@ -55,5 +62,9 @@ public class LockedDoor extends Ground {
     @Override
     public boolean blocksThrownObjects() {
         return true;
+    }
+
+    public static void addKeys(Key key) {
+        keys.add(key);
     }
 }

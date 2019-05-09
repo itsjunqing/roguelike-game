@@ -8,10 +8,11 @@ import java.util.List;
 /**
  * An Enemy base class that generalizes the properties and methods which an enemy is capable of doing.
  */
-public abstract class Enemy extends Actor {
+public class Enemy extends Actor {
 
     static final int BASE_DAMAGE = 5;
     private List<ActionFactory> actionFactories = new ArrayList<>();
+    protected static ArrayList<Actor> players = new ArrayList<>();
 
     /**
      * Constructor that creates a new enemy and adds a Key item in its inventory.
@@ -24,6 +25,11 @@ public abstract class Enemy extends Actor {
     protected Enemy(String name, char displayChar, int priority, int hitPoints) {
         super(name, displayChar, priority, hitPoints);
         addItemToInventory(new Key("Key"));
+    }
+
+    @Override
+    public Action playTurn(Actions actions, GameMap map, Display display) {
+        return super.playTurn(actions, map, display);
     }
 
     /**
@@ -54,7 +60,7 @@ public abstract class Enemy extends Actor {
         return new IntrinsicWeapon(BASE_DAMAGE, "scratches");
     }
 
-    /**
+        /**
      * Returns a collection of Actions an Enemy is able to perform by default.
      * These actions could be moving around the map and attack the player if player is next to it.
      *
@@ -69,14 +75,22 @@ public abstract class Enemy extends Actor {
             Location destination = exit.getDestination();
             if (map.isAnActorAt(destination)) {
                 Actor actor = map.actorAt(destination);
-                if (actor instanceof Player) {
+                if (players.contains(actor)) {
                     actions.add(new AttackAction(enemy, actor));
                 }
+
+//                if (actor instanceof Player) {
+//                    actions.add(new AttackAction(enemy, actor));
+//                }
             } else {
                 Ground adjacentGround = map.groundAt(destination);
                 actions.add(adjacentGround.getMoveAction(enemy, destination, exit.getName(), exit.getHotKey()));
             }
         }
         actions.add(new SkipTurnAction());
+    }
+
+    public static void addTarget(Actor player) {
+        players.add(player);
     }
 }

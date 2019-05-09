@@ -68,4 +68,22 @@ public class Goon extends Enemy {
         return new IntrinsicWeapon(BASE_DAMAGE * 2, "punches");
     }
 
+//    @Override
+//    protected void addActions(Actions actions, GameMap map) {
+//        Location location = map.locationOf(this);
+//
+//        for (Exit exit : location.getExits()) {
+//            Location destination = exit.getDestination();
+//            if (map.isAnActorAt(destination)) {
+//                Actor actor = map.actorAt(destination);
+//                if (actor.getDisplayChar() == GAME_PLAYER_CHAR) {
+//                    actions.add(new AttackAction(this, actor));
+//                }
+//            } else {
+//                Ground adjacentGround = map.groundAt(destination);
+//                actions.add(adjacentGround.getMoveAction(this, destination, exit.getName(), exit.getHotKey()));
+//            }
+//        }
+//        actions.add(new SkipTurnAction());
+//    }
 }

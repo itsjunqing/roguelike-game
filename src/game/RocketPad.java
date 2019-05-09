@@ -2,13 +2,15 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
-import static game.RocketBody.ROCKET_BODY_CHAR;
-import static game.RocketEngine.ROCKET_ENGINE_CHAR;
+import java.util.ArrayList;
 
 /**
  * Class representing a RocketPad that the player is able to build a Rocket on.
  */
 public class RocketPad extends Ground {
+
+    private static ArrayList<Item> rocketBodies = new ArrayList<>();
+    private static ArrayList<Item> rocketEngines = new ArrayList<>();
 
     /**
      * Constructor to create a rocket pad.
@@ -33,18 +35,38 @@ public class RocketPad extends Ground {
         Item rocketEngine = null;
 
         for (Item item : location.getItems()) {
-            if (item.getDisplayChar() == ROCKET_BODY_CHAR){
+            if (rocketBodies.contains(item)) {
                 rocketBody = item;
             }
-            if (item.getDisplayChar() == ROCKET_ENGINE_CHAR) {
+            if (rocketEngines.contains(item)) {
                 rocketEngine = item;
             }
         }
+//
+//        Item rocketBody = null;
+//        Item rocketEngine = null;
+//
+//        for (Item item : location.getItems()) {
+//            if (item.getDisplayChar() == ROCKET_BODY_CHAR){
+//                rocketBody = item;
+//            }
+//            if (item.getDisplayChar() == ROCKET_ENGINE_CHAR) {
+//                rocketEngine = item;
+//            }
+//        }
 
         if ((rocketEngine != null) && (rocketBody != null)) {
             actions.add(new BuildRocketAction(rocketBody, rocketEngine, location));
             return actions;
         }
         return actions;
+    }
+
+    public static void addRocketBody(Item rocketBody) {
+        rocketBodies.add(rocketBody);
+    }
+
+    public static void addRocketEngine(Item rocketEngine) {
+        rocketEngines.add(rocketEngine);
     }
 }

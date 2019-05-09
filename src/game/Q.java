@@ -2,6 +2,9 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
+import static game.RocketBody.ROCKET_BODY_CHAR;
+import static game.RocketPlans.ROCKET_PLANS_CHAR;
+
 /**
  * Class representing Q as a Non-Playable Character
  */
@@ -42,10 +45,10 @@ public class Q extends Actor {
                 if (map.isAnActorAt(destination)) {
                     Actor actor = map.actorAt(destination);
                     for (Item item : this.getInventory()) {
-                        if (item.getDisplayChar() == '~') {
+                        if (item.getDisplayChar() == ROCKET_PLANS_CHAR) {
                             passedItem = true;
                             for (Item body : this.getInventory()) {
-                                if (body.getDisplayChar() == '[') {
+                                if (body.getDisplayChar() == ROCKET_BODY_CHAR) {
                                     return new GiveItemAction(actor, body);
                                 }
                             }
@@ -81,7 +84,7 @@ public class Q extends Actor {
         boolean hasRocketPlans = false;
         Actions actions = new Actions();
         for (Item itemInInventory : otherActor.getInventory()) {
-            if (itemInInventory instanceof RocketPlans) {
+            if (itemInInventory.getDisplayChar() == ROCKET_PLANS_CHAR) {
                 actions.add(new TalkAction("Hand the rocket plans over, I don't have all day", this));
                 actions.add(new GiveItemAction(this, itemInInventory));
                 hasRocketPlans = true;

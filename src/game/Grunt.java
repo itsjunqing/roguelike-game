@@ -62,4 +62,8 @@ public class Grunt extends Enemy {
         return super.playTurn(actions, map, display);
     }
 
+//    @Override
+//    protected void addActions(Actions actions, Actor enemy, GameMap map) {
+//
+//    }
 }

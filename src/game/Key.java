@@ -20,5 +20,6 @@ public class Key extends Item {
         super(name, KEY_CHAR);
         allowableActions.clear();
         allowableActions.add(new DropItemAction(this));
+        LockedDoor.addKeys(this);
     }
 }

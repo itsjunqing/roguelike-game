@@ -18,6 +18,8 @@ public class StunPowderBomb extends Item {
     public StunPowderBomb(String name) {
         super(name, STUN_POWDER_CHAR);
         allowableActions.clear();
+        GamePlayer.addStunPowderBomb(this);
+        Ninja.addStunPowderBomb(this);
     }
 
 }

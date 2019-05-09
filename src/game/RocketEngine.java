@@ -20,5 +20,6 @@ public class RocketEngine extends Item {
         super(name, ROCKET_ENGINE_CHAR);
         allowableActions.clear();
         allowableActions.add(new DropItemAction(this));
+        RocketPad.addRocketEngine(this);
     }
 }

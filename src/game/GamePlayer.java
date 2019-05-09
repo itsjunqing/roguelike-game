@@ -2,7 +2,7 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
-import static game.StunPowderBomb.STUN_POWDER_CHAR;
+import java.util.ArrayList;
 
 /**
  * Class representing the GamePlayer.
@@ -10,17 +10,19 @@ import static game.StunPowderBomb.STUN_POWDER_CHAR;
 public class GamePlayer extends Player {
 
     private int stunCount = 0;
+    public static final char GAME_PLAYER_CHAR = '@';
+    private static ArrayList<Item> stunPowderBombs = new ArrayList<>();
 
     /**
      * Constructor to create a GamePlayer.
      *
      * @param name        name of the player in the UI
-     * @param displayChar character to represent the player in the UI
      * @param priority    how early in the turn the player can act
      * @param hitPoints   player's starting number of hitpoints
      */
-    public GamePlayer(String name, char displayChar, int priority, int hitPoints) {
-        super(name, displayChar, priority, hitPoints);
+    public GamePlayer(String name, int priority, int hitPoints) {
+        super(name, GAME_PLAYER_CHAR, priority, hitPoints);
+        Enemy.addTarget(this);
     }
 
     /**
@@ -37,7 +39,7 @@ public class GamePlayer extends Player {
     public Action playTurn(Actions actions, GameMap map, Display display) {
         Location playerLocation = map.locationOf(this);
         for (Item item : playerLocation.getItems()) {
-            if (item.getDisplayChar() == STUN_POWDER_CHAR) {
+            if (stunPowderBombs.contains(item)) {
                 if (stunCount != 2) {
                     actions.clear();
                     actions.add(new SkipTurnAction());
@@ -46,6 +48,8 @@ public class GamePlayer extends Player {
                 } else {
                     stunCount = 0;
                     playerLocation.removeItem(item);
+                    Ninja.removeStunPowderBomb(item);
+                    stunPowderBombs.remove(item);
                     break;
                 }
             }
@@ -53,4 +57,7 @@ public class GamePlayer extends Player {
         return super.playTurn(actions, map, display);
     }
 
+    public static void addStunPowderBomb(Item stunPowderBomb) {
+        stunPowderBombs.add(stunPowderBomb);
+    }
 }
