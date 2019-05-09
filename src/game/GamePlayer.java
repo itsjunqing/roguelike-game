@@ -2,6 +2,8 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
+import static game.StunPowderBomb.STUN_POWDER_CHAR;
+
 /**
  * Class representing the GamePlayer.
  */
@@ -35,8 +37,7 @@ public class GamePlayer extends Player {
     public Action playTurn(Actions actions, GameMap map, Display display) {
         Location playerLocation = map.locationOf(this);
         for (Item item : playerLocation.getItems()) {
-            if (item instanceof StunPowderBomb) {
-
+            if (item.getDisplayChar() == STUN_POWDER_CHAR) {
                 if (stunCount != 2) {
                     actions.clear();
                     actions.add(new SkipTurnAction());

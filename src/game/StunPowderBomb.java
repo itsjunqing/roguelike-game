@@ -7,6 +7,8 @@ import edu.monash.fit2099.engine.Item;
  */
 public class StunPowderBomb extends Item {
 
+    public static final char STUN_POWDER_CHAR = ':';
+
     /**
      * Constructor to create stun powder bomb with a name.
      * This StunPowderBomb is a static item which does not move after it is placed on a Location.
@@ -14,7 +16,7 @@ public class StunPowderBomb extends Item {
      * @param name name of the stun powder bomb
      */
     public StunPowderBomb(String name) {
-        super(name, ':');
+        super(name, STUN_POWDER_CHAR);
         allowableActions.clear();
     }
 

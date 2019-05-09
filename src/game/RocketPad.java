@@ -2,8 +2,8 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
-import static game.RocketBody.BODY_CHAR;
-import static game.RocketEngine.ENGINE_CHAR;
+import static game.RocketBody.ROCKET_BODY_CHAR;
+import static game.RocketEngine.ROCKET_ENGINE_CHAR;
 
 /**
  * Class representing a RocketPad that the player is able to build a Rocket on.
@@ -33,10 +33,10 @@ public class RocketPad extends Ground {
         Item rocketEngine = null;
 
         for (Item item : location.getItems()) {
-            if (item.getDisplayChar() == BODY_CHAR){
+            if (item.getDisplayChar() == ROCKET_BODY_CHAR){
                 rocketBody = item;
             }
-            if (item.getDisplayChar() == ENGINE_CHAR) {
+            if (item.getDisplayChar() == ROCKET_ENGINE_CHAR) {
                 rocketEngine = item;
             }
         }
