@@ -9,12 +9,11 @@ public class Grunt extends Enemy {
 
     /**
      * Constructor to create an Enemy of type Grunt with a name.
-     * Adds an ability for the Grunt to follow the player around.
+     * By default, it has an ability to follow a player.
      *
      * @param name   the name of the Grunt
      * @param player the Actor for the Grunt to follow
      */
-    // Grunts have 50 hitpoints and are always represented with a g
     public Grunt(String name, Actor player) {
         super(name, 'g', 5, 5);
         addBehaviour(new FollowBehaviour(player));

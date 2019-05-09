@@ -52,37 +52,11 @@ public class Goon extends Enemy {
 
         super.addActions(actions, this, map);
 
-        if (random.nextDouble() <= 1.0) {
+        if (random.nextDouble() <= 0.1) {
             return new TalkAction(insults.get(random.nextInt(insults.size())), this);
         }
         return super.playTurn(actions, map, display);
     }
-//        Location qLocation = map.locationOf(this);
-//        Actions routesList = new Actions();
-//
-//
-//        for (ActionFactory factory : getActionFactories()) {
-//            Action action = factory.getAction(this, map);
-//            if(action != null)
-//                return action;
-//        }
-//
-//        for (Exit exit : qLocation.getExits()) {
-//            Location destination = exit.getDestination();
-//            if (map.isAnActorAt(destination)) {
-//                Actor actor = map.actorAt(destination);
-//                if (actor instanceof Player){
-//                    routesList.add(new AttackAction(this, actor));
-//                    if (random.nextDouble() <= 0.1) {
-//                        return new TalkAction(insults.get(random.nextInt(insults.size())), this);
-//                    }
-//                }
-//            } else {
-//                Ground adjacentGround = map.groundAt(destination);
-//                routesList.add(adjacentGround.getMoveAction(this, destination, exit.getName(), exit.getHotKey()));
-//            }
-//        }
-//
 
     /**
      * Creates a new IntrinsicWeapon with twice the damage of a base enemy damage and a new description when it attacks

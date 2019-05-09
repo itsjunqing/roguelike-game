@@ -24,15 +24,12 @@ public class Q extends Actor {
      * Returns the Action to be performed during its turn.
      * If it has passed the RocketBody to the Player, it disappears and skips its action.
      * Otherwise, it exchanges a RocketBody with a RocketPlans if the player next to it has a RocketPlans.
-     *
-     *
-     * This includes disappearing and skipping its action after it has passed the RocketBody to the Player.
-     * It checks if the player has a RocketPlans and exchange it with a RocketBody, otherwise it wanders randomly in the map.
+     * By default, it wanders around the map until player is next to it.
      *
      * @param actions collection of possible Actions for Q
      * @param map     the map containing the Actor
      * @param display the I/O object to which messages may be written
-     * @return  the Action to be performed, e.g. attacking the player when it is next to it
+     * @return the Action to be performed, e.g. giving the item to the player when it is next to it
      */
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
@@ -45,10 +42,10 @@ public class Q extends Actor {
                 if (map.isAnActorAt(destination)) {
                     Actor actor = map.actorAt(destination);
                     for (Item item : this.getInventory()) {
-                        if (item instanceof RocketPlans) {
+                        if (item.getDisplayChar() == '~') {
                             passedItem = true;
                             for (Item body : this.getInventory()) {
-                                if (body instanceof RocketBody) {
+                                if (body.getDisplayChar() == '[') {
                                     return new GiveItemAction(actor, body);
                                 }
                             }
@@ -99,7 +96,7 @@ public class Q extends Actor {
 
 
     /**
-     * Remove Q from the current map.
+     * Removes Q from the current map.
      *
      * @param map the map which the Q is in it
      * @return a string statement where Q disappears into the air

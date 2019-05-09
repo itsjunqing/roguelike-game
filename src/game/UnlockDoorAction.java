@@ -1,9 +1,6 @@
 package game;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.*;
 
 /**
  * An Action that unlocks locked doors and enable Actors to go through them.
@@ -12,7 +9,7 @@ public class UnlockDoorAction extends Action {
 
     private String direction;
     private Location doorLocation;
-    private Key key;
+    private Item key;
 
     /**
      * Constructor to create an Action that will unlock a LockedDoor on a Location in a given Direction.
@@ -21,7 +18,7 @@ public class UnlockDoorAction extends Action {
      * @param doorLocation the location of the door
      * @param key          key to unlock the door
      */
-    public UnlockDoorAction(String direction, Location doorLocation, Key key) {
+    public UnlockDoorAction(String direction, Location doorLocation, Item key) {
         this.direction = direction;
         this.doorLocation = doorLocation;
         this.key = key;

@@ -54,8 +54,6 @@ public abstract class Enemy extends Actor {
         return new IntrinsicWeapon(BASE_DAMAGE, "scratches");
     }
 
-    // i think we should utilize the return actions, pls check this.
-
     /**
      * Returns a collection of Actions an Enemy is able to perform by default.
      * These actions could be moving around the map and attack the player if player is next to it.
@@ -80,6 +78,5 @@ public abstract class Enemy extends Actor {
             }
         }
         actions.add(new SkipTurnAction());
-//        return actions;
     }
 }

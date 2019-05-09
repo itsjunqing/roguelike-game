@@ -2,6 +2,8 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
+import static game.Key.KEY_CHAR;
+
 /**
  * Class representing a LockedDoor that allow an Actor access and can only be unlocked with a Key.
  */
@@ -38,8 +40,8 @@ public class LockedDoor extends Ground {
         Actions actions = super.allowableActions(actor, location, direction);
 
         for (Item item : actor.getInventory()) {
-            if (item instanceof Key) {
-                actions.add(new UnlockDoorAction(direction, location, (Key) item));
+            if (item.getDisplayChar() == KEY_CHAR) {
+                actions.add(new UnlockDoorAction(direction, location, item));
             }
         }
         return actions;

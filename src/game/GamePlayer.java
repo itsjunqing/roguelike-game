@@ -24,6 +24,7 @@ public class GamePlayer extends Player {
     /**
      * Play a turn by displaying a menu to the user and getting their selected Action returned.
      * If it is stunned, the player can only skip its current action.
+     * If it is not, the player runs the default implementation.
      *
      * @param actions the actions to display
      * @param map     the map to display
