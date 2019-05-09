@@ -7,8 +7,8 @@ import edu.monash.fit2099.engine.*;
  */
 public class BuildRocketAction extends Action {
 
-    private RocketBody rocketBody;
-    private RocketEngine rocketEngine;
+    private Item rocketBody;
+    private Item rocketEngine;
     private Location rocketLocation;
 
     /**
@@ -18,7 +18,7 @@ public class BuildRocketAction extends Action {
      * @param rocketEngine   a rocket engine
      * @param rocketLocation location to build the rocket
      */
-    public BuildRocketAction(RocketBody rocketBody, RocketEngine rocketEngine, Location rocketLocation) {
+    public BuildRocketAction(Item rocketBody, Item rocketEngine, Location rocketLocation) {
         this.rocketBody = rocketBody;
         this.rocketEngine = rocketEngine;
         this.rocketLocation = rocketLocation;
