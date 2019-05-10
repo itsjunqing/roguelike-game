@@ -10,9 +10,9 @@ import java.util.Random;
  */
 public class Goon extends Enemy {
 
-    private static ArrayList<String> insults = new ArrayList<>();
-    private Random random = new Random();
     public static final char GOON_CHAR = 'o';
+    private Random random = new Random();
+    private static ArrayList<String> insults = new ArrayList<>();
 
     /**
      * Constructor to create an Enemy of type Goon with a name.
@@ -27,7 +27,9 @@ public class Goon extends Enemy {
         insults.add("You're not going to win this!");
         insults.add("I'm stronger than you!");
         insults.add("You'll never get me!");
-        addBehaviour(new FollowBehaviour(player));
+        for (Actor player : players) {
+            addBehaviour(new FollowBehaviour(player));
+        }
     }
 
     /**
@@ -45,14 +47,12 @@ public class Goon extends Enemy {
         if (random.nextDouble() <= 0.1) {
             return new TalkAction(insults.get(random.nextInt(insults.size())), this);
         }
-
         actions.clear();
         for (ActionFactory factory : getActionFactories()) {
             Action action = factory.getAction(this, map);
             if (action != null)
                 return action;
         }
-
         super.addActions(actions, this, map);
         return super.playTurn(actions, map, display);
     }

@@ -35,8 +35,8 @@ public class Application {
 
 		world.addPlayer(player, gameMap, 2, 2);
 		
-//		Grunt grunt = new Grunt("Mongo");
-//		gameMap.addActor(grunt, 1, 5);
+		Grunt grunt = new Grunt("Mongo");
+		gameMap.addActor(grunt, 1, 5);
 
         Ninja ninja = new Ninja("Ninja");
         gameMap.addActor(ninja, 0, 6);
@@ -44,17 +44,17 @@ public class Application {
 		Ninja ninjaX = new Ninja("NinjaX");
 		gameMap.addActor(ninjaX, 0, 0);
 
-//		Grunt grunt2 = new Grunt("Norbert");
-//		gameMap.addActor(grunt2,  0, 6);
+		Grunt grunt2 = new Grunt("Norbert");
+		gameMap.addActor(grunt2,  0, 7);
 
-//		DoctorMaybe drMaybe = new DoctorMaybe("Maybe");
-//		gameMap.addActor(drMaybe, 1, 6);
+		DoctorMaybe drMaybe = new DoctorMaybe("Maybe");
+		gameMap.addActor(drMaybe, 1, 6);
 
-//		Goon goon = new Goon("Goonie", player);
-//		gameMap.addActor(goon, 20, 9);
+		Goon goon = new Goon("Goonie");
+		gameMap.addActor(goon, 20, 9);
 
-//		Q q = new Q("Q");
-//		gameMap.addActor(q, 4, 4);
+		Q q = new Q("Q");
+		gameMap.addActor(q, 4, 4);
 
 		world.run();
 	}

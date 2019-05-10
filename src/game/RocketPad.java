@@ -41,7 +41,6 @@ public class RocketPad extends Ground {
                 rocketEngine = item;
             }
         }
-
         if ((rocketEngine != null) && (rocketBody != null)) {
             actions.add(new BuildRocketAction(rocketBody, rocketEngine, location));
             return actions;

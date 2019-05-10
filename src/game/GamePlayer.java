@@ -22,8 +22,8 @@ public class GamePlayer extends Player {
      */
     public GamePlayer(String name, int priority, int hitPoints) {
         super(name, GAME_PLAYER_CHAR, priority, hitPoints);
-        Enemy.setPlayer(this);
-        LockedDoor.setPlayer(this);
+        Enemy.addPlayer(this);
+        LockedDoor.addPlayer(this);
     }
 
     /**

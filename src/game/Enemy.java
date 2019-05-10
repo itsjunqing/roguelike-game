@@ -11,8 +11,8 @@ import java.util.List;
 public abstract class Enemy extends Actor {
 
     protected static final int BASE_DAMAGE = 5;
+    protected static ArrayList<Actor> players = new ArrayList<>();
     private List<ActionFactory> actionFactories = new ArrayList<>();
-    protected static Actor player;
 
 
     /**
@@ -26,11 +26,6 @@ public abstract class Enemy extends Actor {
     protected Enemy(String name, char displayChar, int priority, int hitPoints) {
         super(name, displayChar, priority, hitPoints);
         addItemToInventory(new Key("Key"));
-    }
-
-    @Override
-    public Action playTurn(Actions actions, GameMap map, Display display) {
-        return super.playTurn(actions, map, display);
     }
 
     /**
@@ -76,8 +71,7 @@ public abstract class Enemy extends Actor {
             Location destination = exit.getDestination();
             if (map.isAnActorAt(destination)) {
                 Actor actor = map.actorAt(destination);
-                // equals or ==?
-                if (actor.equals(player)) {
+                if (players.contains(actor)) {
                     actions.add(new AttackAction(enemy, actor));
                 }
             } else {
@@ -88,7 +82,7 @@ public abstract class Enemy extends Actor {
         actions.add(new SkipTurnAction());
     }
 
-    public static void setPlayer(Actor player) {
-        Enemy.player = player;
+    public static void addPlayer(Actor player) {
+        players.add(player);
     }
 }
