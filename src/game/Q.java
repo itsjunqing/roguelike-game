@@ -40,16 +40,22 @@ public class Q extends Actor {
         if (!passedItem) {
             Location qLocation = map.locationOf(this);
             actions.clear();
-
             for (Exit exit : qLocation.getExits()) {
                 Location destination = exit.getDestination();
                 if (map.isAnActorAt(destination)) {
                     Actor actor = map.actorAt(destination);
+
                     for (Item plan : this.getInventory()) {
                         if (rocketPlans.contains(plan)) {
-                            passedItem = true;
+                            // this means that player has passed the plan to Q and Q should no longer need to recognize this plan anymore
+                            // because Q will disappear along with the plan
+                            // so for memory efficient, the list of recognizable rocket plans should be removed also
+                            rocketPlans.remove(plan);
                             for (Item body : this.getInventory()) {
                                 if (rocketBodies.contains(body)) {
+                                    // same argument as above, remove from the list of recognizable rocketbodies, as Q no longer owns the body
+                                    passedItem = true;
+                                    rocketBodies.remove(body);
                                     return new GiveItemAction(actor, body);
                                 }
                             }
@@ -62,9 +68,9 @@ public class Q extends Actor {
             }
             actions.add(new SkipTurnAction());
             return super.playTurn(actions, map, display);
+
         } else {
-            display.println(disappear(map));
-            return new SkipTurnAction();
+            return new DisappearAction();
         }
     }
 
@@ -84,10 +90,13 @@ public class Q extends Actor {
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
         boolean hasRocketPlans = false;
         Actions actions = new Actions();
-        for (Item itemInInventory : otherActor.getInventory()) {
-            if (rocketPlans.contains(itemInInventory)) {
+        if (passedItem) {
+            return actions;
+        }
+        for (Item plan : otherActor.getInventory()) {
+            if (rocketPlans.contains(plan)) {
                 actions.add(new TalkAction("Hand the rocket plans over, I don't have all day", this));
-                actions.add(new GiveItemAction(this, itemInInventory));
+                actions.add(new GiveItemAction(this, plan));
                 hasRocketPlans = true;
                 break;
             }
@@ -98,17 +107,6 @@ public class Q extends Actor {
         return actions;
     }
 
-
-    /**
-     * Removes Q from the current map.
-     *
-     * @param map the map which the Q is in it
-     * @return a string statement where Q disappears into the air
-     */
-    private String disappear(GameMap map) {
-        map.removeActor(this);
-        return this + " disappears into the air with a cheery wave ~~~~";
-    }
 
     public static void addRocketPlans(Item plan) {
         rocketPlans.add(plan);

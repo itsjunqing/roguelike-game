@@ -2,15 +2,13 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
-import java.util.ArrayList;
-
 /**
  * Class representing Ninja as a form of an Enemy.
  */
 public class Ninja extends Enemy {
 
     private boolean stunThrown = false;
-    private static ArrayList<Item> stunPowders = new ArrayList<>();
+    public static final char NINJA_CHAR = 'N';
 
     /**
      * Constructor to create an Enemy of type Ninja with a name.
@@ -19,23 +17,9 @@ public class Ninja extends Enemy {
      * @param name   name of the Ninja
      */
     public Ninja(String name) {
-        super(name, 'N', 15, 50);
-        for (Actor player : players) {
-            addBehaviour(new ThrowStunBehaviour(player));
-        }
+        super(name, NINJA_CHAR, 15, 50);
+        addBehaviour(new ThrowStunBehaviour(player));
     }
-
-
-    /**
-     * Creates a new IntrinsicWeapon with the base enemy damage and a new description when it attacks.
-     *
-     * @return an IntrinsicWeapon suitable for Ninja
-     */
-    @Override
-    protected IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(BASE_DAMAGE, "slices");
-    }
-
 
     /**
      * Return the action to be performed during its turn.
@@ -51,9 +35,14 @@ public class Ninja extends Enemy {
     public Action playTurn(Actions actions, GameMap map, Display display) {
         actions.clear();
 
-        if (hasStunPowderBomb(map) && stunThrown) {
+        if (hasStunPowder(map) && stunThrown) {
             stunThrown = false;
             super.addActions(actions, this, map);
+            for (Action action : actions) {
+                if (action instanceof AttackAction) {
+                    actions.remove(action);
+                }
+            }
             return super.playTurn(actions, map, display);
         }
 
@@ -74,23 +63,31 @@ public class Ninja extends Enemy {
      * @param map the map containing the player
      * @return a boolean stating if the stun powder bomb exists
      */
-    private boolean hasStunPowderBomb(GameMap map) {
-
-        for (Actor player : players) {
-            for (Item item : map.locationOf(player).getItems()) {
-                if (stunPowders.contains(item)) {
-                    return true;
-                }
+    private boolean hasStunPowder(GameMap map) {
+        for (Item item : map.locationOf(player).getItems()) {
+            if (item == stunPowderThrown) {
+                return true;
             }
+//            if (stunPowders.contains(item)) {
+//                return true;
+//            }
         }
         return false;
     }
 
-    public static void addStunPowder(Item stunPowder) {
-        stunPowders.add(stunPowder);
+    public void setStunPowderThrown(Item stunPowderThrown) {
+        this.stunPowderThrown = stunPowderThrown;
     }
 
-    public static void removeStunPowder(Item stunPowder) {
-        stunPowders.remove(stunPowder);
+    public Item getStunPowderThrown() {
+        return stunPowderThrown;
     }
+    //
+//    public static void addStunPowder(Item stunPowder) {
+//        stunPowders.add(stunPowder);
+//    }
+//
+//    public static void removeStunPowder(Item stunPowder) {
+//        stunPowders.remove(stunPowder);
+//    }
 }

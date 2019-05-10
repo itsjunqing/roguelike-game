@@ -7,15 +7,15 @@ import edu.monash.fit2099.engine.*;
  */
 public class Grunt extends Enemy {
 
+    public static final char GRUNT_CHAR = 'g';
     /**
      * Constructor to create an Enemy of type Grunt with a name.
      * By default, it has an ability to follow a player.
      *
      * @param name   the name of the Grunt
-     * @param player the Actor for the Grunt to follow
      */
-    public Grunt(String name, Actor player) {
-        super(name, 'g', 5, 5);
+    public Grunt(String name) {
+        super(name, GRUNT_CHAR, 5, 5);
         addBehaviour(new FollowBehaviour(player));
     }
 

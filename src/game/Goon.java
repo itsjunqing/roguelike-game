@@ -10,18 +10,18 @@ import java.util.Random;
  */
 public class Goon extends Enemy {
 
-    private ArrayList<String> insults = new ArrayList<>();
+    private static ArrayList<String> insults = new ArrayList<>();
     private Random random = new Random();
+    public static final char GOON_CHAR = 'o';
 
     /**
      * Constructor to create an Enemy of type Goon with a name.
      * Adds an ability for the Goon to follow the player around.
      *
      * @param name   the name of the Goon
-     * @param player the Actor for the Goon to follow
      */
-    public Goon(String name, Actor player) {
-        super(name, 'o', 10, 5);
+    public Goon(String name) {
+        super(name, GOON_CHAR, 10, 5);
         insults.add("Weak!");
         insults.add("Slow!");
         insults.add("You're not going to win this!");
@@ -42,7 +42,6 @@ public class Goon extends Enemy {
      */
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
-
         if (random.nextDouble() <= 0.1) {
             return new TalkAction(insults.get(random.nextInt(insults.size())), this);
         }
@@ -53,6 +52,7 @@ public class Goon extends Enemy {
             if (action != null)
                 return action;
         }
+
         super.addActions(actions, this, map);
         return super.playTurn(actions, map, display);
     }

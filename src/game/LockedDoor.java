@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class LockedDoor extends Ground {
 
     private static ArrayList<Item> keys = new ArrayList<>();
+    private static Actor player;
 
     /**
      * Constructor to create a LockedDoor.
@@ -40,7 +41,8 @@ public class LockedDoor extends Ground {
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
         Actions actions = super.allowableActions(actor, location, direction);
-        if (actor.getClass() == Player.class) {
+        // .equals() or ==?
+        if (actor == player) {
             for (Item item : actor.getInventory()) {
                 if (keys.contains(item)) {
                     actions.add(new UnlockDoorAction(direction, location, item));
@@ -60,7 +62,19 @@ public class LockedDoor extends Ground {
         return true;
     }
 
-    public static void addKeys(Key key) {
+    public static void addKey(Item key) {
         keys.add(key);
+    }
+
+    // remove key exists because so that when an instance of the key is used to unlock a door, the key will be
+    // removed from the player's inventory, hence this key would no longer exists in the game so for memory efficiency,
+    // we remove the key from the class variable of arraylist to tell the lockeddoor that this key is no longer in the game
+    public static void removeKey(Item key) {
+        keys.remove(key);
+    }
+
+    // no need to remove player because multiple locked doors should detect all instance of players in the game
+    public static void setPlayer(Actor player) {
+        LockedDoor.player = player;
     }
 }

@@ -10,9 +10,10 @@ import java.util.List;
  */
 public abstract class Enemy extends Actor {
 
-    static final int BASE_DAMAGE = 5;
+    protected static final int BASE_DAMAGE = 5;
     private List<ActionFactory> actionFactories = new ArrayList<>();
-    protected static ArrayList<Actor> players = new ArrayList<>();
+    protected static Actor player;
+
 
     /**
      * Constructor that creates a new enemy and adds a Key item in its inventory.
@@ -75,7 +76,8 @@ public abstract class Enemy extends Actor {
             Location destination = exit.getDestination();
             if (map.isAnActorAt(destination)) {
                 Actor actor = map.actorAt(destination);
-                if (players.contains(actor)) {
+                // equals or ==?
+                if (actor.equals(player)) {
                     actions.add(new AttackAction(enemy, actor));
                 }
             } else {
@@ -86,7 +88,7 @@ public abstract class Enemy extends Actor {
         actions.add(new SkipTurnAction());
     }
 
-    public static void addTarget(Actor player) {
-        players.add(player);
+    public static void setPlayer(Actor player) {
+        Enemy.player = player;
     }
 }

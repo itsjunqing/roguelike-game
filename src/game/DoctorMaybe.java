@@ -16,7 +16,7 @@ public class DoctorMaybe extends Enemy {
      */
     public DoctorMaybe(String name) {
         super(name, DOCTOR_MAYBE_CHAR, 10, 10);
-        super.addItemToInventory(new RocketEngine("Rocket Engine"));
+        addItemToInventory(new RocketEngine("Rocket Engine"));
     }
 
     /**

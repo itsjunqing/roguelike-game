@@ -37,23 +37,10 @@ public class RocketPad extends Ground {
         for (Item item : location.getItems()) {
             if (rocketBodies.contains(item)) {
                 rocketBody = item;
-            }
-            if (rocketEngines.contains(item)) {
+            } else if (rocketEngines.contains(item)) {
                 rocketEngine = item;
             }
         }
-//
-//        Item rocketBody = null;
-//        Item rocketEngine = null;
-//
-//        for (Item item : location.getItems()) {
-//            if (item.getDisplayChar() == ROCKET_BODY_CHAR){
-//                rocketBody = item;
-//            }
-//            if (item.getDisplayChar() == ROCKET_ENGINE_CHAR) {
-//                rocketEngine = item;
-//            }
-//        }
 
         if ((rocketEngine != null) && (rocketBody != null)) {
             actions.add(new BuildRocketAction(rocketBody, rocketEngine, location));
@@ -68,5 +55,13 @@ public class RocketPad extends Ground {
 
     public static void addRocketEngine(Item rocketEngine) {
         rocketEngines.add(rocketEngine);
+    }
+
+    public static void removeRocketBody(Item rocketBody) {
+        rocketBodies.remove(rocketBody);
+    }
+
+    public static void removeRocketEngine(Item rocketEngine) {
+        rocketEngines.remove(rocketEngine);
     }
 }

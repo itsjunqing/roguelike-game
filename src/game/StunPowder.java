@@ -19,7 +19,6 @@ public class StunPowder extends Item {
         super(name, STUN_POWDER_CHAR);
         allowableActions.clear();
         GamePlayer.addStunPowder(this);
-        Ninja.addStunPowder(this);
     }
 
 }

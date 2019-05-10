@@ -35,6 +35,8 @@ public class BuildRocketAction extends Action {
     public String execute(Actor actor, GameMap map) {
         rocketLocation.removeItem(rocketBody);
         rocketLocation.removeItem(rocketEngine);
+        RocketPad.removeRocketBody(rocketBody);
+        RocketPad.removeRocketEngine(rocketEngine);
         rocketLocation.addItem(new Rocket("Falcon Wings"));
         return menuDescription(actor);
     }
