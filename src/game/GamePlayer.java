@@ -38,23 +38,21 @@ public class GamePlayer extends Player {
      */
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
-//        Location playerLocation = map.locationOf(this);
-//        for (Item item : playerLocation.getItems()) {
-//            if (stunPowders.contains(item)) {
-//                if (stunCount != 2) {
-//                    actions.clear();
-//                    actions.add(new SkipTurnAction());
-//                    stunCount++;
-//                    break;
-//                } else {
-//                    stunCount = 0;
-//                    playerLocation.removeItem(item);
-//                    stunPowders.remove(item);
-//                    Ninja.removeStunPowder(item);
-//                    break;
-//                }
-//            }
-//        }
+        Location playerLocation = map.locationOf(this);
+        for (Item item : playerLocation.getItems()) {
+            if (stunPowders.contains(item)) {
+                if (stunCount != 2) {
+                    actions.clear();
+                    actions.add(new SkipTurnAction());
+                    stunCount++;
+                    break;
+                } else {
+                    stunCount = 0;
+                    playerLocation.removeItem(item);
+                    break;
+                }
+            }
+        }
         return super.playTurn(actions, map, display);
     }
 

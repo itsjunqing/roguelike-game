@@ -11,15 +11,16 @@ public class ThrowStunBehaviour extends Action implements ActionFactory {
 
     private Actor target;
     private Random random = new Random();
-    private Item stunPowderThrown;
+    private Item stunPowder;
 
     /**
      * Constructor to create an Action that throws a stun to a target Actor.
      *
      * @param target the target for the stun to be thrown
      */
-    public ThrowStunBehaviour(Actor target) {
+    public ThrowStunBehaviour(Actor target, Item stunPowder) {
         this.target = target;
+        this.stunPowder = stunPowder;
     }
 
     /**
@@ -62,18 +63,17 @@ public class ThrowStunBehaviour extends Action implements ActionFactory {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        if (random.nextDouble() <= 0.5) {
+        if (random.nextDouble() <= 1.0) {
             Location playerLocation = map.locationOf(target);
             boolean stunExists = false;
             for (Item item : playerLocation.getItems()) {
-                if (item == stunPowderThrown) {
+                if (item == stunPowder) {
                     stunExists = true;
                     break;
                 }
             }
             if (!stunExists) {
-                stunPowderThrown = new StunPowder("Stun Bomb");
-                map.addItem(stunPowderThrown, playerLocation.x(), playerLocation.y());
+                map.addItem(stunPowder, playerLocation.x(), playerLocation.y());
                 return menuDescription(actor);
             }
             return target + " is already stunned.";

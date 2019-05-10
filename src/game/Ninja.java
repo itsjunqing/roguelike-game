@@ -9,6 +9,7 @@ public class Ninja extends Enemy {
 
     private boolean stunThrown = false;
     public static final char NINJA_CHAR = 'N';
+    private Item stunPowder = new StunPowder("Stun Powder");
 
     /**
      * Constructor to create an Enemy of type Ninja with a name.
@@ -18,7 +19,7 @@ public class Ninja extends Enemy {
      */
     public Ninja(String name) {
         super(name, NINJA_CHAR, 15, 50);
-        addBehaviour(new ThrowStunBehaviour(player));
+        addBehaviour(new ThrowStunBehaviour(player, stunPowder));
     }
 
     /**
@@ -65,29 +66,10 @@ public class Ninja extends Enemy {
      */
     private boolean hasStunPowder(GameMap map) {
         for (Item item : map.locationOf(player).getItems()) {
-            if (item == stunPowderThrown) {
+            if (item == stunPowder) {
                 return true;
             }
-//            if (stunPowders.contains(item)) {
-//                return true;
-//            }
         }
         return false;
     }
-
-    public void setStunPowderThrown(Item stunPowderThrown) {
-        this.stunPowderThrown = stunPowderThrown;
-    }
-
-    public Item getStunPowderThrown() {
-        return stunPowderThrown;
-    }
-    //
-//    public static void addStunPowder(Item stunPowder) {
-//        stunPowders.add(stunPowder);
-//    }
-//
-//    public static void removeStunPowder(Item stunPowder) {
-//        stunPowders.remove(stunPowder);
-//    }
 }
