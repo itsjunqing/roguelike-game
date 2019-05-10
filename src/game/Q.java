@@ -12,6 +12,7 @@ public class Q extends Actor {
     private boolean passedItem = false;
     private static ArrayList<Item> rocketPlans = new ArrayList<>();
     private static ArrayList<Item> rocketBodies = new ArrayList<>();
+    private Actor player;
 
     /**
      * Constructor to create Q as a Non-Playable Character with a name.
@@ -19,8 +20,9 @@ public class Q extends Actor {
      *
      * @param name name of the Q
      */
-    public Q(String name) {
+    public Q(String name, Actor player) {
         super(name, 'Q', 8, 1000);
+        this.player = player;
         addItemToInventory(new RocketBody("Rocket body"));
     }
 
@@ -44,19 +46,20 @@ public class Q extends Actor {
                 Location destination = exit.getDestination();
                 if (map.isAnActorAt(destination)) {
                     Actor actor = map.actorAt(destination);
-
-                    for (Item plan : this.getInventory()) {
-                        if (rocketPlans.contains(plan)) {
-                            // this means that player has passed the plan to Q and Q should no longer need to recognize this plan anymore
-                            // because Q will disappear along with the plan
-                            // so for memory efficient, the list of recognizable rocket plans should be removed also
-                            rocketPlans.remove(plan);
-                            for (Item body : this.getInventory()) {
-                                if (rocketBodies.contains(body)) {
-                                    // same argument as above, remove from the list of recognizable rocketbodies, as Q no longer owns the body
-                                    passedItem = true;
-                                    rocketBodies.remove(body);
-                                    return new GiveItemAction(actor, body);
+                    if (actor == player) {
+                        for (Item plan : this.getInventory()) {
+                            if (rocketPlans.contains(plan)) {
+                                // this means that player has passed the plan to Q and Q should no longer need to recognize this plan anymore
+                                // because Q will disappear along with the plan
+                                // so for memory efficient, the list of recognizable rocket plans should be removed also
+                                rocketPlans.remove(plan);
+                                for (Item body : this.getInventory()) {
+                                    if (rocketBodies.contains(body)) {
+                                        // same argument as above, remove from the list of recognizable rocketbodies, as Q no longer owns the body
+                                        passedItem = true;
+                                        rocketBodies.remove(body);
+                                        return new GiveItemAction(actor, body);
+                                    }
                                 }
                             }
                         }
@@ -93,12 +96,15 @@ public class Q extends Actor {
         if (passedItem) {
             return actions;
         }
-        for (Item plan : otherActor.getInventory()) {
-            if (rocketPlans.contains(plan)) {
-                actions.add(new TalkAction("Hand the rocket plans over, I don't have all day", this));
-                actions.add(new GiveItemAction(this, plan));
-                hasRocketPlans = true;
-                break;
+
+        if (otherActor == player) {
+            for (Item plan : otherActor.getInventory()) {
+                if (rocketPlans.contains(plan)) {
+                    actions.add(new TalkAction("Hand the rocket plans over, I don't have all day", this));
+                    actions.add(new GiveItemAction(this, plan));
+                    hasRocketPlans = true;
+                    break;
+                }
             }
         }
         if (!hasRocketPlans) {

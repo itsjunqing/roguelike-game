@@ -20,16 +20,14 @@ public class Goon extends Enemy {
      *
      * @param name   the name of the Goon
      */
-    public Goon(String name) {
+    public Goon(String name, Actor player) {
         super(name, GOON_CHAR, 10, 5);
         insults.add("Weak!");
         insults.add("Slow!");
         insults.add("You're not going to win this!");
         insults.add("I'm stronger than you!");
         insults.add("You'll never get me!");
-        for (Actor player : players) {
-            addBehaviour(new FollowBehaviour(player));
-        }
+        addBehaviour(new FollowBehaviour(player));
     }
 
     /**

@@ -14,11 +14,9 @@ public class Grunt extends Enemy {
      *
      * @param name   the name of the Grunt
      */
-    public Grunt(String name) {
+    public Grunt(String name, Actor player) {
         super(name, GRUNT_CHAR, 5, 5);
-        for (Actor player : players) {
-            addBehaviour(new FollowBehaviour(player));
-        }
+        addBehaviour(new FollowBehaviour(player));
     }
 
     /**

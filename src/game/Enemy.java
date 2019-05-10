@@ -85,4 +85,8 @@ public abstract class Enemy extends Actor {
     public static void addPlayer(Actor player) {
         players.add(player);
     }
+
+    public static ArrayList<Actor> getPlayers() {
+        return players;
+    }
 }
