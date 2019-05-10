@@ -56,6 +56,11 @@ public class GamePlayer extends Player {
         return super.playTurn(actions, map, display);
     }
 
+    /**
+     * Adds a stun powder item to a list of stun powders to signify that the player recognises the stun powder and can
+     * be stunned.
+     * @param stunPowder an Item that can stun the player
+     */
     public static void addStunPowder(Item stunPowder) {
         stunPowders.add(stunPowder);
     }

@@ -10,7 +10,7 @@ public class DoctorMaybe extends Enemy {
     public static final char DOCTOR_MAYBE_CHAR = 'D';
 
     /**
-     * Constructor to create a new Enemy of type DoctorMaybe with a name
+     * Constructor to create a new Enemy of type DoctorMaybe with a name that has a RocketEngine
      *
      * @param name the name of the DoctorMaybe
      */

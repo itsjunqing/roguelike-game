@@ -48,18 +48,38 @@ public class RocketPad extends Ground {
         return actions;
     }
 
+    /**
+     * Adds a Rocket Body to a list of Rocket Body's recognised as a Rocket Part on the Rocket Pad.
+     *
+     * @param rocketBody an Item that the Rocket Pad recognizes as a Rocket Part
+     */
     public static void addRocketBody(Item rocketBody) {
         rocketBodies.add(rocketBody);
     }
 
+    /**
+     * Adds a Rocket Engine to a list of Rocket Engine's recognised as a Rocket Part on the Rocket Pad.
+     *
+     * @param rocketEngine an Item that the Rocket Pad recognises as a Rocket Part
+     */
     public static void addRocketEngine(Item rocketEngine) {
         rocketEngines.add(rocketEngine);
     }
 
+    /**
+     * Removes a Rocket Engine from a list of Rocket Body's recognised as a Rocket Part on the Rocket Pad.
+     *
+     * @param rocketBody the Rocket Body to be removed from the recognised Rocket Parts.
+     */
     public static void removeRocketBody(Item rocketBody) {
         rocketBodies.remove(rocketBody);
     }
 
+    /**
+     * Removes a Rocket Engine from a list of Rocket Engine's recognised as a Rocket Part on the Rocket Pad.
+     *
+     * @param rocketEngine the Rocket Engine to be removed from the recognised Rocket Parts.
+     */
     public static void removeRocketEngine(Item rocketEngine) {
         rocketEngines.remove(rocketEngine);
     }

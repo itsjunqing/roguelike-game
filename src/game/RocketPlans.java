@@ -11,6 +11,7 @@ public class RocketPlans extends Item {
 
     /**
      * Constructor to create rocket plans with a name.
+     * Makes Q recognise the rocket plans added.
      *
      * @param name name of the rocket plans
      */

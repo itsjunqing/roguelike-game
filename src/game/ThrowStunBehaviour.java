@@ -63,7 +63,7 @@ public class ThrowStunBehaviour extends Action implements ActionFactory {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        if (random.nextDouble() <= 1.0) {
+        if (random.nextDouble() <= 0.5) {
             Location playerLocation = map.locationOf(target);
             boolean stunExists = false;
             for (Item item : playerLocation.getItems()) {

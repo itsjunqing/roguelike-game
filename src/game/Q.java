@@ -113,11 +113,20 @@ public class Q extends Actor {
         return actions;
     }
 
-
+    /**
+     * Adds the rocket plans taken in as a parameter to ensure that Q recognises the rocket plans and has to check for
+     * the rocket plans added to provide an action
+     * @param plan an Item that represents the Rocket Plans that will be given to Q
+     */
     public static void addRocketPlans(Item plan) {
         rocketPlans.add(plan);
     }
 
+    /**
+     * Adds the Rocket Body taken in as a parameter to ensure that Q recognises the rocket body and can give the rocket
+     * body away.
+     * @param body
+     */
     public static void addRocketBody(Item body) {
         rocketBodies.add(body);
     }

@@ -58,7 +58,8 @@ public abstract class Enemy extends Actor {
 
     /**
      * Returns a collection of Actions an Enemy is able to perform by default.
-     * These actions could be moving around the map and attack the player if player is next to it.
+     * These actions could be moving around the map and attack the player if player is next to it and the Enemy
+     * recognises the Player.
      *
      * @param actions a collection of Action
      * @param enemy   the enemy itself
@@ -82,11 +83,12 @@ public abstract class Enemy extends Actor {
         actions.add(new SkipTurnAction());
     }
 
+    /**
+     * Adds a player to a list containing all the players in the Game for the Enemy to target.
+     *
+     * @param player an Actor signifying the player
+     */
     public static void addPlayer(Actor player) {
         players.add(player);
-    }
-
-    public static ArrayList<Actor> getPlayers() {
-        return players;
     }
 }

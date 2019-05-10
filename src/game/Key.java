@@ -13,6 +13,7 @@ public class Key extends Item {
     /**
      * Constructor to create a key with a name.
      * This Key is by default in the enemy's inventory hence it has DropItemAction only.
+     * Adds the Key to a list in the Door class to signify that the key is able to unlock doors.
      *
      * @param name the name of the key
      */

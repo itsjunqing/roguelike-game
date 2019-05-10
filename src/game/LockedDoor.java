@@ -31,7 +31,8 @@ public class LockedDoor extends Ground {
     }
 
     /**
-     * Allows actor to unlock the door if it detects the actor has a key in its inventory.
+     * Allows actor to unlock the door if it detects the actor has a key in its inventory and the Actor is recognised
+     * by the Door.
      *
      * @param actor     the Actor beside the LockedDoor
      * @param location  the Location of the LockedDoor
@@ -61,14 +62,26 @@ public class LockedDoor extends Ground {
         return true;
     }
 
+    /**
+     * Adds a key to a list of keys to ensure that the Door recognises the Key
+     * @param key an Item representing a key that unlocks a Door
+     */
     public static void addKey(Item key) {
         keys.add(key);
     }
 
+    /**
+     * Removes a key from a list of keysto signify that the key has been used
+     * @param key an Item representing a key that unlocks a Door
+     */
     public static void removeKey(Item key) {
         keys.remove(key);
     }
 
+    /**
+     * Adds an Actor to a list that signifies the Player is able to unlock the Door
+     * @param player an Actor that can unlock the Door
+     */
     public static void addPlayer(Actor player) {
         players.add(player);
     }
