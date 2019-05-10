@@ -49,13 +49,9 @@ public class Q extends Actor {
                     if (actor == player) {
                         for (Item plan : this.getInventory()) {
                             if (rocketPlans.contains(plan)) {
-                                // this means that player has passed the plan to Q and Q should no longer need to recognize this plan anymore
-                                // because Q will disappear along with the plan
-                                // so for memory efficient, the list of recognizable rocket plans should be removed also
                                 rocketPlans.remove(plan);
                                 for (Item body : this.getInventory()) {
                                     if (rocketBodies.contains(body)) {
-                                        // same argument as above, remove from the list of recognizable rocketbodies, as Q no longer owns the body
                                         passedItem = true;
                                         rocketBodies.remove(body);
                                         return new GiveItemAction(actor, body);
