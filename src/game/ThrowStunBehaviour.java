@@ -4,7 +4,7 @@ import edu.monash.fit2099.engine.*;
 
 import java.util.Random;
 
-import static game.StunPowderBomb.STUN_POWDER_CHAR;
+import static game.StunPowder.STUN_POWDER_CHAR;
 
 /**
  * Class representing the behaviour of stunning the player.
@@ -55,7 +55,7 @@ public class ThrowStunBehaviour extends Action implements ActionFactory {
     }
 
     /**
-     * Adds a StunPowderBomb on the location of the target that will be stunned with a 50% chance of success.
+     * Adds a StunPowder on the location of the target that will be stunned with a 50% chance of success.
      *
      * @param actor The actor performing the action.
      * @param map   The map the actor is on.
@@ -73,7 +73,7 @@ public class ThrowStunBehaviour extends Action implements ActionFactory {
                 }
             }
             if (!stunExists) {
-                map.addItem(new StunPowderBomb("Stun Bomb"), playerLocation.x(), playerLocation.y());
+                map.addItem(new StunPowder("Stun Bomb"), playerLocation.x(), playerLocation.y());
                 return menuDescription(actor);
             }
             return target + " is already stunned.";

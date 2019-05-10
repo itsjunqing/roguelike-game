@@ -21,6 +21,7 @@ public class RocketBody extends Item {
         allowableActions.clear();
         allowableActions.add(new DropItemAction(this));
         RocketPad.addRocketBody(this);
+        Q.addRocketBody(this);
     }
 
 }

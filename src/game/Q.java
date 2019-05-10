@@ -2,8 +2,7 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
-import static game.RocketBody.ROCKET_BODY_CHAR;
-import static game.RocketPlans.ROCKET_PLANS_CHAR;
+import java.util.ArrayList;
 
 /**
  * Class representing Q as a Non-Playable Character
@@ -11,6 +10,8 @@ import static game.RocketPlans.ROCKET_PLANS_CHAR;
 public class Q extends Actor {
 
     private boolean passedItem = false;
+    private static ArrayList<Item> rocketPlans = new ArrayList<>();
+    private static ArrayList<Item> rocketBodies = new ArrayList<>();
 
     /**
      * Constructor to create Q as a Non-Playable Character with a name.
@@ -44,11 +45,11 @@ public class Q extends Actor {
                 Location destination = exit.getDestination();
                 if (map.isAnActorAt(destination)) {
                     Actor actor = map.actorAt(destination);
-                    for (Item item : this.getInventory()) {
-                        if (item.getDisplayChar() == ROCKET_PLANS_CHAR) {
+                    for (Item plan : this.getInventory()) {
+                        if (rocketPlans.contains(plan)) {
                             passedItem = true;
                             for (Item body : this.getInventory()) {
-                                if (body.getDisplayChar() == ROCKET_BODY_CHAR) {
+                                if (rocketBodies.contains(body)) {
                                     return new GiveItemAction(actor, body);
                                 }
                             }
@@ -84,7 +85,7 @@ public class Q extends Actor {
         boolean hasRocketPlans = false;
         Actions actions = new Actions();
         for (Item itemInInventory : otherActor.getInventory()) {
-            if (itemInInventory.getDisplayChar() == ROCKET_PLANS_CHAR) {
+            if (rocketPlans.contains(itemInInventory)) {
                 actions.add(new TalkAction("Hand the rocket plans over, I don't have all day", this));
                 actions.add(new GiveItemAction(this, itemInInventory));
                 hasRocketPlans = true;
@@ -109,4 +110,11 @@ public class Q extends Actor {
         return this + " disappears into the air with a cheery wave ~~~~";
     }
 
+    public static void addRocketPlans(Item plan) {
+        rocketPlans.add(plan);
+    }
+
+    public static void addRocketBody(Item body) {
+        rocketBodies.add(body);
+    }
 }

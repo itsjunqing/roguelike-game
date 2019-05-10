@@ -12,7 +12,7 @@ public class Key extends Item {
 
     /**
      * Constructor to create a key with a name.
-     * This Key is by default in the enemy's inventory hence it only has DropItemAction.
+     * This Key is by default in the enemy's inventory hence it has DropItemAction only.
      *
      * @param name the name of the key
      */

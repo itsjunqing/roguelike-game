@@ -16,5 +16,6 @@ public class RocketPlans extends Item {
      */
     public RocketPlans(String name) {
         super(name, ROCKET_PLANS_CHAR);
+        Q.addRocketPlans(this);
     }
 }

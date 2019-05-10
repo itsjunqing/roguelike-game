@@ -11,7 +11,7 @@ public class GamePlayer extends Player {
 
     private int stunCount = 0;
     public static final char GAME_PLAYER_CHAR = '@';
-    private static ArrayList<Item> stunPowderBombs = new ArrayList<>();
+    private static ArrayList<Item> stunPowders = new ArrayList<>();
 
     /**
      * Constructor to create a GamePlayer.
@@ -27,8 +27,8 @@ public class GamePlayer extends Player {
 
     /**
      * Play a turn by displaying a menu to the user and getting their selected Action returned.
-     * If it is stunned, the player can only skip its current action.
-     * If it is not, the player runs the default implementation.
+     * It can only skip its current action if it is stunned.
+     * Otherwise, it runs the default implementation of a Player.
      *
      * @param actions the actions to display
      * @param map     the map to display
@@ -39,7 +39,7 @@ public class GamePlayer extends Player {
     public Action playTurn(Actions actions, GameMap map, Display display) {
         Location playerLocation = map.locationOf(this);
         for (Item item : playerLocation.getItems()) {
-            if (stunPowderBombs.contains(item)) {
+            if (stunPowders.contains(item)) {
                 if (stunCount != 2) {
                     actions.clear();
                     actions.add(new SkipTurnAction());
@@ -48,8 +48,8 @@ public class GamePlayer extends Player {
                 } else {
                     stunCount = 0;
                     playerLocation.removeItem(item);
-                    Ninja.removeStunPowderBomb(item);
-                    stunPowderBombs.remove(item);
+                    stunPowders.remove(item);
+                    Ninja.removeStunPowder(item);
                     break;
                 }
             }
@@ -57,7 +57,7 @@ public class GamePlayer extends Player {
         return super.playTurn(actions, map, display);
     }
 
-    public static void addStunPowderBomb(Item stunPowderBomb) {
-        stunPowderBombs.add(stunPowderBomb);
+    public static void addStunPowder(Item stunPowder) {
+        stunPowders.add(stunPowder);
     }
 }

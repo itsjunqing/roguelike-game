@@ -10,24 +10,21 @@ import java.util.ArrayList;
 public class Ninja extends Enemy {
 
     private boolean stunThrown = false;
-    private Actor player;
-    private static ArrayList<Item> stunPowderBombs = new ArrayList<>();
-
-    // pls rephrase this, check line 14, is it necessary?
+    private static ArrayList<Item> stunPowders = new ArrayList<>();
 
     /**
      * Constructor to create an Enemy of type Ninja with a name.
-     * It takes in a Player of type Actor to represent the target for the Ninja to throw the stun.
-     * Adds an ability for Ninja to throw a stun on the Player.
+     * It takes in a player of Actor type to represent the target for it to throw the stun.
      *
      * @param name   name of the Ninja
-     * @param player the target actor for Ninja to throw the stun
      */
-    public Ninja(String name, Actor player) {
+    public Ninja(String name) {
         super(name, 'N', 15, 50);
-        this.player = player;
-        addBehaviour(new ThrowStunBehaviour(player));
+        for (Actor player : players) {
+            addBehaviour(new ThrowStunBehaviour(player));
+        }
     }
+
 
     /**
      * Creates a new IntrinsicWeapon with the base enemy damage and a new description when it attacks.
@@ -39,28 +36,16 @@ public class Ninja extends Enemy {
         return new IntrinsicWeapon(BASE_DAMAGE, "slices");
     }
 
-    /*
-    Ninja playturn has to check whether if he has thrown the stun or not, as every actor can only execute one action at one time,
-    after ninja has thrown the stun, ninja has to check, if he has indeed thrown the stun, then he must move one space away from player
-    this means that he will execute the moveactoraction randomly, it cannot be moved "exactly one space away from player" because
-    in the case where if the ninja is at the top of the map, while player is positioned exactly below the ninja,
-    then ninja cannot move further anymore (since it is at the top of the map). so ninja has to move in random direction
-    after every stun being thrown
-
-    if ninja has not thrown stun and unable to throw stun, means ninja is in hide, unable to see player, so ninja will only
-    execute the skipturnaction.
-     */
 
     /**
-     * Checks if the player is stunned and checks if it threw the stun the previous turn. If the player is stunned and
-     * it stunned the player in the previous turn, then it will move 1 step in a random direction. If the player is not
-     * stunned, it checks if it is able to stun the player and stuns the player if it is able to. It will just skip
-     * its turn for any other scenarios.
+     * Return the action to be performed during its turn.
+     * It stuns the player and moves one step in a random direction in the following turn.
+     * Otherwise, it will stay at one place (i.e., not moving).
      *
      * @param actions collection of possible Actions for this Actor
      * @param map     the map containing the Actor
      * @param display the I/O object to which messages may be written
-     * @return  the Action to be performed, e.g. attacking the player when it is next to it
+     * @return the Action to be performed, e.g. moving one step in a random direction
      */
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
@@ -86,34 +71,26 @@ public class Ninja extends Enemy {
     /**
      * Checks the location of the player if there exists a stun powder bomb.
      *
-     * @param map   the map containing the player
-     * @return  a boolean stating if the stun powder bomb exists
+     * @param map the map containing the player
+     * @return a boolean stating if the stun powder bomb exists
      */
     private boolean hasStunPowderBomb(GameMap map) {
-        for (Item item : map.locationOf(player).getItems()) {
-            if (stunPowderBombs.contains(item)) {
-                return true;
+
+        for (Actor player : players) {
+            for (Item item : map.locationOf(player).getItems()) {
+                if (stunPowders.contains(item)) {
+                    return true;
+                }
             }
         }
         return false;
     }
 
-//    @Override
-//    protected void addActions(Actions actions, GameMap map) {
-//        Location location = map.locationOf(this);
-//        for (Exit exit : location.getExits()) {
-//            Location destination = exit.getDestination();
-//            Ground adjacentGround = map.groundAt(destination);
-//            actions.add(adjacentGround.getMoveAction(this, destination, exit.getName(), exit.getHotKey()));
-//        }
-//    }
-
-
-    public static void addStunPowderBomb(Item stunPowderBomb) {
-        stunPowderBombs.add(stunPowderBomb);
+    public static void addStunPowder(Item stunPowder) {
+        stunPowders.add(stunPowder);
     }
 
-    public static void removeStunPowderBomb(Item stunPowderBomb) {
-        stunPowderBombs.remove(stunPowderBomb);
+    public static void removeStunPowder(Item stunPowder) {
+        stunPowders.remove(stunPowder);
     }
 }

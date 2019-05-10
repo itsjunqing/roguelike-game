@@ -4,14 +4,13 @@ import edu.monash.fit2099.engine.*;
 
 import java.util.ArrayList;
 
-import static game.Key.KEY_CHAR;
-
 /**
  * Class representing a LockedDoor that allow an Actor access and can only be unlocked with a Key.
  */
 public class LockedDoor extends Ground {
 
     private static ArrayList<Item> keys = new ArrayList<>();
+
     /**
      * Constructor to create a LockedDoor.
      */
@@ -41,14 +40,11 @@ public class LockedDoor extends Ground {
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
         Actions actions = super.allowableActions(actor, location, direction);
-
-        for (Item item : actor.getInventory()) {
-            if (keys.contains(item)) {
-                actions.add(new UnlockDoorAction(direction, location, item));
-            }
-
-            if (item.getDisplayChar() == KEY_CHAR) {
-                actions.add(new UnlockDoorAction(direction, location, item));
+        if (actor.getClass() == Player.class) {
+            for (Item item : actor.getInventory()) {
+                if (keys.contains(item)) {
+                    actions.add(new UnlockDoorAction(direction, location, item));
+                }
             }
         }
         return actions;

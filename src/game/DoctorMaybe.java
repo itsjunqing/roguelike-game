@@ -7,13 +7,15 @@ import edu.monash.fit2099.engine.*;
  */
 public class DoctorMaybe extends Enemy {
 
+    public static final char DOCTOR_MAYBE_CHAR = 'D';
+
     /**
      * Constructor to create a new Enemy of type DoctorMaybe with a name
      *
      * @param name the name of the DoctorMaybe
      */
     public DoctorMaybe(String name) {
-        super(name, 'D', 10, 10);
+        super(name, DOCTOR_MAYBE_CHAR, 10, 10);
         super.addItemToInventory(new RocketEngine("Rocket Engine"));
     }
 
@@ -28,8 +30,8 @@ public class DoctorMaybe extends Enemy {
     }
 
     /**
-     * Allows DoctorMaybe to only attack the Player or skips its turn. If the player is not beside DoctorMaybe,
-     * DoctorMaybe is only allows to skip its turn.
+     * Returns the action to be performed during its turn.
+     * It attacks the player if it is next to it. Otherwise, it does nothing.
      *
      * @param actions collection of possible Actions for DoctorMaybe in the turn
      * @param map     the map containing the Actor
@@ -39,28 +41,12 @@ public class DoctorMaybe extends Enemy {
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
         actions.clear();
-        Location location = map.locationOf(this);
-
-        for (Exit exit : location.getExits()) {
-            Location destination = exit.getDestination();
-            if (map.isAnActorAt(destination)) {
-                Actor actor = map.actorAt(destination);
-                if (players.contains(actor)) {
-                    actions.add(new AttackAction(this, actor));
-                }
+        super.addActions(actions, this, map);
+        for (Action action : actions) {
+            if (action instanceof MoveActorAction) {
+                actions.remove(action);
             }
         }
-        actions.add(new SkipTurnAction());
-
-
-
-//        super.addActions(actions, this, map);
-
-//        for (Action action : actions) {
-//            if (action instanceof MoveActorAction) {
-//                actions.remove(action);
-//            }
-//        }
         return super.playTurn(actions, map, display);
     }
 }

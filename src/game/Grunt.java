@@ -37,33 +37,6 @@ public class Grunt extends Enemy {
                 return action;
         }
         super.addActions(actions, this, map);
-
-//        Location qLocation = map.locationOf(this);
-//        actions.clear();
-//
-//		for (ActionFactory factory : getActionFactories()) {
-//			Action action = factory.getAction(this, map);
-//			if(action != null)
-//				return action;
-//		}
-//
-//        for (Exit exit : qLocation.getExits()) {
-//            Location destination = exit.getDestination();
-//            if (map.isAnActorAt(destination)) {
-//                Actor actor = map.actorAt(destination);
-//                if (actor instanceof  Player) {
-//                    actions.add(new AttackAction(this, actor));
-//                }
-//            } else {
-//                Ground adjacentGround = map.groundAt(destination);
-//                actions.add(adjacentGround.getMoveAction(this, destination, exit.getName(), exit.getHotKey()));
-//            }
-//        }
         return super.playTurn(actions, map, display);
     }
-
-//    @Override
-//    protected void addActions(Actions actions, Actor enemy, GameMap map) {
-//
-//    }
 }

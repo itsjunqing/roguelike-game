@@ -42,19 +42,18 @@ public class Goon extends Enemy {
      */
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
-        actions.clear();
 
+        if (random.nextDouble() <= 0.1) {
+            return new TalkAction(insults.get(random.nextInt(insults.size())), this);
+        }
+
+        actions.clear();
         for (ActionFactory factory : getActionFactories()) {
             Action action = factory.getAction(this, map);
             if (action != null)
                 return action;
         }
-
         super.addActions(actions, this, map);
-
-        if (random.nextDouble() <= 0.1) {
-            return new TalkAction(insults.get(random.nextInt(insults.size())), this);
-        }
         return super.playTurn(actions, map, display);
     }
 
@@ -67,23 +66,4 @@ public class Goon extends Enemy {
     protected IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(BASE_DAMAGE * 2, "punches");
     }
-
-//    @Override
-//    protected void addActions(Actions actions, GameMap map) {
-//        Location location = map.locationOf(this);
-//
-//        for (Exit exit : location.getExits()) {
-//            Location destination = exit.getDestination();
-//            if (map.isAnActorAt(destination)) {
-//                Actor actor = map.actorAt(destination);
-//                if (actor.getDisplayChar() == GAME_PLAYER_CHAR) {
-//                    actions.add(new AttackAction(this, actor));
-//                }
-//            } else {
-//                Ground adjacentGround = map.groundAt(destination);
-//                actions.add(adjacentGround.getMoveAction(this, destination, exit.getName(), exit.getHotKey()));
-//            }
-//        }
-//        actions.add(new SkipTurnAction());
-//    }
 }

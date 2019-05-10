@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * An Enemy base class that generalizes the properties and methods which an enemy is capable of doing.
  */
-public class Enemy extends Actor {
+public abstract class Enemy extends Actor {
 
     static final int BASE_DAMAGE = 5;
     private List<ActionFactory> actionFactories = new ArrayList<>();
@@ -60,7 +60,7 @@ public class Enemy extends Actor {
         return new IntrinsicWeapon(BASE_DAMAGE, "scratches");
     }
 
-        /**
+    /**
      * Returns a collection of Actions an Enemy is able to perform by default.
      * These actions could be moving around the map and attack the player if player is next to it.
      *
@@ -78,10 +78,6 @@ public class Enemy extends Actor {
                 if (players.contains(actor)) {
                     actions.add(new AttackAction(enemy, actor));
                 }
-
-//                if (actor instanceof Player) {
-//                    actions.add(new AttackAction(enemy, actor));
-//                }
             } else {
                 Ground adjacentGround = map.groundAt(destination);
                 actions.add(adjacentGround.getMoveAction(enemy, destination, exit.getName(), exit.getHotKey()));
