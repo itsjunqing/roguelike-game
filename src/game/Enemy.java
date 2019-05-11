@@ -29,7 +29,7 @@ public abstract class Enemy extends Actor {
     }
 
     /**
-     * Allows enemies to add special behaviours that the enemy may possess
+     * Adds special behaviours that the enemy may possess.
      *
      * @param behaviour an ActionFactory that contains a set of rules that may determine what the enemy does
      */
@@ -38,7 +38,7 @@ public abstract class Enemy extends Actor {
     }
 
     /**
-     * Obtains a list of ActionFactory that contains the behaviours that the enemy possesses
+     * Returns a list of ActionFactory that contains the behaviours that the enemy possesses.
      *
      * @return a list of ActionFactory of the enemy
      */
@@ -47,9 +47,9 @@ public abstract class Enemy extends Actor {
     }
 
     /**
-     * Sets the base damage for enemies and sets the description as "scratches" after it attacks
+     * Returns an IntrinsicWeapon with the base damage set as the damage and a new default description as "scratches".
      *
-     * @return an IntrinsicWeapon with the base damage for all enemies.
+     * @return an IntrinsicWeapon with the base damage set
      */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
@@ -58,8 +58,7 @@ public abstract class Enemy extends Actor {
 
     /**
      * Returns a collection of Actions an Enemy is able to perform by default.
-     * These actions could be moving around the map and attack the player if player is next to it and the Enemy
-     * recognises the Player.
+     * These actions could be moving around the map and attacking the player if player is next to it.
      *
      * @param actions a collection of Action
      * @param enemy   the enemy itself
@@ -84,9 +83,9 @@ public abstract class Enemy extends Actor {
     }
 
     /**
-     * Adds a player to a list containing all the players in the Game for the Enemy to target.
+     * Adds a Player the list of recognizable players as references.
      *
-     * @param player an Actor signifying the player
+     * @param player an Actor signifying the Player
      */
     public static void addPlayer(Actor player) {
         players.add(player);

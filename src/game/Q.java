@@ -16,7 +16,7 @@ public class Q extends Actor {
 
     /**
      * Constructor to create Q as a Non-Playable Character with a name.
-     * Q will have an instance of the RocketBody item in its inventory by default.
+     * By default, it has RocketBody in its inventory.
      *
      * @param name name of the Q
      */
@@ -110,18 +110,18 @@ public class Q extends Actor {
     }
 
     /**
-     * Adds the rocket plans taken in as a parameter to ensure that Q recognises the rocket plans and has to check for
-     * the rocket plans added to provide an action
-     * @param plan an Item that represents the Rocket Plans that will be given to Q
+     * Adds a RocketPlans into the list of recognizable rocketPlans as references.
+     *
+     * @param plan an Item of RocketPlans
      */
     public static void addRocketPlans(Item plan) {
         rocketPlans.add(plan);
     }
 
     /**
-     * Adds the Rocket Body taken in as a parameter to ensure that Q recognises the rocket body and can give the rocket
-     * body away.
-     * @param body
+     * Adds a RocketBody into the list of recognizable rocketBodies as references.
+     *
+     * @param body an Item of RocketBody
      */
     public static void addRocketBody(Item body) {
         rocketBodies.add(body);

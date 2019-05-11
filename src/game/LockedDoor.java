@@ -64,6 +64,7 @@ public class LockedDoor extends Ground {
 
     /**
      * Adds a key to a list of keys to ensure that the Door recognises the Key
+     *
      * @param key an Item representing a key that unlocks a Door
      */
     public static void addKey(Item key) {
@@ -72,6 +73,7 @@ public class LockedDoor extends Ground {
 
     /**
      * Removes a key from a list of keysto signify that the key has been used
+     *
      * @param key an Item representing a key that unlocks a Door
      */
     public static void removeKey(Item key) {
@@ -80,6 +82,7 @@ public class LockedDoor extends Ground {
 
     /**
      * Adds an Actor to a list that signifies the Player is able to unlock the Door
+     *
      * @param player an Actor that can unlock the Door
      */
     public static void addPlayer(Actor player) {

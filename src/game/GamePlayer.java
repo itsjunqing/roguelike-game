@@ -16,9 +16,9 @@ public class GamePlayer extends Player {
     /**
      * Constructor to create a GamePlayer.
      *
-     * @param name        name of the player in the UI
-     * @param priority    how early in the turn the player can act
-     * @param hitPoints   player's starting number of hitpoints
+     * @param name      name of the player in the UI
+     * @param priority  how early in the turn the player can act
+     * @param hitPoints player's starting number of hitpoints
      */
     public GamePlayer(String name, int priority, int hitPoints) {
         super(name, GAME_PLAYER_CHAR, priority, hitPoints);
@@ -28,7 +28,7 @@ public class GamePlayer extends Player {
 
     /**
      * Play a turn by displaying a menu to the user and getting their selected Action returned.
-     * It can only skip its current action if it is stunned.
+     * If it is stunned, can only skip its current action until the stun effect is gone (after 2 stuns).
      * Otherwise, it runs the default implementation of a Player.
      *
      * @param actions the actions to display
@@ -57,9 +57,9 @@ public class GamePlayer extends Player {
     }
 
     /**
-     * Adds a stun powder item to a list of stun powders to signify that the player recognises the stun powder and can
-     * be stunned.
-     * @param stunPowder an Item that can stun the player
+     * Adds a StunPowder into the list of recognizable stunPowders as references.
+     *
+     * @param stunPowder an Item signifying the StunPowder
      */
     public static void addStunPowder(Item stunPowder) {
         stunPowders.add(stunPowder);

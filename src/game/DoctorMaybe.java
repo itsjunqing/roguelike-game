@@ -10,7 +10,8 @@ public class DoctorMaybe extends Enemy {
     public static final char DOCTOR_MAYBE_CHAR = 'D';
 
     /**
-     * Constructor to create a new Enemy of type DoctorMaybe with a name that has a RocketEngine
+     * Constructor to create an Enemy of type DoctorMaybe with a name.
+     * By default, it has RocketEngine in its inventory.
      *
      * @param name the name of the DoctorMaybe
      */
@@ -20,7 +21,7 @@ public class DoctorMaybe extends Enemy {
     }
 
     /**
-     * Creates a new IntrinsicWeapon with half the damage of a base enemy damage with a new description.
+     * Returns a new IntrinsicWeapon with half the damage of a base enemy damage and a new description.
      *
      * @return an IntrinsicWeapon suitable for DoctorMaybe
      */

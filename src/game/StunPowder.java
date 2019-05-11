@@ -10,9 +10,7 @@ public class StunPowder extends Item {
     public static final char STUN_POWDER_CHAR = ':';
 
     /**
-     * Constructor to create stun powder with a name.
-     * This StunPowder is a static item which does not move after it is placed on a Location.
-     * Makes the game player recognise the stun powder that is created.
+     * Constructor to create static stun powder with a name.
      *
      * @param name name of the stun powder bomb
      */

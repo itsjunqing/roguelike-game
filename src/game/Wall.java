@@ -4,7 +4,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 
 /**
- * Class representing a Wall that does not allow an Actor access.
+ * Class representing a Wall.
  */
 public class Wall extends Ground {
 

@@ -12,7 +12,7 @@ public class BuildRocketAction extends Action {
     private Location rocketLocation;
 
     /**
-     * Constructor to create an Action that will build a rocket on a Location
+     * Constructor to create an Action that will build a rocket on a Location.
      *
      * @param rocketBody     a rocket body
      * @param rocketEngine   a rocket engine

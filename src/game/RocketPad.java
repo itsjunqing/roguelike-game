@@ -13,7 +13,7 @@ public class RocketPad extends Ground {
     private static ArrayList<Item> rocketEngines = new ArrayList<>();
 
     /**
-     * Constructor to create a rocket pad.
+     * Constructor to create a RocketPad.
      */
     public RocketPad() {
         super('=');
@@ -49,36 +49,36 @@ public class RocketPad extends Ground {
     }
 
     /**
-     * Adds a Rocket Body to a list of Rocket Body's recognised as a Rocket Part on the Rocket Pad.
+     * Adds a RocketBody into the list of recognizable rocketBodies as references.
      *
-     * @param rocketBody an Item that the Rocket Pad recognizes as a Rocket Part
+     * @param rocketBody an Item signifying the RocketBody
      */
     public static void addRocketBody(Item rocketBody) {
         rocketBodies.add(rocketBody);
     }
 
     /**
-     * Adds a Rocket Engine to a list of Rocket Engine's recognised as a Rocket Part on the Rocket Pad.
+     * Adds a RocketEngine into the list of recognizable rocketEngines as references.
      *
-     * @param rocketEngine an Item that the Rocket Pad recognises as a Rocket Part
+     * @param rocketEngine an Item signifying the RocketEngine
      */
     public static void addRocketEngine(Item rocketEngine) {
         rocketEngines.add(rocketEngine);
     }
 
     /**
-     * Removes a Rocket Engine from a list of Rocket Body's recognised as a Rocket Part on the Rocket Pad.
+     * Removes a RocketBody from the list of recognizable rocketBodies as references.
      *
-     * @param rocketBody the Rocket Body to be removed from the recognised Rocket Parts.
+     * @param rocketBody an Item signifying the RocketBody
      */
     public static void removeRocketBody(Item rocketBody) {
         rocketBodies.remove(rocketBody);
     }
 
     /**
-     * Removes a Rocket Engine from a list of Rocket Engine's recognised as a Rocket Part on the Rocket Pad.
+     * Removes a RocketEngine from the list of recognizable rocketEngines as references.
      *
-     * @param rocketEngine the Rocket Engine to be removed from the recognised Rocket Parts.
+     * @param rocketEngine an Item signifying the RocketEngine
      */
     public static void removeRocketEngine(Item rocketEngine) {
         rocketEngines.remove(rocketEngine);

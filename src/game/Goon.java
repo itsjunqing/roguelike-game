@@ -16,9 +16,9 @@ public class Goon extends Enemy {
 
     /**
      * Constructor to create an Enemy of type Goon with a name.
-     * Adds an ability for the Goon to follow the player around.
+     * It takes in a player of Actor type as a target to follow.
      *
-     * @param name   the name of the Goon
+     * @param name the name of the Goon
      */
     public Goon(String name, Actor player) {
         super(name, GOON_CHAR, 10, 5);
@@ -31,9 +31,9 @@ public class Goon extends Enemy {
     }
 
     /**
-     * Allows the Goon to move towards the player if FollowBehaviour is active. Gives Goon the ability
-     * to shout an insult to the player with a 10% chance of success. Will return a list of possible actions
-     * if FollowBehaviour is inactive and shouting an insult is unsuccessful.
+     * Returns an Action to be performed during its turn.
+     * It has 10% chance of shouting an insult or moves itself towards the player if FollowBehaviour is active.
+     * Otherwise, it moves randomly in the map (including attack if player is next to it).
      *
      * @param actions collection of possible actions for Goon in the turn
      * @param map     the map containing the Actor
@@ -56,7 +56,7 @@ public class Goon extends Enemy {
     }
 
     /**
-     * Creates a new IntrinsicWeapon with twice the damage of a base enemy damage and a new description when it attacks
+     * Returns a new IntrinsicWeapon with twice the damage of a base enemy damage and a new description when it attacks.
      *
      * @return an IntrinsicWeapon for Goon
      */

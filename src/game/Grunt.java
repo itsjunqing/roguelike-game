@@ -8,11 +8,12 @@ import edu.monash.fit2099.engine.*;
 public class Grunt extends Enemy {
 
     public static final char GRUNT_CHAR = 'g';
+
     /**
      * Constructor to create an Enemy of type Grunt with a name.
-     * By default, it has an ability to follow a player.
+     * It takes in a player of Actor type as target to follow.
      *
-     * @param name   the name of the Grunt
+     * @param name the name of the Grunt
      */
     public Grunt(String name, Actor player) {
         super(name, GRUNT_CHAR, 5, 5);
@@ -20,8 +21,9 @@ public class Grunt extends Enemy {
     }
 
     /**
-     * Allows the Grunt to move towards the player if FollowBehaviour is active.
-     * Returns a list of actions if FollowBehaviour is inactive.
+     * Returns an Action to be performed during its turn.
+     * It moves itself towards the player if FollowBehaviour is active.
+     * Otherwise, it moves randomly in the map (including attack if player is next to it).
      *
      * @param actions collection of possible actions by Grunt in that turn
      * @param map     the map containing the Actor

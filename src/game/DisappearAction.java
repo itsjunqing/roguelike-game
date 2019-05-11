@@ -5,20 +5,21 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 
 /**
- * An Action that makes an actor disappear from the map
+ * An Action that makes an actor disappear from the map.
  */
 public class DisappearAction extends Action {
 
     /**
-     * Constructor to create an Action that will make an actor disappear
+     * Constructor to create an Action that will make an actor disappear.
      */
     public DisappearAction() {
     }
 
     /**
      * Makes an Actor disappear by removing the Actor from the map
+     *
      * @param actor The actor performing the action.
-     * @param map The map the actor is on.
+     * @param map   The map the actor is on.
      * @return a suitable description to display in the UI
      */
     @Override

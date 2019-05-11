@@ -12,8 +12,7 @@ public class RocketBody extends Item {
 
     /**
      * Constructor to create a rocket body with a name.
-     * This RocketBody is by default in the actor's inventory (e.g. Q), so the item can only have DropItemAction.
-     * Adds the Rocket Body to a list that ensures the RocketPad recognizes the RocketBody as a Rocket Part.
+     * This RocketBody is by default in the actor's inventory (e.g. Q), so it has the ability of dropping.
      *
      * @param name name of the rocket body
      */

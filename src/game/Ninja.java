@@ -14,9 +14,9 @@ public class Ninja extends Enemy {
 
     /**
      * Constructor to create an Enemy of type Ninja with a name.
-     * It takes in a player of Actor type to represent the target for it to throw the stun.
+     * It takes in a player of Actor type as the target to throw the stun.
      *
-     * @param name   name of the Ninja
+     * @param name name of the Ninja
      */
     public Ninja(String name, Actor player) {
         super(name, NINJA_CHAR, 15, 50);
