@@ -10,6 +10,7 @@ public class BuildRocketAction extends Action {
     private Item rocketBody;
     private Item rocketEngine;
     private Location rocketLocation;
+    private Rocket rocket;
 
     /**
      * Constructor to create an Action that will build a rocket on a Location.
@@ -37,7 +38,10 @@ public class BuildRocketAction extends Action {
         rocketLocation.removeItem(rocketEngine);
         RocketPad.removeRocketBody(rocketBody);
         RocketPad.removeRocketEngine(rocketEngine);
-        rocketLocation.addItem(new Rocket("Falcon Wings"));
+        rocket = new Rocket("Falcon Wings");
+        rocketLocation.addItem(rocket);
+        Application.getMoonMap().at(7, 4).addItem(rocket);
+
         return menuDescription(actor);
     }
 

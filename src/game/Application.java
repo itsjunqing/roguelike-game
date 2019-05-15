@@ -10,13 +10,17 @@ import java.util.List;
  */
 public class Application {
 
+    private static GameMap earthMap;
+    private static GameMap MoonMap;
+
     public static void main(String[] args) {
         World world = new World(new Display());
 
-        FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new LockedDoor(), new RocketPad());
+        FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new LockedDoor(),
+                new RocketPad(), new Crater());
         GameMap gameMap;
 
-        List<String> map = Arrays.asList(
+        List<String> earth = Arrays.asList(
                 ".......................",
                 "....#####....######....",
                 "....#.=.#....#....#....",
@@ -28,11 +32,27 @@ public class Application {
                 "...................#...",
                 "...................+...",
                 "...................#...");
-        gameMap = new GameMap(groundFactory, map);
+        gameMap = new GameMap(groundFactory, earth);
+        earthMap = gameMap;
         gameMap.addItem(new RocketPlans("Rocket plans"), 21, 9);
         Location padLocation = new Location(gameMap, 6, 2);
         gameMap.add(new RocketPad(), padLocation);
         world.addMap(gameMap);
+
+        List<String> moonMap = Arrays.asList(
+                "ooooooooooooooo",
+                "ooooooooooooooo",
+                "ooooooooooooooo",
+                "ooooooooooooooo",
+                "ooooooo=ooooooo",
+                "ooooooooooooooo",
+                "ooooooooooooooo",
+                "ooooooooooooooo",
+                "ooooooooooooooo",
+                "ooooooooooooooo");
+        GameMap moon = new GameMap(groundFactory, moonMap);
+        MoonMap = moon;
+        world.addMap(moon);
 
         Actor player = new GamePlayer("Player", 1, 100);
 
@@ -57,5 +77,13 @@ public class Application {
         gameMap.addActor(q, 4, 10);
 
         world.run();
+    }
+
+    public static GameMap getEarthMap(){
+        return earthMap;
+    }
+
+    public static GameMap getMoonMap() {
+        return MoonMap;
     }
 }
