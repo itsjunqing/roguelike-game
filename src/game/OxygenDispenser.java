@@ -4,8 +4,8 @@ import edu.monash.fit2099.engine.*;
 
 public class OxygenDispenser extends Ground {
 
-    private boolean generated = false;
-    private static int counter = 0;
+    private int count = 0;
+
     public OxygenDispenser() {
         super('!');
     }
@@ -13,38 +13,24 @@ public class OxygenDispenser extends Ground {
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
         Actions actions = super.allowableActions(actor, location, direction);
-//        if (actor instanceof Player) {
-//            actions.add(new GenerateOxygenTankAction(location));
-//        }
-//        return actions;
+        if (actor instanceof Player) {
+            actions.add(new GenerateOxygenTankAction(this, location));
+        }
 
-        // Check if player pressed button
-        if (counter != 0) {
-        //
-            counter--;
-
-            // Check if time to create tank
-            if (counter == 0) {
-            //
-
+        if (count != 0) {
+            count--;
+            if (count == 0) {
                 location.addItem(new OxygenTank("Tank"));
             }
         }
-        else{
-            if (actor instanceof Player){
-                actions.add(new GenerateOxygenTankAction(location));
-            }
-        }
         return actions;
-
-
     }
 
-    public void setGenerated(boolean generated) {
-        this.generated = generated;
+    public void setCount(int count) {
+        this.count = count;
     }
 
-    public static void setCounter(int count){
-        counter = count;
+    public int getCount() {
+        return count;
     }
 }
