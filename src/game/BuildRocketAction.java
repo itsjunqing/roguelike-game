@@ -9,20 +9,21 @@ public class BuildRocketAction extends Action {
 
     private Item rocketBody;
     private Item rocketEngine;
-    private Location rocketLocation;
-    private Rocket rocket;
+    private Location rocketEarthLocation;
+    private Location rocketMoonLocation;
 
     /**
      * Constructor to create an Action that will build a rocket on a Location.
      *
      * @param rocketBody     a rocket body
      * @param rocketEngine   a rocket engine
-     * @param rocketLocation location to build the rocket
+     * @param rocketEarthLocation location to build the rocket
      */
-    public BuildRocketAction(Item rocketBody, Item rocketEngine, Location rocketLocation) {
+    public BuildRocketAction(Item rocketBody, Item rocketEngine, Location rocketEarthLocation, Location rocketMoonLocation) {
         this.rocketBody = rocketBody;
         this.rocketEngine = rocketEngine;
-        this.rocketLocation = rocketLocation;
+        this.rocketEarthLocation = rocketEarthLocation;
+        this.rocketMoonLocation = rocketMoonLocation;
     }
 
     /**
@@ -34,13 +35,18 @@ public class BuildRocketAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        rocketLocation.removeItem(rocketBody);
-        rocketLocation.removeItem(rocketEngine);
+        rocketEarthLocation.removeItem(rocketBody);
+        rocketEarthLocation.removeItem(rocketEngine);
         RocketPad.removeRocketBody(rocketBody);
         RocketPad.removeRocketEngine(rocketEngine);
-        rocket = new Rocket("Falcon Wings");
-        rocketLocation.addItem(rocket);
-        Application.getMoonMap().at(7, 4).addItem(rocket);
+        
+        Item rocket = new Rocket("Falcon Wings", actor);
+        rocket.getAllowableActions().add(new MoveActorAction(rocketMoonLocation, "to Moon!"));
+        rocketEarthLocation.addItem(rocket);
+        
+        rocket.getAllowableActions().clear();
+        rocket.getAllowableActions().add(new MoveActorAction(rocketEarthLocation, "to Earth!"));
+        rocketMoonLocation.addItem(rocket);
 
         return menuDescription(actor);
     }

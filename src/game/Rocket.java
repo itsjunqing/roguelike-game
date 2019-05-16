@@ -1,10 +1,8 @@
 package game;
 
+import edu.monash.fit2099.engine.Actions;
+import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Item;
-import edu.monash.fit2099.engine.Location;
-import edu.monash.fit2099.engine.MoveActorAction;
-
-import java.util.ArrayList;
 
 /**
  * Class representing a Rocket.
@@ -12,19 +10,28 @@ import java.util.ArrayList;
 public class Rocket extends Item {
 
     public static final char ROCKET_CHAR = '^';
+    private Actor player;
 
     /**
      * Constructor that creates a static rocket with a name.
      *
      * @param name the name of the rocket
      */
-    public Rocket(String name) {
+    public Rocket(String name, Actor player) {
         super(name, ROCKET_CHAR);
+        this.player = player;
         allowableActions.clear();
-        allowableActions.add(new MoveActorAction(Application.getMoonMap().at(7,4), "to Moon!"));
-//        allowableActions.add(new MoveActorAction(Application.getEarthMap().at(6,2), "to Earth!"));
     }
 
-
-
+    @Override
+    public Actions getAllowableActions() {
+        for (Item item : player.getInventory()) {
+            if (item instanceof Spacesuit) {
+                return allowableActions;
+            }
+        }
+        Actions actions = allowableActions;
+        actions.clear();
+        return actions;
+    }
 }

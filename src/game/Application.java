@@ -20,22 +20,36 @@ public class Application {
                 new RocketPad(), new Crater());
         GameMap gameMap;
 
+//        List<String> earth = Arrays.asList(
+//                ".......................",
+//                "....#####....######....",
+//                "....#.=.#....#....#....",
+//                "#####...+....#....#....",
+//                "....#####....##+###....",
+//                ".......................",
+//                ".......................",
+//                "#####+#################",
+//                "...................#...",
+//                "...................+...",
+//                "...................#...");
+
         List<String> earth = Arrays.asList(
                 ".......................",
                 "....#####....######....",
-                "....#.=.#....#....#....",
-                "#####...+....#....#....",
-                "....#####....##+###....",
+                "......=.#....#....#....",
+                "........+....#....#....",
+                "....#####.......###....",
                 ".......................",
                 ".......................",
-                "#####+#################",
+                "#####.#################",
                 "...................#...",
                 "...................+...",
                 "...................#...");
         gameMap = new GameMap(groundFactory, earth);
         earthMap = gameMap;
-        gameMap.addItem(new RocketPlans("Rocket plans"), 21, 9);
-        Location padLocation = new Location(gameMap, 6, 2);
+        gameMap.addItem(new RocketPlans("Rocket plans"), 1, 3);
+        gameMap.addItem(new Spacesuit("Space suit"), 1, 4);
+        Location padLocation = new Location(gameMap, 1, 2);
         gameMap.add(new RocketPad(), padLocation);
         world.addMap(gameMap);
 
@@ -61,20 +75,20 @@ public class Application {
         Grunt grunt = new Grunt("Mongo", player);
         gameMap.addActor(grunt, 1, 5);
 
-        Grunt grunt2 = new Grunt("Norbert", player);
-        gameMap.addActor(grunt2, 20, 6);
+//        Grunt grunt2 = new Grunt("Norbert", player);
+//        gameMap.addActor(grunt2, 20, 6);
 
-        Ninja ninja = new Ninja("Ninja", player);
-        gameMap.addActor(ninja, 10, 5);
+//        Ninja ninja = new Ninja("Ninja", player);
+//        gameMap.addActor(ninja, 10, 5);
 
         DoctorMaybe drMaybe = new DoctorMaybe("Maybe");
-        gameMap.addActor(drMaybe, 16, 2);
+        gameMap.addActor(drMaybe, 0, 0);
 
-        Goon goon = new Goon("Goonie", player);
-        gameMap.addActor(goon, 17, 9);
+//        Goon goon = new Goon("Goonie", player);
+//        gameMap.addActor(goon, 17, 9);
 
         Q q = new Q("Q", player);
-        gameMap.addActor(q, 4, 10);
+        gameMap.addActor(q, 0, 2);
 
         world.run();
     }
