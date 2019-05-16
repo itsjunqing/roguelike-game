@@ -8,5 +8,6 @@ public class Spacesuit extends Item {
 
     public Spacesuit(String name) {
         super(name, SPACESUIT_CHAR);
+        addSkill(MoonSkills.SPACETRAVELLER);
     }
 }

@@ -39,15 +39,9 @@ public class BuildRocketAction extends Action {
         rocketEarthLocation.removeItem(rocketEngine);
         RocketPad.removeRocketBody(rocketBody);
         RocketPad.removeRocketEngine(rocketEngine);
-        
-        Item rocket = new Rocket("Falcon Wings", actor);
-        rocket.getAllowableActions().add(new MoveActorAction(rocketMoonLocation, "to Moon!"));
+        Item rocket = new Rocket("Falcon Wings", actor, rocketEarthLocation, rocketMoonLocation);
         rocketEarthLocation.addItem(rocket);
-        
-        rocket.getAllowableActions().clear();
-        rocket.getAllowableActions().add(new MoveActorAction(rocketEarthLocation, "to Earth!"));
         rocketMoonLocation.addItem(rocket);
-
         return menuDescription(actor);
     }
 
