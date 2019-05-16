@@ -15,7 +15,8 @@ public class GenerateOxygenTankAction extends Action {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        return null;
+        OxygenDispenser.setCounter(2);
+        return menuDescription(actor);
     }
 
     @Override

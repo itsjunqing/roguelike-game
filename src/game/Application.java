@@ -17,7 +17,7 @@ public class Application {
         World world = new World(new Display());
 
         FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new LockedDoor(),
-                new RocketPad(), new Crater());
+                new RocketPad(), new Crater(), new OxygenDispenser());
         GameMap gameMap;
 
 //        List<String> earth = Arrays.asList(
@@ -34,7 +34,7 @@ public class Application {
 //                "...................#...");
 
         List<String> earth = Arrays.asList(
-                ".......................",
+                ".!.....................",
                 "....#####....######....",
                 "......=.#....#....#....",
                 "........+....#....#....",
@@ -50,6 +50,8 @@ public class Application {
         gameMap.addItem(new RocketPlans("Rocket plans"), 1, 3);
         gameMap.addItem(new Spacesuit("Space suit"), 1, 4);
         Location padLocation = new Location(gameMap, 1, 2);
+        Location dispenseLocation = new Location(gameMap, 1, 0);
+        gameMap.add(new OxygenDispenser(), dispenseLocation);
         gameMap.add(new RocketPad(), padLocation);
         world.addMap(gameMap);
 
@@ -72,8 +74,8 @@ public class Application {
 
         world.addPlayer(player, gameMap, 2, 2);
 
-        Grunt grunt = new Grunt("Mongo", player);
-        gameMap.addActor(grunt, 1, 5);
+//        Grunt grunt = new Grunt("Mongo", player);
+//        gameMap.addActor(grunt, 1, 5);
 
 //        Grunt grunt2 = new Grunt("Norbert", player);
 //        gameMap.addActor(grunt2, 20, 6);
