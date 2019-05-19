@@ -4,7 +4,8 @@ import edu.monash.fit2099.engine.*;
 
 public class OxygenDispenser extends Ground {
 
-    private int count = 0;
+    private static int count = 0;
+    private static boolean countdown = false;
 
     public OxygenDispenser() {
         super('!');
@@ -17,20 +18,22 @@ public class OxygenDispenser extends Ground {
             actions.add(new GenerateOxygenTankAction(this, location));
         }
 
-        if (count != 0) {
-            count--;
-            if (count == 0) {
-                location.addItem(new OxygenTank("Tank"));
-            }
+        if (count == 0 && countdown) {
+            countdown = false;
+            location.addItem(new OxygenTank("Tank"));
         }
         return actions;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public static void setCount(int newCount) {
+        if (newCount > 0){
+            countdown = true;
+        }
+        count = newCount;
     }
 
-    public int getCount() {
+    public static int getCount() {
         return count;
     }
+
 }

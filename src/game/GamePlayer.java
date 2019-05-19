@@ -39,6 +39,10 @@ public class GamePlayer extends Player {
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
         Location playerLocation = map.locationOf(this);
+
+        if (OxygenDispenser.getCount() != 0){
+            OxygenDispenser.setCount(OxygenDispenser.getCount()-1);
+        }
         for (Item item : playerLocation.getItems()) {
             if (stunPowders.contains(item)) {
                 if (stunCount != 2) {

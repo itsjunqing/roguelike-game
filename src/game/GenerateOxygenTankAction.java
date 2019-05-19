@@ -22,7 +22,7 @@ public class GenerateOxygenTankAction extends Action {
                 return "Oxygen tank is already produced";
             }
         }
-        dispenser.setCount(3);
+        dispenser.setCount(1);
         return "Producing oxygen tank";
     }
 
