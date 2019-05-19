@@ -1,5 +1,5 @@
 package game;
 
 public enum MoonSkills {
-    SPACETRAVELLER;
+    SPACETRAVELLER, WATERSKILL, INVULNERABLE;
 }
