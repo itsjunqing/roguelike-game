@@ -54,7 +54,8 @@ public class Application {
         gameMap.add(new RocketPad(), padLocation);
         world.addMap(gameMap);
 
-        gameMap.addItem(new WaterPistol(), 0, 4);
+
+        gameMap.addItem(new WaterPistol("Air Gun"), 0, 4);
         YugoMaxx Yugo = new YugoMaxx("Yugo Maxx");
         world.addPlayer(Yugo, gameMap, 0, 5);
 

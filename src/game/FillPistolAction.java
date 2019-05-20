@@ -6,16 +6,18 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 
 public class FillPistolAction extends Action {
+
     private Item pistol;
 
-    public FillPistolAction(Item item){
-        pistol = item;
+    public FillPistolAction(Item pistol) {
+        this.pistol = pistol;
     }
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        WaterPistol.usePistol(true);
-        return actor + " filled the Water Pistol." ;
+        pistol.addSkill(MoonSkills.WATERSKILL);
+//        WaterPistol.usePistol(true);
+        return actor + " filled the Water Pistol";
     }
 
     @Override

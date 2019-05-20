@@ -1,18 +1,22 @@
 package game;
 
 import edu.monash.fit2099.engine.Item;
-import edu.monash.fit2099.engine.Skills;
 
 public class WaterPistol extends Item {
-    private static boolean filled = false;
 
-    public WaterPistol(){
-        super("Water Pistol", 'P');
-        addSkill(MoonSkills.WATERSKILL);
-    };
+//    private boolean filled = false;
 
-    public static void usePistol(boolean filler){
-        filled = filler;
+    public WaterPistol(String name) {
+        super(name, 'P');
+        Water.addWaterPistol(this);
+//        addSkill(MoonSkills.WATERSKILL);
     }
 
+//    public static void usePistol(boolean filler) {
+//        filled = filler;
+//    }
+
+//    public void setFilled(boolean filled) {
+//        this.filled = filled;
+//    }
 }

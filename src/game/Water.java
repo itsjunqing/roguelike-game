@@ -2,8 +2,13 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
+import java.util.ArrayList;
+
 public class Water extends Ground {
-    public Water(){
+
+    private static ArrayList<Item> waterPistols = new ArrayList<>();
+
+    public Water() {
         super('*');
     }
 
@@ -15,13 +20,22 @@ public class Water extends Ground {
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
         Actions actions = new Actions();
-        if (actor.hasSkill(MoonSkills.WATERSKILL)){
-            for (Item item : actor.getInventory()){
-                if (item.hasSkill(MoonSkills.WATERSKILL)){
-                    actions.add(new FillPistolAction(item));
-                }
+        for (Item item : actor.getInventory()) {
+            if (waterPistols.contains(item)) {
+                actions.add(new FillPistolAction(item));
             }
         }
+//        if (actor.hasSkill(MoonSkills.WATERSKILL)) {
+//            for (Item item : actor.getInventory()) {
+//                if (item.hasSkill(MoonSkills.WATERSKILL)) {
+//                    actions.add(new FillPistolAction(item));
+//                }
+//            }
+//        }
         return actions;
+    }
+
+    public static void addWaterPistol(Item waterPistol) {
+        waterPistols.add(waterPistol);
     }
 }
