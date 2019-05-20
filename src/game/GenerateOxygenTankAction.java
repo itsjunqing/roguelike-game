@@ -1,29 +1,22 @@
 package game;
 
-import edu.monash.fit2099.engine.*;
+import edu.monash.fit2099.engine.Action;
+import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Location;
 
 public class GenerateOxygenTankAction extends Action {
 
-    private OxygenDispenser dispenser;
-    private Location dispenserLocation;
+    private Location tankLocation;
 
-    public GenerateOxygenTankAction(OxygenDispenser dispenser, Location dispenserLocation) {
-        this.dispenser = dispenser;
-        this.dispenserLocation = dispenserLocation;
+    public GenerateOxygenTankAction(Location tankLocation) {
+        this.tankLocation = tankLocation;
     }
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        if (dispenser.getCount() != 0) {
-            return "Oxygen tank is still in production";
-        }
-        for (Item item : dispenserLocation.getItems()) {
-            if (item instanceof OxygenTank) {
-                return "Oxygen tank is already produced";
-            }
-        }
-        dispenser.setCount(1);
-        return "Producing oxygen tank";
+        tankLocation.addItem(new OxygenTank("Oxygen tank"));
+        return menuDescription(actor);
     }
 
     @Override

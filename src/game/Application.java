@@ -17,7 +17,8 @@ public class Application {
         World world = new World(new Display());
 
         FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new LockedDoor(),
-                new RocketPad(), new Crater(), new OxygenDispenser(), new Water());
+                new RocketPad(), new Crater(), new Water());
+
         GameMap gameMap;
 
 //        List<String> earth = Arrays.asList(
@@ -34,7 +35,7 @@ public class Application {
 //                "...................#...");
 
         List<String> earth = Arrays.asList(
-                ".!.....................",
+                ".......................",
                 "....#####....######....",
                 "......=.#....#....#....",
                 "........+....#....#....",
@@ -50,14 +51,15 @@ public class Application {
         gameMap.addItem(new RocketPlans("Rocket plans"), 1, 3);
         gameMap.addItem(new Spacesuit("Space suit"), 1, 4);
         Location padLocation = new Location(gameMap, 1, 2);
-        Location dispenseLocation = new Location(gameMap, 1, 0);
-        gameMap.add(new OxygenDispenser(), dispenseLocation);
         gameMap.add(new RocketPad(), padLocation);
         world.addMap(gameMap);
 
         gameMap.addItem(new WaterPistol(), 0, 4);
         YugoMaxx Yugo = new YugoMaxx("Yugo Maxx");
         world.addPlayer(Yugo, gameMap, 0, 5);
+
+        OxygenDispenser dispenser = new OxygenDispenser("SpaceX O2 Dispenser");
+        gameMap.addActor(dispenser, 1, 0);
 
         List<String> moonMap = Arrays.asList(
                 "ooooooooooooooo",

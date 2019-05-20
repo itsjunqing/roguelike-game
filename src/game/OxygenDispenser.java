@@ -2,38 +2,52 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
-public class OxygenDispenser extends Ground {
+public class OxygenDispenser extends Actor {
 
-    private static int count = 0;
-    private static boolean countdown = false;
+    private int dispenserCount = 0;
+    private Location tankLocation = null;
 
-    public OxygenDispenser() {
-        super('!');
+    public OxygenDispenser(String name) {
+        super(name, '!', 15, 1000);
     }
 
     @Override
-    public Actions allowableActions(Actor actor, Location location, String direction) {
-        Actions actions = super.allowableActions(actor, location, direction);
-        if (actor instanceof Player) {
-            actions.add(new GenerateOxygenTankAction(this, location));
+    public Action playTurn(Actions actions, GameMap map, Display display) {
+        actions.clear();
+
+        if (dispenserCount != 0) {
+            dispenserCount--;
+            if (dispenserCount == 0) {
+                return new GenerateOxygenTankAction(tankLocation);
+            }
+        }
+        return new SkipTurnAction();
+    }
+
+    @Override
+    public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
+        Actions actions = new Actions();
+
+        if (otherActor instanceof Player) {
+            actions.add(new PushDispenserButtonAction(this));
         }
 
-        if (count == 0 && countdown) {
-            countdown = false;
-            location.addItem(new OxygenTank("Tank"));
-        }
         return actions;
     }
 
-    public static void setCount(int newCount) {
-        if (newCount > 0){
-            countdown = true;
-        }
-        count = newCount;
+    public void setDispenserCount(int dispenserCount) {
+        this.dispenserCount = dispenserCount;
     }
 
-    public static int getCount() {
-        return count;
+    public int getDispenserCount() {
+        return dispenserCount;
     }
 
+    public void setTankLocation(Location tankLocation) {
+        this.tankLocation = tankLocation;
+    }
+
+    public Location getTankLocation() {
+        return tankLocation;
+    }
 }
