@@ -28,12 +28,13 @@ public class Rocket extends Item {
     @Override
     public Actions getAllowableActions() {
         allowableActions.clear();
-        if (earthLocation.getActor() == player) {
-            if (player.hasSkill(MoonSkills.SPACETRAVELLER)) {
+
+        if (player.hasSkill(MoonSkills.SPACETRAVELLER)) {
+            if (earthLocation.getActor() == player) {
                 allowableActions.add(new MoveActorAction(moonLocation, "to Moon!"));
+            } else if (moonLocation.getActor() == player) {
+                allowableActions.add(new MoveActorAction(earthLocation, "to Earth!"));
             }
-        } else if (moonLocation.getActor() == player) {
-            allowableActions.add(new MoveActorAction(earthLocation, "to Earth!"));
         }
         return allowableActions;
     }

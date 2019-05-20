@@ -12,6 +12,7 @@ public class GamePlayer extends Player {
     private static ArrayList<Item> stunPowders = new ArrayList<>();
     public static final char GAME_PLAYER_CHAR = '@';
     private int stunCount = 0;
+    private int totalOxygenCount = 0;
 
     /**
      * Constructor to create a GamePlayer.
@@ -38,6 +39,16 @@ public class GamePlayer extends Player {
      */
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
+
+//        if (totalOxygenCount == 0) {
+//             fly back
+//        } else {
+//            totalOxygenCount--;
+//        }
+
+
+
+
         Location playerLocation = map.locationOf(this);
 
         for (Item item : playerLocation.getItems()) {
@@ -65,4 +76,14 @@ public class GamePlayer extends Player {
     public static void addStunPowder(Item stunPowder) {
         stunPowders.add(stunPowder);
     }
+
+    private void calculateOxygenCount() {
+        for (Item item : this.getInventory()) {
+            if (item.hasSkill(MoonSkills.OXYGENSUPPLY)) {
+                totalOxygenCount += OxygenTank.oxygenCount;
+            }
+        }
+    }
+
+
 }
