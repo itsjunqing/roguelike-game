@@ -9,6 +9,7 @@ public class YugoMaxx extends Enemy {
     public YugoMaxx(String name) {
         super(name, YUGO_MAXX_CHAR, 20, 10);
         addItemToInventory(new InvulnerablityStone());
+        addItemToInventory(new Spacesuit());
     }
 
     @Override
@@ -35,22 +36,6 @@ public class YugoMaxx extends Enemy {
     public Action playTurn(Actions actions, GameMap map, Display display) {
         actions.clear();
         super.addActions(actions, this, map);
-
-        Location location = map.locationOf(this);
-
-        for (Exit exit : location.getExits()) {
-            Location destination = exit.getDestination();
-            if (map.isAnActorAt(destination)) {
-                Actor player = map.actorAt(destination);
-                if (players.contains(player)) {
-                    for (Action action : actions) {
-                        if (action instanceof MoveActorAction) {
-                            actions.remove(action);
-                        }
-                    }
-                }
-            }
-        }
 
 //        for (Action action : actions) {
 //            if (action instanceof MoveActorAction) {

@@ -34,34 +34,6 @@ public class Application {
 //                "...................+...",
 //                "...................#...");
 
-        List<String> earth = Arrays.asList(
-                ".......................",
-                "....#####....######....",
-                "......=.#....#....#....",
-                "........+....#....#....",
-                "....#####.......###....",
-                ".......................",
-                ".......................",
-                "#####.#################",
-                "***................#...",
-                "***................+...",
-                "***................#...");
-        gameMap = new GameMap(groundFactory, earth);
-        earthMap = gameMap;
-        gameMap.addItem(new RocketPlans("Rocket plans"), 1, 3);
-        gameMap.addItem(new Spacesuit("Space suit"), 1, 4);
-        Location padLocation = new Location(gameMap, 1, 2);
-        gameMap.add(new RocketPad(), padLocation);
-        world.addMap(gameMap);
-
-
-        gameMap.addItem(new WaterPistol("Air Gun"), 0, 4);
-        YugoMaxx Yugo = new YugoMaxx("Yugo Maxx");
-        world.addPlayer(Yugo, gameMap, 0, 5);
-
-        OxygenDispenser dispenser = new OxygenDispenser("SpaceX O2 Dispenser");
-        gameMap.addActor(dispenser, 1, 0);
-
         List<String> moonMap = Arrays.asList(
                 "ooooooooooooooo",
                 "ooooooooooooooo",
@@ -77,9 +49,32 @@ public class Application {
         MoonMap = moon;
         world.addMap(moon);
 
-        Actor player = new GamePlayer("Player", 1, 100);
 
-        world.addPlayer(player, gameMap, 2, 2);
+        List<String> earth = Arrays.asList(
+                ".......................",
+                "....#####....######....",
+                "......=.#....#....#....",
+                "........+....#....#....",
+                "....#####.......###....",
+                ".......................",
+                ".......................",
+                "#####.#################",
+                "***................#...",
+                "***................+...",
+                "***................#...");
+        gameMap = new GameMap(groundFactory, earth);
+        earthMap = gameMap;
+        gameMap.addItem(new RocketPlans("Rocket plans"), 1, 3);
+        gameMap.addItem(new Spacesuit(),1, 4);
+        Location padLocation = new Location(gameMap, 1, 2);
+        gameMap.add(new RocketPad(), padLocation);
+        world.addMap(gameMap);
+
+
+        gameMap.addItem(new WaterPistol("Air Gun"), 0, 4);;
+
+        OxygenDispenser dispenser = new OxygenDispenser("SpaceX O2 Dispenser");
+        gameMap.addActor(dispenser, 1, 0);
 
 //        Grunt grunt = new Grunt("Mongo", player);
 //        gameMap.addActor(grunt, 1, 5);
@@ -95,6 +90,13 @@ public class Application {
 
 //        Goon goon = new Goon("Goonie", player);
 //        gameMap.addActor(goon, 17, 9);
+
+
+        YugoMaxx Yugo = new YugoMaxx("Yugo Maxx");
+        world.addPlayer(Yugo, moon, 0, 5);
+
+        Actor player = new GamePlayer("Player", 1, 100);
+        world.addPlayer(player, earthMap, 2, 2);
 
         Q q = new Q("Q", player);
         gameMap.addActor(q, 0, 2);

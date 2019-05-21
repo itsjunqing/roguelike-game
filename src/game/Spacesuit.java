@@ -6,8 +6,8 @@ public class Spacesuit extends Item {
 
     public static final char SPACESUIT_CHAR = '[';
 
-    public Spacesuit(String name) {
-        super(name, SPACESUIT_CHAR);
+    public Spacesuit() {
+        super("Spacesuit", SPACESUIT_CHAR);
         addSkill(MoonSkills.SPACETRAVELLER);
     }
 }

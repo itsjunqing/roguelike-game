@@ -13,6 +13,8 @@ public class GamePlayer extends Player {
     public static final char GAME_PLAYER_CHAR = '@';
     private int stunCount = 0;
     private int totalOxygenCount = 0;
+    private static ArrayList<OxygenTank> otank = new ArrayList<>();
+    private static ArrayList<Integer> ocount = new ArrayList<>();
 
     /**
      * Constructor to create a GamePlayer.
@@ -45,9 +47,13 @@ public class GamePlayer extends Player {
 //        } else {
 //            totalOxygenCount--;
 //        }
-
-
-
+        if (map.equals(Application.getMoonMap())){
+            for (Action action : actions){
+                if (action instanceof MoveActorAction){
+                    actions.remove(action);
+                }
+            }
+        }
 
         Location playerLocation = map.locationOf(this);
 
@@ -65,6 +71,23 @@ public class GamePlayer extends Player {
                 }
             }
         }
+        if (map.equals(Application.getMoonMap())) {
+            if (otank.size() > 0) {
+                for (Item item : this.getInventory()) {
+                    if (item.equals(otank.get(0))) {
+                        if (ocount.size() > 0) {
+                            ocount.set(0, ocount.get(0) - 1);
+                            if (ocount.get(0) <= 0) {
+                                ocount.remove(0);
+                                this.removeItemFromInventory(item);
+                                otank.remove(0);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         return super.playTurn(actions, map, display);
     }
 
@@ -83,6 +106,14 @@ public class GamePlayer extends Player {
                 totalOxygenCount += OxygenTank.oxygenCount;
             }
         }
+    }
+
+    public static void addTank(OxygenTank tank){
+        otank.add(tank);
+    }
+
+    public static void addOCount(Integer oxygen){
+        ocount.add(oxygen);
     }
 
 

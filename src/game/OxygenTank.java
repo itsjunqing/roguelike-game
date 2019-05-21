@@ -10,5 +10,7 @@ public class OxygenTank extends Item {
     public OxygenTank(String name) {
         super(name, OXYGENTANK_CHAR);
         addSkill(MoonSkills.OXYGENSUPPLY);
+        GamePlayer.addTank(this);
+        GamePlayer.addOCount(10);
     }
 }
