@@ -8,7 +8,7 @@ public class OxygenDispenser extends Actor {
     private Location tankLocation = null;
 
     public OxygenDispenser(String name) {
-        super(name, '!', 15, 1000);
+        super(name, '!', 15, Integer.MAX_VALUE);
     }
 
     @Override

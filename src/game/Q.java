@@ -21,7 +21,7 @@ public class Q extends Actor {
      * @param name name of the Q
      */
     public Q(String name, Actor player) {
-        super(name, 'Q', 8, 1000);
+        super(name, 'Q', 8, Integer.MAX_VALUE);
         this.player = player;
         addItemToInventory(new RocketBody("Rocket body"));
     }

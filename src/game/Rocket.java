@@ -23,6 +23,7 @@ public class Rocket extends Item {
         this.earthLocation = earthLocation;
         this.moonLocation = moonLocation;
         allowableActions.clear();
+        GamePlayer.setRocketLocation(earthLocation);
     }
 
     @Override
@@ -30,6 +31,7 @@ public class Rocket extends Item {
         allowableActions.clear();
 
         if (player.hasSkill(MoonSkills.SPACETRAVELLER)) {
+//            if (earthLocation.getActor() == player && player.hasSkill(MoonSkills.OXYGENSUPPLY)) {
             if (earthLocation.getActor() == player) {
                 allowableActions.add(new MoveActorAction(moonLocation, "to Moon!"));
             } else if (moonLocation.getActor() == player) {

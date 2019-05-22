@@ -12,9 +12,9 @@ public class GamePlayer extends Player {
     private static ArrayList<Item> stunPowders = new ArrayList<>();
     public static final char GAME_PLAYER_CHAR = '@';
     private int stunCount = 0;
-    private int totalOxygenCount = 0;
-    private static ArrayList<OxygenTank> otank = new ArrayList<>();
-    private static ArrayList<Integer> ocount = new ArrayList<>();
+    private static ArrayList<OxygenTank> oxygenTanks = new ArrayList<>();
+//    private static ArrayList<Integer> ocount = new ArrayList<>();
+    private static Location rocketLocation;
 
     /**
      * Constructor to create a GamePlayer.
@@ -41,20 +41,6 @@ public class GamePlayer extends Player {
      */
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
-
-//        if (totalOxygenCount == 0) {
-//             fly back
-//        } else {
-//            totalOxygenCount--;
-//        }
-        if (map.equals(Application.getMoonMap())){
-            for (Action action : actions){
-                if (action instanceof MoveActorAction){
-                    actions.remove(action);
-                }
-            }
-        }
-
         Location playerLocation = map.locationOf(this);
 
         for (Item item : playerLocation.getItems()) {
@@ -71,22 +57,39 @@ public class GamePlayer extends Player {
                 }
             }
         }
+
+
+//        if (map.equals(Application.getMoonMap())) {
+//            if (oxygenTanks.size() > 0) {
+//                for (Item item : this.getInventory()) {
+//                    if (item.equals(oxygenTanks.get(0))) {
+//                        if (ocount.size() > 0) {
+//                            ocount.set(0, ocount.get(0) - 1);
+//                            if (ocount.get(0) <= 0) {
+//                                ocount.remove(0);
+//                                this.removeItemFromInventory(item);
+//                                oxygenTanks.remove(0);
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+
         if (map.equals(Application.getMoonMap())) {
-            if (otank.size() > 0) {
-                for (Item item : this.getInventory()) {
-                    if (item.equals(otank.get(0))) {
-                        if (ocount.size() > 0) {
-                            ocount.set(0, ocount.get(0) - 1);
-                            if (ocount.get(0) <= 0) {
-                                ocount.remove(0);
-                                this.removeItemFromInventory(item);
-                                otank.remove(0);
-                            }
-                        }
-                    }
+            if (!oxygenTanks.isEmpty()) {
+                OxygenTank tank = oxygenTanks.get(0);
+                tank.decreaseCount();
+                if (!tank.hasOxygen()) {
+                    oxygenTanks.remove(tank);
                 }
+            } else {
+                return new MoveActorAction(rocketLocation, "back to Earth via a safety system!");
             }
         }
+
+
+
 
         return super.playTurn(actions, map, display);
     }
@@ -100,21 +103,16 @@ public class GamePlayer extends Player {
         stunPowders.add(stunPowder);
     }
 
-    private void calculateOxygenCount() {
-        for (Item item : this.getInventory()) {
-            if (item.hasSkill(MoonSkills.OXYGENSUPPLY)) {
-                totalOxygenCount += OxygenTank.oxygenCount;
-            }
-        }
-    }
-
     public static void addTank(OxygenTank tank){
-        otank.add(tank);
+        oxygenTanks.add(tank);
     }
 
-    public static void addOCount(Integer oxygen){
-        ocount.add(oxygen);
+//    public static void addOCount(Integer oxygen){
+//        ocount.add(oxygen);
+//    }
+
+
+    public static void setRocketLocation(Location rocketLocation) {
+        GamePlayer.rocketLocation = rocketLocation;
     }
-
-
 }

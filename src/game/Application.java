@@ -71,7 +71,7 @@ public class Application {
         world.addMap(gameMap);
 
 
-        gameMap.addItem(new WaterPistol("Air Gun"), 0, 4);;
+        gameMap.addItem(new WaterPistol("Air Gun"), 0, 4);
 
         OxygenDispenser dispenser = new OxygenDispenser("SpaceX O2 Dispenser");
         gameMap.addActor(dispenser, 1, 0);

@@ -16,7 +16,6 @@ public class FillPistolAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         pistol.addSkill(MoonSkills.WATERSKILL);
-//        WaterPistol.usePistol(true);
         return actor + " filled the Water Pistol";
     }
 

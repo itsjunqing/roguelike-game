@@ -5,12 +5,26 @@ import edu.monash.fit2099.engine.Item;
 public class OxygenTank extends Item {
 
     public static final char OXYGENTANK_CHAR = 'T';
-    public static final int oxygenCount = 10;
+//    public static final int oxygenCount = 10;
+    private int oxygenCount = 10;
 
     public OxygenTank(String name) {
         super(name, OXYGENTANK_CHAR);
         addSkill(MoonSkills.OXYGENSUPPLY);
-        GamePlayer.addTank(this);
-        GamePlayer.addOCount(10);
+        allowableActions.clear();
+        allowableActions.add(new PickUpOxygenTankAction(this));
+
+
+//        GamePlayer.addTank(this);
+//        GamePlayer.addOCount(10);
+    }
+
+
+    public boolean hasOxygen() {
+        return oxygenCount != 0;
+    }
+
+    public void decreaseCount() {
+        oxygenCount--;
     }
 }
