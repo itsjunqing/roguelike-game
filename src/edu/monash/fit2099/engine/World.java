@@ -9,10 +9,10 @@ import java.util.Objects;
  * Class representing the game world, including the locations of all Actors, the player, and the playing grid.
  */
 public class World {
-	private Display display;
-	private List<GameMap> maps = new ArrayList<GameMap>();
-	private ActorLocations actorLocations = new ActorLocations();
-	private Actor player; // We only draw the particular map this actor is on.
+	protected Display display;
+	protected List<GameMap> maps = new ArrayList<GameMap>();
+	protected ActorLocations actorLocations = new ActorLocations();
+	protected Actor player; // We only draw the particular map this actor is on.
 
 
 	/**
