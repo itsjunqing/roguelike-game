@@ -2,7 +2,7 @@ package game.item;
 
 import edu.monash.fit2099.engine.DropItemAction;
 import edu.monash.fit2099.engine.Item;
-import game.Q;
+import game.actor.Q;
 import game.ground.RocketPad;
 
 /**

@@ -1,7 +1,7 @@
 package game.item;
 
 import edu.monash.fit2099.engine.Item;
-import game.GamePlayer;
+import game.actor.GamePlayer;
 import game.MoonSkills;
 import game.action.PickUpOxygenTankAction;
 

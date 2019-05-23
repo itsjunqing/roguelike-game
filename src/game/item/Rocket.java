@@ -1,8 +1,7 @@
 package game.item;
 
 import edu.monash.fit2099.engine.*;
-import game.GamePlayer;
-import game.MoonSkills;
+import game.actor.GamePlayer;
 
 /**
  * Class representing a Rocket.
@@ -32,13 +31,10 @@ public class Rocket extends Item {
     public Actions getAllowableActions() {
         allowableActions.clear();
 
-        if (player.hasSkill(MoonSkills.SPACETRAVELLER)) {
-//            if (earthLocation.getActor() == player && player.hasSkill(MoonSkills.OXYGENSUPPLY)) {
-            if (earthLocation.getActor() == player) {
-                allowableActions.add(new MoveActorAction(moonLocation, "to Moon!"));
-            } else if (moonLocation.getActor() == player) {
-                allowableActions.add(new MoveActorAction(earthLocation, "to Earth!"));
-            }
+        if (earthLocation.getActor() == player) {
+            allowableActions.add(new MoveActorAction(moonLocation, "to Moon!"));
+        } else if (moonLocation.getActor() == player) {
+            allowableActions.add(new MoveActorAction(earthLocation, "to Earth!"));
         }
         return allowableActions;
     }

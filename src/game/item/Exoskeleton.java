@@ -3,10 +3,10 @@ package game.item;
 import edu.monash.fit2099.engine.Item;
 import game.MoonSkills;
 
-public class InvulnerablityStone extends Item {
+public class Exoskeleton extends Item {
 
-    public InvulnerablityStone() {
-        super("Wonder Stone", 'S');
+    public Exoskeleton() {
+        super("Skeleton", 'S');
         addSkill(MoonSkills.INVULNERABLE);
     }
 }

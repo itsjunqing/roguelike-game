@@ -1,4 +1,4 @@
-package game;
+package game.actor;
 
 import edu.monash.fit2099.engine.*;
 import game.action.DisappearAction;

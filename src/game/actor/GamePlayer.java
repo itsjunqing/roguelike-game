@@ -1,6 +1,7 @@
-package game;
+package game.actor;
 
 import edu.monash.fit2099.engine.*;
+import game.Application;
 import game.ground.LockedDoor;
 import game.item.OxygenTank;
 
@@ -109,10 +110,6 @@ public class GamePlayer extends Player {
     public void addTank(OxygenTank tank){
         oxygenTanks.add(tank);
     }
-
-//    public static void addOCount(Integer oxygen){
-//        ocount.add(oxygen);
-//    }
 
 
     public static void setRocketLocation(Location rocketLocation) {

@@ -36,7 +36,7 @@ public class DisappearAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " disappears into the air with a cherry wave ~~~";
+        return actor + " disappears into the air";
     }
 
     /**

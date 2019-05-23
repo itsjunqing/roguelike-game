@@ -1,6 +1,7 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
+import game.actor.*;
 import game.ground.*;
 import game.item.RocketPlans;
 import game.item.Spacesuit;
@@ -15,13 +16,13 @@ import java.util.List;
 public class Application {
 
     private static GameMap earthMap;
-    private static GameMap MoonMap;
+    private static GameMap moonMap;
 
     public static void main(String[] args) {
         World world = new World(new Display());
 
         FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new LockedDoor(),
-                new RocketPad(), new Crater(), new Water());
+                new RocketPad(), new Crater(), new Water(), new OxygenDispenserG());
 
         GameMap gameMap;
 
@@ -38,7 +39,7 @@ public class Application {
 //                "...................+...",
 //                "...................#...");
 
-        List<String> moonMap = Arrays.asList(
+        List<String> moonList = Arrays.asList(
                 "ooooooooooooooo",
                 "ooooooooooooooo",
                 "ooooooooooooooo",
@@ -49,13 +50,14 @@ public class Application {
                 "ooooooooooooooo",
                 "ooooooooooooooo",
                 "ooooooooooooooo");
-        GameMap moon = new GameMap(groundFactory, moonMap);
-        MoonMap = moon;
+        GameMap moon = new GameMap(groundFactory, moonList);
+        moonMap = moon;
+        // adding moon map to the world
         world.addMap(moon);
 
 
-        List<String> earth = Arrays.asList(
-                ".......................",
+        List<String> earthList = Arrays.asList(
+                "...$...................",
                 "....#####....######....",
                 "......=.#....#....#....",
                 "........+....#....#....",
@@ -66,22 +68,25 @@ public class Application {
                 "***................#...",
                 "***................+...",
                 "***................#...");
-        gameMap = new GameMap(groundFactory, earth);
-        earthMap = gameMap;
-        gameMap.addItem(new RocketPlans("Rocket plans"), 1, 3);
-        gameMap.addItem(new Spacesuit(),1, 4);
-        Location padLocation = new Location(gameMap, 1, 2);
-        gameMap.add(new RocketPad(), padLocation);
-        world.addMap(gameMap);
+        GameMap earth = new GameMap(groundFactory, earthList);
+        earthMap = earth;
+        world.addMap(earth);
 
 
-        gameMap.addItem(new WaterPistol("Air Gun"), 0, 4);
+        // adding items and grounds onto earth map
+        earth.addItem(new RocketPlans("Rocket plans"), 1, 3);
+        earth.addItem(new Spacesuit(),1, 4);
+//        earth.add(new RocketPad(moon.at(7,4)), new Location(earth, 1, 2));
+        earth.add(new RocketPad(), new Location(earth, 1, 2));
+        earth.add(new OxygenDispenserG(), new Location(earth, 3, 0));
+
+        earth.addItem(new WaterPistol("Air Gun"), 0, 4);
 
         GamePlayer player = new GamePlayer("Player", 1, 100);
-        world.addPlayer(player, earthMap, 2, 2);
+        world.addPlayer(player, earth, 2, 2);
 
-        OxygenDispenser dispenser = new OxygenDispenser("SpaceX O2 Dispenser", player);
-        gameMap.addActor(dispenser, 1, 0);
+//        OxygenDispenser dispenser = new OxygenDispenser("SpaceX O2 Dispenser", player);
+//        earth.addActor(dispenser, 1, 0);
 
 //        Grunt grunt = new Grunt("Mongo", player);
 //        gameMap.addActor(grunt, 1, 5);
@@ -93,18 +98,17 @@ public class Application {
 //        gameMap.addActor(ninja, 10, 5);
 
         DoctorMaybe drMaybe = new DoctorMaybe("Maybe");
-        gameMap.addActor(drMaybe, 0, 0);
+        earth.addActor(drMaybe, 0, 0);
 
 //        Goon goon = new Goon("Goonie", player);
 //        gameMap.addActor(goon, 17, 9);
 
 
-        YugoMaxx Yugo = new YugoMaxx("Yugo Maxx");
-        world.addPlayer(Yugo, moon, 0, 5);
-
+        YugoMaxx Yugo = new YugoMaxx("Yugo Maxx", player);
+        earth.addActor(Yugo, 0, 5);
 
         Q q = new Q("Q", player);
-        gameMap.addActor(q, 0, 2);
+        earth.addActor(q, 0, 2);
 
         world.run();
     }
@@ -114,6 +118,6 @@ public class Application {
     }
 
     public static GameMap getMoonMap() {
-        return MoonMap;
+        return moonMap;
     }
 }

@@ -11,21 +11,26 @@ import java.util.Random;
 public class BreakArmorAction extends Action {
 
     private Actor target;
-    private Item pistol;
+    private Item item;
+    private MoonSkills itemSkill;
+    private MoonSkills armorSkill;
     private Random random = new Random();
 
-    public BreakArmorAction(Actor target, Item pistol) {
+    // breaks the armor with an item's skill
+    public BreakArmorAction(Actor target, Item item, MoonSkills itemSkill, MoonSkills armorSkill) {
         this.target = target;
-        this.pistol = pistol;
+        this.item = item;
+        this.itemSkill = itemSkill;
+        this.armorSkill = armorSkill;
     }
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        pistol.removeSkill(MoonSkills.WATERSKILL);
+        item.removeSkill(itemSkill);
 
         if (random.nextDouble() <= 0.7) {
             for (Item item : target.getInventory()) {
-                if (item.hasSkill(MoonSkills.INVULNERABLE)) {
+                if (item.hasSkill(armorSkill)) {
                     target.removeItemFromInventory(item);
                     return target + "'s armor is destroyed";
                 }
@@ -36,7 +41,7 @@ public class BreakArmorAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " shoots " + target + " with the Water Pistol";
+        return actor + " squirts " + target + " to remove armor";
     }
 
     @Override

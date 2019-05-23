@@ -4,7 +4,7 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
-import game.GamePlayer;
+import game.actor.GamePlayer;
 import game.item.OxygenTank;
 
 public class GenerateOxygenTankAction extends Action {

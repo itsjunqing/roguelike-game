@@ -13,12 +13,14 @@ public class RocketPad extends Ground {
 
     private static ArrayList<Item> rocketBodies = new ArrayList<>();
     private static ArrayList<Item> rocketEngines = new ArrayList<>();
+//    private Location rocketDestination;
 
     /**
      * Constructor to create a RocketPad.
      */
     public RocketPad() {
         super('=');
+//        this.rocketDestination = rocketDestination;
     }
 
     /**
@@ -44,8 +46,8 @@ public class RocketPad extends Ground {
             }
         }
         if ((rocketEngine != null) && (rocketBody != null)) {
-            Location rocketMoonLocation = Application.getMoonMap().at(7,4);
-            actions.add(new BuildRocketAction(rocketBody, rocketEngine, location, rocketMoonLocation));
+            Location rocketDestination = Application.getMoonMap().at(7,4);
+            actions.add(new BuildRocketAction(rocketBody, rocketEngine, location, rocketDestination));
             return actions;
         }
         return actions;

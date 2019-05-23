@@ -12,12 +12,4 @@ public class WaterPistol extends Item {
         Water.addWaterPistol(this);
 //        addSkill(MoonSkills.WATERSKILL);
     }
-
-//    public static void usePistol(boolean filler) {
-//        filled = filler;
-//    }
-
-//    public void setFilled(boolean filled) {
-//        this.filled = filled;
-//    }
 }
