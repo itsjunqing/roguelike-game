@@ -1,9 +1,11 @@
-package game;
+package game.action;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
+import game.OxygenDispenser;
+import game.item.OxygenTank;
 
 public class PushDispenserButtonAction extends Action {
 

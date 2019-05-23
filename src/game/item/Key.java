@@ -1,7 +1,8 @@
-package game;
+package game.item;
 
 import edu.monash.fit2099.engine.DropItemAction;
 import edu.monash.fit2099.engine.Item;
+import game.ground.LockedDoor;
 
 /**
  * Class representing a Key.

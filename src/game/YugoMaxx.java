@@ -1,6 +1,9 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
+import game.action.BreakArmorAction;
+import game.item.InvulnerablityStone;
+import game.item.Spacesuit;
 
 public class YugoMaxx extends Enemy {
 

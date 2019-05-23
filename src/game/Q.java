@@ -1,6 +1,10 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
+import game.action.DisappearAction;
+import game.action.GiveItemAction;
+import game.action.TalkAction;
+import game.item.RocketBody;
 
 import java.util.ArrayList;
 

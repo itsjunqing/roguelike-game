@@ -1,6 +1,8 @@
-package game;
+package game.action;
 
 import edu.monash.fit2099.engine.*;
+import game.item.Rocket;
+import game.ground.RocketPad;
 
 /**
  * An Action that builds a Rocket.

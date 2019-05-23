@@ -1,6 +1,7 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
+import game.item.RocketEngine;
 
 /**
  * Class representing DoctorMaybe as a type of an Enemy.

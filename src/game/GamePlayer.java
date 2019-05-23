@@ -1,6 +1,8 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
+import game.ground.LockedDoor;
+import game.item.OxygenTank;
 
 import java.util.ArrayList;
 
@@ -12,7 +14,8 @@ public class GamePlayer extends Player {
     private static ArrayList<Item> stunPowders = new ArrayList<>();
     public static final char GAME_PLAYER_CHAR = '@';
     private int stunCount = 0;
-    private static ArrayList<OxygenTank> oxygenTanks = new ArrayList<>();
+    private ArrayList<OxygenTank> oxygenTanks = new ArrayList<>();
+//    private int totalOxygenCount = 0;
 //    private static ArrayList<Integer> ocount = new ArrayList<>();
     private static Location rocketLocation;
 
@@ -103,7 +106,7 @@ public class GamePlayer extends Player {
         stunPowders.add(stunPowder);
     }
 
-    public static void addTank(OxygenTank tank){
+    public void addTank(OxygenTank tank){
         oxygenTanks.add(tank);
     }
 

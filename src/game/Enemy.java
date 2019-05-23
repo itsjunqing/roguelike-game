@@ -1,6 +1,8 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
+import game.behaviour.ActionFactory;
+import game.item.Key;
 
 import java.util.ArrayList;
 import java.util.List;

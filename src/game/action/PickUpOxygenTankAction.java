@@ -1,21 +1,25 @@
-package game;
+package game.action;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import game.GamePlayer;
+import game.item.OxygenTank;
 
 public class PickUpOxygenTankAction extends Action {
 
     private OxygenTank oxygenTank;
+    private GamePlayer player;
 
-    public PickUpOxygenTankAction(OxygenTank oxygenTank) {
+    public PickUpOxygenTankAction(OxygenTank oxygenTank, GamePlayer player) {
         this.oxygenTank = oxygenTank;
+        this.player = player;
     }
 
     @Override
     public String execute(Actor actor, GameMap map) {
         map.locationOf(actor).removeItem(oxygenTank);
-        GamePlayer.addTank(oxygenTank);
+        player.addTank(oxygenTank);
         oxygenTank.getAllowableActions().remove(this);
         return menuDescription(actor);
     }

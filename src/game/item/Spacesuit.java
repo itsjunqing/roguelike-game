@@ -1,6 +1,7 @@
-package game;
+package game.item;
 
 import edu.monash.fit2099.engine.Item;
+import game.MoonSkills;
 
 public class Spacesuit extends Item {
 

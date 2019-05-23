@@ -1,6 +1,8 @@
-package game;
+package game.action;
 
 import edu.monash.fit2099.engine.*;
+import game.ground.Floor;
+import game.ground.LockedDoor;
 
 /**
  * An Action that unlocks locked doors and enable Actors to go through them.

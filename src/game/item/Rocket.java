@@ -1,6 +1,8 @@
-package game;
+package game.item;
 
 import edu.monash.fit2099.engine.*;
+import game.GamePlayer;
+import game.MoonSkills;
 
 /**
  * Class representing a Rocket.

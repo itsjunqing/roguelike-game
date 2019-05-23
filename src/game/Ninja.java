@@ -1,6 +1,9 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
+import game.behaviour.ActionFactory;
+import game.behaviour.ThrowStunBehaviour;
+import game.item.StunPowder;
 
 /**
  * Class representing Ninja as a form of an Enemy.

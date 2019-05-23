@@ -1,6 +1,10 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
+import game.ground.*;
+import game.item.RocketPlans;
+import game.item.Spacesuit;
+import game.item.WaterPistol;
 
 import java.util.Arrays;
 import java.util.List;
@@ -73,7 +77,10 @@ public class Application {
 
         gameMap.addItem(new WaterPistol("Air Gun"), 0, 4);
 
-        OxygenDispenser dispenser = new OxygenDispenser("SpaceX O2 Dispenser");
+        GamePlayer player = new GamePlayer("Player", 1, 100);
+        world.addPlayer(player, earthMap, 2, 2);
+
+        OxygenDispenser dispenser = new OxygenDispenser("SpaceX O2 Dispenser", player);
         gameMap.addActor(dispenser, 1, 0);
 
 //        Grunt grunt = new Grunt("Mongo", player);
@@ -95,8 +102,6 @@ public class Application {
         YugoMaxx Yugo = new YugoMaxx("Yugo Maxx");
         world.addPlayer(Yugo, moon, 0, 5);
 
-        Actor player = new GamePlayer("Player", 1, 100);
-        world.addPlayer(player, earthMap, 2, 2);
 
         Q q = new Q("Q", player);
         gameMap.addActor(q, 0, 2);

@@ -1,6 +1,7 @@
-package game;
+package game.item;
 
 import edu.monash.fit2099.engine.Item;
+import game.GamePlayer;
 
 /**
  * Class representing a StunPowder that can stun the Actor.

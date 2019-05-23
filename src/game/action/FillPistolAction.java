@@ -1,9 +1,10 @@
-package game;
+package game.action;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
+import game.MoonSkills;
 
 public class FillPistolAction extends Action {
 

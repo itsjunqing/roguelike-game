@@ -1,6 +1,9 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
+import game.action.TalkAction;
+import game.behaviour.ActionFactory;
+import game.behaviour.FollowBehaviour;
 
 import java.util.ArrayList;
 import java.util.Random;

@@ -1,7 +1,8 @@
-package game;
+package game.ground;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
+import game.MoonSkills;
 
 public class Crater extends Ground {
     public Crater(){

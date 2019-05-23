@@ -1,6 +1,8 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
+import game.behaviour.ActionFactory;
+import game.behaviour.FollowBehaviour;
 
 /**
  * Class representing a Grunt.
