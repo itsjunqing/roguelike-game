@@ -2,6 +2,7 @@ package game.actor;
 
 import edu.monash.fit2099.engine.*;
 import game.Application;
+import game.action.EndGameAction;
 import game.ground.LockedDoor;
 import game.item.OxygenTank;
 
@@ -28,7 +29,7 @@ public class GamePlayer extends Player {
      * @param hitPoints player's starting number of hitpoints
      */
     public GamePlayer(String name, int priority, int hitPoints) {
-        super(name, GAME_PLAYER_CHAR, priority, hitPoints);
+        super(name, GAME_PLAYER_CHAR, priority, 10);
         Enemy.addPlayer(this);
         LockedDoor.addPlayer(this);
     }
@@ -45,6 +46,7 @@ public class GamePlayer extends Player {
      */
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
+        actions.add(new EndGameAction());
         Location playerLocation = map.locationOf(this);
 
         for (Item item : playerLocation.getItems()) {

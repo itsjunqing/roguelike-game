@@ -19,7 +19,7 @@ public class Application {
     private static GameMap moonMap;
 
     public static void main(String[] args) {
-        World world = new World(new Display());
+        GameWorld world = new GameWorld(new Display());
 
         FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new LockedDoor(),
                 new RocketPad(), new Crater(), new Water(), new OxygenDispenserG());
@@ -88,8 +88,8 @@ public class Application {
 //        OxygenDispenser dispenser = new OxygenDispenser("SpaceX O2 Dispenser", player);
 //        earth.addActor(dispenser, 1, 0);
 
-//        Grunt grunt = new Grunt("Mongo", player);
-//        gameMap.addActor(grunt, 1, 5);
+        Grunt grunt = new Grunt("Mongo", player);
+        earth.addActor(grunt, 1, 5);
 
 //        Grunt grunt2 = new Grunt("Norbert", player);
 //        gameMap.addActor(grunt2, 20, 6);
