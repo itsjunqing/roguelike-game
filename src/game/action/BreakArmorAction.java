@@ -8,6 +8,9 @@ import game.MoonSkills;
 
 import java.util.Random;
 
+/**
+ * An Action that removes the Invulnerable skill from an Actor.
+ */
 public class BreakArmorAction extends Action {
 
     private Actor target;
