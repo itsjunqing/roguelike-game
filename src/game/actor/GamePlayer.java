@@ -33,7 +33,7 @@ public class GamePlayer extends Player {
     public GamePlayer(String name, int priority, int hitPoints, Location safeLocation) {
         super(name, GAME_PLAYER_CHAR, priority, hitPoints);
 //        Enemy.addPlayer(this);
-        Enemy.setPlayer(this);
+        GameActor.setPlayer(this);
         LockedDoor.addPlayer(this);
         addBehaviour(new OxygenSafetyBehaviour(safeLocation, this));
     }

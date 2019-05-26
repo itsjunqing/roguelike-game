@@ -17,7 +17,7 @@ public class Q extends GameActor {
     private boolean passedItem = false;
     private static ArrayList<Item> rocketPlans = new ArrayList<>();
     private static ArrayList<Item> rocketBodies = new ArrayList<>();
-    private Actor player;
+//    private Actor player;
 
     /**
      * Constructor to create Q as a Non-Playable Character with a name.
@@ -27,7 +27,7 @@ public class Q extends GameActor {
      */
     public Q(String name, Actor player) {
         super(name, 'Q', 8, Integer.MAX_VALUE);
-        this.player = player;
+//        this.player = player;
         addItemToInventory(new RocketBody("Rocket body"));
         addBehaviour(new WanderBehaviour());
 

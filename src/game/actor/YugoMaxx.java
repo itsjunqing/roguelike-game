@@ -9,17 +9,10 @@ import game.item.Spacesuit;
 public class YugoMaxx extends Enemy {
 
     public static final char YUGO_MAXX_CHAR = 'Y';
-    // will refactor player later on, the game is a single player, we must remove the concept of multiplayers, it is tough to operate on multiplyers
-    // cause the world can allow one player to play only, if second player is instantiated, it will override the old player, check world.addPlayer() method
-//    private Actor player;
 
     public YugoMaxx(String name) {
-//    public YugoMaxx(String name, Actor player) {
         super(name, YUGO_MAXX_CHAR, 20, 10);
-//        this.player = player;
-
         addItemToInventory(new Exoskeleton());
-        // spacesuit to allow to move on moon
         addItemToInventory(new Spacesuit());
     }
 

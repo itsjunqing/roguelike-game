@@ -10,17 +10,12 @@ public class OxygenTank extends Item {
     public static final char OXYGENTANK_CHAR = 'T';
 //    public static final int oxygenCount = 10;
     private int oxygenCount = 10;
-    private GamePlayer player;
 
     public OxygenTank(String name, GamePlayer player) {
         super(name, OXYGENTANK_CHAR);
         addSkill(MoonSkills.OXYGENSUPPLY);
         allowableActions.clear();
         allowableActions.add(new PickUpOxygenTankAction(this, player));
-
-
-//        GamePlayer.addTank(this);
-//        GamePlayer.addOCount(10);
     }
 
 

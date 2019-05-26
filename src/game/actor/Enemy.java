@@ -10,7 +10,6 @@ public abstract class Enemy extends GameActor {
 
     protected static final int BASE_DAMAGE = 5;
 //    protected static ArrayList<Actor> players = new ArrayList<>();
-    protected static Actor player;
 
 
     /**
@@ -61,10 +60,6 @@ public abstract class Enemy extends GameActor {
             }
         }
         actions.add(new SkipTurnAction());
-    }
-
-    public static void setPlayer(Actor player) {
-        Enemy.player = player;
     }
 
 //    /**

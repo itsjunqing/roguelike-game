@@ -4,15 +4,13 @@ import edu.monash.fit2099.engine.*;
 import game.action.GenerateOxygenTankAction;
 import game.action.PushDispenserButtonAction;
 
-public class OxygenDispenser extends Actor {
+public class OxygenDispenser extends GameActor {
 
     private int dispenserCount = 0;
     private Location tankLocation = null;
-    private GamePlayer player;
 
-    public OxygenDispenser(String name, GamePlayer player) {
+    public OxygenDispenser(String name) {
         super(name, '!', 15, Integer.MAX_VALUE);
-        this.player = player;
     }
 
     @Override
@@ -30,11 +28,9 @@ public class OxygenDispenser extends Actor {
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
         Actions actions = new Actions();
-
-        if (otherActor instanceof Player) {
+        if (otherActor == player) {
             actions.add(new PushDispenserButtonAction(this));
         }
-
         return actions;
     }
 
