@@ -8,16 +8,15 @@ import game.action.PickUpOxygenTankAction;
 public class OxygenTank extends Item {
 
     public static final char OXYGENTANK_CHAR = 'T';
-//    public static final int oxygenCount = 10;
     private int oxygenCount = 10;
+    private static GamePlayer player;
 
-    public OxygenTank(String name, GamePlayer player) {
+    public OxygenTank(String name) {
         super(name, OXYGENTANK_CHAR);
         addSkill(MoonSkills.OXYGENSUPPLY);
         allowableActions.clear();
         allowableActions.add(new PickUpOxygenTankAction(this, player));
     }
-
 
     public boolean hasOxygen() {
         return oxygenCount != 0;
@@ -25,5 +24,9 @@ public class OxygenTank extends Item {
 
     public void decreaseCount() {
         oxygenCount--;
+    }
+
+    public static void setPlayer(GamePlayer player) {
+        OxygenTank.player = player;
     }
 }

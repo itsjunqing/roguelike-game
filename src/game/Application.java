@@ -22,7 +22,7 @@ public class Application {
         GameWorld world = new GameWorld(new Display());
 
         FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new LockedDoor(),
-                new RocketPad(), new Crater(), new Water(), new OxygenDispenserG());
+                new RocketPad(), new Crater(), new Water(), new OxygenDispenser());
 
         GameMap gameMap;
 
@@ -79,16 +79,13 @@ public class Application {
 //        earth.add(new RocketPad(moon.at(7,4)), new Location(earth, 1, 2));
         Location rocketPadLocation = new Location(earth, 6, 2);
         earth.add(new RocketPad(), earth.at(6,2));
-//        earth.add(new OxygenDispenserG(), new Location(earth, 3, 0));
+//        earth.add(new OxygenDispenser(), new Location(earth, 3, 0));
 
         earth.addItem(new WaterPistol("Air Gun"), 0, 4);
 
         // earth.at(6,2) cannot be replaced with rocketPadLocation, the list of exits will be empty, because exits are created via the map
         GamePlayer player = new GamePlayer("Player", 1, 100, earth.at(6, 2));
         world.addPlayer(player, earth, 2, 2);
-
-        OxygenDispenser dispenser = new OxygenDispenser("O2 Dispenser");
-        earth.addActor(dispenser, 3, 0);
 
 //        Grunt grunt = new Grunt("Mongo", player);
 //        earth.addActor(grunt, 1, 5);

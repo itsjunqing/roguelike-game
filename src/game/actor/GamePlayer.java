@@ -35,6 +35,7 @@ public class GamePlayer extends Player {
 //        Enemy.addPlayer(this);
         GameActor.setPlayer(this);
         LockedDoor.addPlayer(this);
+        OxygenTank.setPlayer(this);
         addBehaviour(new OxygenSafetyBehaviour(safeLocation, this));
     }
 
@@ -100,7 +101,7 @@ public class GamePlayer extends Player {
 
 
     private boolean isStunned(GameMap map) {
-        for (Item item : getPlayerLocation(map).getItems()) {
+        for (Item item : map.locationOf(this).getItems()) {
             if (stunPowders.contains(item)) {
                 stunPowderOnMap = item;
                 return true;
@@ -116,13 +117,9 @@ public class GamePlayer extends Player {
             stunCount++;
         } else {
             stunCount = 0;
-            getPlayerLocation(map).removeItem(stunPowderOnMap);
+            map.locationOf(this).removeItem(stunPowderOnMap);
             stunPowderOnMap = null;
         }
-    }
-
-    private Location getPlayerLocation(GameMap map) {
-        return map.locationOf(this);
     }
 
     public static void addStunPowder(Item stunPowder) {
