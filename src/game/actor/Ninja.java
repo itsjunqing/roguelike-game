@@ -1,7 +1,6 @@
 package game.actor;
 
 import edu.monash.fit2099.engine.*;
-import game.behaviour.ActionFactory;
 import game.behaviour.ThrowStunBehaviour;
 import game.item.StunPowder;
 
@@ -13,7 +12,7 @@ public class Ninja extends Enemy {
     public static final char NINJA_CHAR = 'N';
     private boolean stunThrown = false;
     private Item stunPowder = new StunPowder("Stun Powder");
-    private Actor player;
+//    private Actor player;
 
     /**
      * Constructor to create an Enemy of type Ninja with a name.
@@ -21,9 +20,9 @@ public class Ninja extends Enemy {
      *
      * @param name name of the Ninja
      */
-    public Ninja(String name, Actor player) {
+    public Ninja(String name) {
         super(name, NINJA_CHAR, 15, 50);
-        this.player = player;
+//        this.player = player;
         addBehaviour(new ThrowStunBehaviour(player, stunPowder));
     }
 
@@ -52,13 +51,19 @@ public class Ninja extends Enemy {
             return super.playTurn(actions, map, display);
         }
 
-        for (ActionFactory factory : getActionFactories()) {
-            Action action = factory.getAction(this, map);
-            if (action != null) {
-                stunThrown = true;
-                return action;
-            }
+        Action action = executeBehaviours(map);
+        if (action != null) {
+            stunThrown = true;
+            return action;
         }
+
+//        for (ActionFactory factory : getActionFactories()) {
+//            Action action = factory.getAction(this, map);
+//            if (action != null) {
+//                stunThrown = true;
+//                return action;
+//            }
+//        }
         actions.add(new SkipTurnAction());
         return super.playTurn(actions, map, display);
     }

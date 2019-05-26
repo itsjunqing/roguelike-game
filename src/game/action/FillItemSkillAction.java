@@ -9,7 +9,7 @@ import game.MoonSkills;
 /**
  * An Action that fills up the WaterPistol.
  */
-public class ItemFillAction extends Action {
+public class FillItemSkillAction extends Action {
 
     private Item item;
     private MoonSkills skill;
@@ -20,7 +20,7 @@ public class ItemFillAction extends Action {
      * @param item the item to be filled up
      * @param skill the skill to add to the item that signifies "filling it up"
      */
-    public ItemFillAction(Item item, MoonSkills skill) {
+    public FillItemSkillAction(Item item, MoonSkills skill) {
         this.item = item;
         this.skill = skill;
     }

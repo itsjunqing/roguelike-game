@@ -1,20 +1,16 @@
 package game.actor;
 
 import edu.monash.fit2099.engine.*;
-import game.behaviour.ActionFactory;
 import game.item.Key;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * An Enemy base class that generalizes the properties and methods which an enemy is capable of doing.
  */
-public abstract class Enemy extends Actor {
+public abstract class Enemy extends GameActor {
 
     protected static final int BASE_DAMAGE = 5;
-    protected static ArrayList<Actor> players = new ArrayList<>();
-    private List<ActionFactory> actionFactories = new ArrayList<>();
+//    protected static ArrayList<Actor> players = new ArrayList<>();
+    protected static Actor player;
 
 
     /**
@@ -28,24 +24,6 @@ public abstract class Enemy extends Actor {
     protected Enemy(String name, char displayChar, int priority, int hitPoints) {
         super(name, displayChar, priority, hitPoints);
         addItemToInventory(new Key("Key"));
-    }
-
-    /**
-     * Adds special behaviours that the enemy may possess.
-     *
-     * @param behaviour an ActionFactory that contains a set of rules that may determine what the enemy does
-     */
-    protected void addBehaviour(ActionFactory behaviour) {
-        actionFactories.add(behaviour);
-    }
-
-    /**
-     * Returns a list of ActionFactory that contains the behaviours that the enemy possesses.
-     *
-     * @return a list of ActionFactory of the enemy
-     */
-    protected List<ActionFactory> getActionFactories() {
-        return actionFactories;
     }
 
     /**
@@ -73,7 +51,8 @@ public abstract class Enemy extends Actor {
             Location destination = exit.getDestination();
             if (map.isAnActorAt(destination)) {
                 Actor actor = map.actorAt(destination);
-                if (players.contains(actor)) {
+                if (actor == player) {
+//                if (players.contains(actor)) {
                     actions.add(new AttackAction(enemy, actor));
                 }
             } else {
@@ -84,12 +63,33 @@ public abstract class Enemy extends Actor {
         actions.add(new SkipTurnAction());
     }
 
-    /**
-     * Adds a Player the list of recognizable players as references.
-     *
-     * @param player an Actor signifying the Player
-     */
-    public static void addPlayer(Actor player) {
-        players.add(player);
+    public static void setPlayer(Actor player) {
+        Enemy.player = player;
     }
+
+//    /**
+//     * Adds a Player the list of recognizable players as references.
+//     *
+//     * @param player an Actor signifying the Player
+//     */
+//    public static void addPlayer(Actor player) {
+//        players.add(player);
+//    }
+
+
+
+//    @Override
+//    public void addBehaviour(ActionFactory behaviour) {
+//        actionFactories.add(behaviour);
+//    }
+//
+//    @Override
+//    public Action executeBehaviours(GameMap map) {
+//        for (ActionFactory factory : actionFactories) {
+//            Action action = factory.getAction(this, map);
+//            if (action != null)
+//                return action;
+//        }
+//        return null;
+//    }
 }

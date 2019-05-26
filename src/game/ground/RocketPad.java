@@ -13,14 +13,12 @@ public class RocketPad extends Ground {
 
     private static ArrayList<Item> rocketBodies = new ArrayList<>();
     private static ArrayList<Item> rocketEngines = new ArrayList<>();
-//    private Location rocketDestination;
 
     /**
      * Constructor to create a RocketPad.
      */
     public RocketPad() {
         super('=');
-//        this.rocketDestination = rocketDestination;
     }
 
     /**

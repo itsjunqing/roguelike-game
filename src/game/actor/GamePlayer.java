@@ -3,6 +3,9 @@ package game.actor;
 import edu.monash.fit2099.engine.*;
 import game.Application;
 import game.action.EndGameAction;
+import game.behaviour.ActionFactory;
+import game.behaviour.ActorBehaviours;
+import game.behaviour.OxygenSafetyBehaviour;
 import game.ground.LockedDoor;
 import game.item.OxygenTank;
 
@@ -11,15 +14,13 @@ import java.util.ArrayList;
 /**
  * Class representing the GamePlayer.
  */
-public class GamePlayer extends Player {
+public class GamePlayer extends Player implements ActorBehaviours {
 
     private static ArrayList<Item> stunPowders = new ArrayList<>();
     public static final char GAME_PLAYER_CHAR = '@';
     private int stunCount = 0;
     private ArrayList<OxygenTank> oxygenTanks = new ArrayList<>();
-//    private int totalOxygenCount = 0;
-//    private static ArrayList<Integer> ocount = new ArrayList<>();
-    private static Location rocketLocation;
+    private Item stunPowderOnMap = null;
 
     /**
      * Constructor to create a GamePlayer.
@@ -28,10 +29,27 @@ public class GamePlayer extends Player {
      * @param priority  how early in the turn the player can act
      * @param hitPoints player's starting number of hitpoints
      */
-    public GamePlayer(String name, int priority, int hitPoints) {
-        super(name, GAME_PLAYER_CHAR, priority, 10);
-        Enemy.addPlayer(this);
+    public GamePlayer(String name, int priority, int hitPoints, Location safeLocation) {
+        super(name, GAME_PLAYER_CHAR, priority, hitPoints);
+//        Enemy.addPlayer(this);
+        Enemy.setPlayer(this);
         LockedDoor.addPlayer(this);
+        addBehaviour(new OxygenSafetyBehaviour(safeLocation, this));
+    }
+
+    @Override
+    public void addBehaviour(ActionFactory behaviour) {
+        actionFactories.add(behaviour);
+    }
+
+    @Override
+    public Action executeBehaviours(GameMap map) {
+        for (ActionFactory factory : actionFactories) {
+            Action action = factory.getAction(this, map);
+            if (action != null)
+                return action;
+        }
+        return null;
     }
 
     /**
@@ -47,74 +65,82 @@ public class GamePlayer extends Player {
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
         actions.add(new EndGameAction());
-        Location playerLocation = map.locationOf(this);
 
-        for (Item item : playerLocation.getItems()) {
-            if (stunPowders.contains(item)) {
-                if (stunCount != 2) {
-                    actions.clear();
-                    actions.add(new SkipTurnAction());
-                    stunCount++;
-                    break;
-                } else {
-                    stunCount = 0;
-                    playerLocation.removeItem(item);
-                    break;
-                }
-            }
+        Action action = executeBehaviours(map);
+        if (action != null) {
+            return action;
         }
 
+        if (map.equals(Application.getMoonMap())) {
+            updateTankStatus();
+        }
 
-//        if (map.equals(Application.getMoonMap())) {
-//            if (oxygenTanks.size() > 0) {
-//                for (Item item : this.getInventory()) {
-//                    if (item.equals(oxygenTanks.get(0))) {
-//                        if (ocount.size() > 0) {
-//                            ocount.set(0, ocount.get(0) - 1);
-//                            if (ocount.get(0) <= 0) {
-//                                ocount.remove(0);
-//                                this.removeItemFromInventory(item);
-//                                oxygenTanks.remove(0);
-//                            }
-//                        }
-//                    }
+        if (isStunned(map)) {
+            updateStunnedActions(actions, map);
+        }
+
+//        Location playerLocation = map.locationOf(this);
+//        for (Item item : playerLocation.getItems()) {
+//            if (stunPowders.contains(item)) {
+//                if (stunCount != 2) {
+//                    actions.clear();
+//                    actions.add(new SkipTurnAction());
+//                    stunCount++;
+//                    break;
+//                } else {
+//                    stunCount = 0;
+//                    playerLocation.removeItem(item);
+//                    break;
 //                }
 //            }
 //        }
-
-        if (map.equals(Application.getMoonMap())) {
-            if (!oxygenTanks.isEmpty()) {
-                OxygenTank tank = oxygenTanks.get(0);
-                tank.decreaseCount();
-                if (!tank.hasOxygen()) {
-                    oxygenTanks.remove(tank);
-                }
-            } else {
-                return new MoveActorAction(rocketLocation, "back to Earth via a safety system!");
-            }
-        }
-
-
-
-
         return super.playTurn(actions, map, display);
     }
 
-    /**
-     * Adds a StunPowder into the list of recognizable stunPowders as references.
-     *
-     * @param stunPowder an Item signifying the StunPowder
-     */
+
+    private boolean isStunned(GameMap map) {
+        for (Item item : getPlayerLocation(map).getItems()) {
+            if (stunPowders.contains(item)) {
+                stunPowderOnMap = item;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void updateStunnedActions(Actions actions, GameMap map) {
+        if (stunCount != 2) {
+            actions.clear();
+            actions.add(new SkipTurnAction());
+            stunCount++;
+        } else {
+            stunCount = 0;
+            getPlayerLocation(map).removeItem(stunPowderOnMap);
+            stunPowderOnMap = null;
+        }
+    }
+
+    private Location getPlayerLocation(GameMap map) {
+        return map.locationOf(this);
+    }
+
     public static void addStunPowder(Item stunPowder) {
         stunPowders.add(stunPowder);
     }
 
-    public void addTank(OxygenTank tank){
+    public void addTank(OxygenTank tank) {
         oxygenTanks.add(tank);
     }
 
+    private void updateTankStatus() {
+        OxygenTank tank = oxygenTanks.get(0);
+        tank.decreaseCount();
+        if (!tank.hasOxygen()) {
+            oxygenTanks.remove(tank);
+        }
+    }
 
-    public static void setRocketLocation(Location rocketLocation) {
-        GamePlayer.rocketLocation = rocketLocation;
+    public ArrayList<OxygenTank> getOxygenTanks() {
+        return oxygenTanks;
     }
 }

@@ -1,7 +1,6 @@
 package game.actor;
 
 import edu.monash.fit2099.engine.*;
-import game.behaviour.ActionFactory;
 import game.behaviour.FollowBehaviour;
 
 /**
@@ -17,7 +16,8 @@ public class Grunt extends Enemy {
      *
      * @param name the name of the Grunt
      */
-    public Grunt(String name, Actor player) {
+    public Grunt(String name) {
+//    public Grunt(String name, Actor player) {
         super(name, GRUNT_CHAR, 5, 5);
         addBehaviour(new FollowBehaviour(player));
     }
@@ -35,10 +35,9 @@ public class Grunt extends Enemy {
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
         actions.clear();
-        for (ActionFactory factory : getActionFactories()) {
-            Action action = factory.getAction(this, map);
-            if (action != null)
-                return action;
+        Action action = executeBehaviours(map);
+        if (action != null) {
+            return action;
         }
         super.addActions(actions, this, map);
         return super.playTurn(actions, map, display);

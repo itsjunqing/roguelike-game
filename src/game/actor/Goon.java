@@ -2,7 +2,6 @@ package game.actor;
 
 import edu.monash.fit2099.engine.*;
 import game.action.TalkAction;
-import game.behaviour.ActionFactory;
 import game.behaviour.FollowBehaviour;
 
 import java.util.ArrayList;
@@ -23,13 +22,10 @@ public class Goon extends Enemy {
      *
      * @param name the name of the Goon
      */
-    public Goon(String name, Actor player) {
+    public Goon(String name) {
+//    public Goon(String name, Actor player) {
         super(name, GOON_CHAR, 10, 5);
-        insults.add("Weak!");
-        insults.add("Slow!");
-        insults.add("You're not going to win this!");
-        insults.add("I'm stronger than you!");
-        insults.add("You'll never get me!");
+        addInsults();
         addBehaviour(new FollowBehaviour(player));
     }
 
@@ -49,11 +45,16 @@ public class Goon extends Enemy {
             return new TalkAction(insults.get(random.nextInt(insults.size())), this);
         }
         actions.clear();
-        for (ActionFactory factory : getActionFactories()) {
-            Action action = factory.getAction(this, map);
-            if (action != null)
-                return action;
+
+        Action action = executeBehaviours(map);
+        if (action != null) {
+            return action;
         }
+//        for (ActionFactory factory : getActionFactories()) {
+//            Action action = factory.getAction(this, map);
+//            if (action != null)
+//                return action;
+//        }
         super.addActions(actions, this, map);
         return super.playTurn(actions, map, display);
     }
@@ -66,5 +67,13 @@ public class Goon extends Enemy {
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(BASE_DAMAGE * 2, "punches");
+    }
+
+    private void addInsults() {
+        insults.add("Weak!");
+        insults.add("Slow!");
+        insults.add("You're not going to win this!");
+        insults.add("I'm stronger than you!");
+        insults.add("You'll never get me!");
     }
 }

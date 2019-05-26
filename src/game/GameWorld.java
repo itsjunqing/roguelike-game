@@ -12,7 +12,7 @@ public class GameWorld extends World {
 
     @Override
     public void run() {
-        if(player == null)
+        if (player == null)
             throw new IllegalStateException();
         boolean cont;
         while (stillRunning()) {
@@ -21,14 +21,17 @@ public class GameWorld extends World {
             for (Actor actor : actorLocations) {
                 cont = false;
                 for (Actor actor2 : actorLocations){
-                    if (actor2 instanceof Player){
+                    if (actor2 == player){
                         cont = true;
                     }
                 }
-                if (cont){
+
+//                if (actor == player) {
+//                    cont = true;
+//                }
+                if (cont) {
                     processActorTurn(actor);
-                }
-                else{
+                } else {
                     display.println(playerLose());
                     break;
                 }
@@ -37,7 +40,7 @@ public class GameWorld extends World {
         display.println(endGameMessage());
     }
 
-    public String playerLose(){
+    public String playerLose() {
         return "You lose.";
     }
 }

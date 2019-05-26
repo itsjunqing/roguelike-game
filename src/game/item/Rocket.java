@@ -1,7 +1,6 @@
 package game.item;
 
 import edu.monash.fit2099.engine.*;
-import game.actor.GamePlayer;
 
 /**
  * Class representing a Rocket.
@@ -24,7 +23,6 @@ public class Rocket extends Item {
         this.earthLocation = earthLocation;
         this.moonLocation = moonLocation;
         allowableActions.clear();
-        GamePlayer.setRocketLocation(earthLocation);
     }
 
     @Override
