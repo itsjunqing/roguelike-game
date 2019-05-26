@@ -4,23 +4,24 @@ import edu.monash.fit2099.engine.*;
 import game.Application;
 import game.action.EndGameAction;
 import game.behaviour.ActionFactory;
-import game.behaviour.ActorBehaviours;
 import game.behaviour.OxygenSafetyBehaviour;
 import game.ground.LockedDoor;
 import game.item.OxygenTank;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class representing the GamePlayer.
  */
-public class GamePlayer extends Player implements ActorBehaviours {
+public class GamePlayer extends Player {
 
     private static ArrayList<Item> stunPowders = new ArrayList<>();
     public static final char GAME_PLAYER_CHAR = '@';
     private int stunCount = 0;
     private ArrayList<OxygenTank> oxygenTanks = new ArrayList<>();
     private Item stunPowderOnMap = null;
+    private List<ActionFactory> actionFactories = new ArrayList<>();
 
     /**
      * Constructor to create a GamePlayer.
@@ -37,12 +38,12 @@ public class GamePlayer extends Player implements ActorBehaviours {
         addBehaviour(new OxygenSafetyBehaviour(safeLocation, this));
     }
 
-    @Override
+//    @Override
     public void addBehaviour(ActionFactory behaviour) {
         actionFactories.add(behaviour);
     }
 
-    @Override
+//    @Override
     public Action executeBehaviours(GameMap map) {
         for (ActionFactory factory : actionFactories) {
             Action action = factory.getAction(this, map);

@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.*;
 import game.action.DisappearAction;
 import game.action.GiveItemAction;
 import game.action.TalkAction;
+import game.behaviour.WanderBehaviour;
 import game.item.RocketBody;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 /**
  * Class representing Q as a Non-Playable Character
  */
-public class Q extends Actor {
+public class Q extends GameActor {
 
     private boolean passedItem = false;
     private static ArrayList<Item> rocketPlans = new ArrayList<>();
@@ -28,7 +29,10 @@ public class Q extends Actor {
         super(name, 'Q', 8, Integer.MAX_VALUE);
         this.player = player;
         addItemToInventory(new RocketBody("Rocket body"));
+        addBehaviour(new WanderBehaviour());
+
     }
+
 
     /**
      * Returns the Action to be performed during its turn.
@@ -43,38 +47,63 @@ public class Q extends Actor {
      */
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
+        // first type
         if (!passedItem) {
             Location qLocation = map.locationOf(this);
             actions.clear();
             for (Exit exit : qLocation.getExits()) {
                 Location destination = exit.getDestination();
-                if (map.isAnActorAt(destination)) {
-                    Actor actor = map.actorAt(destination);
-                    if (actor == player) {
-                        for (Item plan : this.getInventory()) {
-                            if (rocketPlans.contains(plan)) {
-                                rocketPlans.remove(plan);
-                                for (Item body : this.getInventory()) {
-                                    if (rocketBodies.contains(body)) {
-                                        passedItem = true;
-                                        rocketBodies.remove(body);
-                                        return new GiveItemAction(actor, body);
-                                    }
-                                }
-                            }
-                        }
+                if (map.locationOf(player) == destination) {
+                    Item plan = getRocketPlan();
+                    if (plan != null) {
+                        rocketPlans.remove(plan);
+                        Item body = getRocketBody();
+                        rocketBodies.remove(body);
+                        passedItem = true;
+                        return new GiveItemAction(player, body);
                     }
-                } else {
-                    Ground adjacentGround = map.groundAt(destination);
-                    actions.add(adjacentGround.getMoveAction(this, destination, exit.getName(), exit.getHotKey()));
                 }
             }
-            actions.add(new SkipTurnAction());
-            return super.playTurn(actions, map, display);
 
+            Action action = executeBehaviours(map);
+            return action;
         } else {
             return new DisappearAction();
         }
+
+        // second type
+//        if (!passedItem) {
+//            Location qLocation = map.locationOf(this);
+//            actions.clear();
+//            for (Exit exit : qLocation.getExits()) {
+//                Location destination = exit.getDestination();
+//                if (map.isAnActorAt(destination)) {
+//                    Actor actor = map.actorAt(destination);
+//                    if (actor == player) {
+//                        for (Item plan : this.getInventory()) {
+//                            if (rocketPlans.contains(plan)) {
+//                                rocketPlans.remove(plan);
+//                                for (Item body : this.getInventory()) {
+//                                    if (rocketBodies.contains(body)) {
+//                                        passedItem = true;
+//                                        rocketBodies.remove(body);
+//                                        return new GiveItemAction(actor, body);
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                } else {
+//                    Ground adjacentGround = map.groundAt(destination);
+//                    actions.add(adjacentGround.getMoveAction(this, destination, exit.getName(), exit.getHotKey()));
+//                }
+//            }
+//            actions.add(new SkipTurnAction());
+//            return super.playTurn(actions, map, display);
+//
+//        } else {
+//            return new DisappearAction();
+//        }
     }
 
 
@@ -111,6 +140,24 @@ public class Q extends Actor {
             actions.add(new TalkAction("I can give you something that will help, come back to me when you've the plans.", this));
         }
         return actions;
+    }
+
+    private Item getRocketBody() {
+        for (Item item : this.getInventory()) {
+            if (rocketBodies.contains(item)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    private Item getRocketPlan() {
+        for (Item item : this.getInventory()) {
+            if (rocketPlans.contains(item)) {
+                return item;
+            }
+        }
+        return null;
     }
 
     /**

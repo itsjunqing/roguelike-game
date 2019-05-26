@@ -22,6 +22,7 @@ public class WanderBehaviour implements ActionFactory{
                 actions.add(adjacentGround.getMoveAction(actor, destination, exit.getName(), exit.getHotKey()));
             }
         }
+        actions.add(new SkipTurnAction());
         return actions.get(random.nextInt(actions.size()));
     }
 }

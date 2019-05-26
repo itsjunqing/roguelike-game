@@ -102,8 +102,8 @@ public class Application {
         DoctorMaybe drMaybe = new DoctorMaybe("Maybe");
         earth.addActor(drMaybe, 0, 0);
 
-//        Goon goon = new Goon("Goonie", player);
-//        gameMap.addActor(goon, 17, 9);
+        Goon goon = new Goon("Goonie");
+        earth.addActor(goon, 17, 9);
 
 
 //        YugoMaxx Yugo = new YugoMaxx("Yugo Maxx", player);
