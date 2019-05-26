@@ -20,15 +20,10 @@ public class GameWorld extends World {
             playersMap.draw(display);
             for (Actor actor : actorLocations) {
                 cont = false;
-                for (Actor actor2 : actorLocations){
-                    if (actor2 == player){
-                        cont = true;
-                    }
+                if (actorLocations.contains(player)) {
+                    cont = true;
                 }
 
-//                if (actor == player) {
-//                    cont = true;
-//                }
                 if (cont) {
                     processActorTurn(actor);
                 } else {

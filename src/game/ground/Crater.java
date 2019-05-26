@@ -2,7 +2,7 @@ package game.ground;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
-import game.MoonSkills;
+import game.GameSkills;
 
 public class Crater extends Ground {
     public Crater(){
@@ -11,6 +11,6 @@ public class Crater extends Ground {
 
     @Override
     public boolean canActorEnter(Actor actor) {
-        return actor.hasSkill(MoonSkills.SPACETRAVELLER);
+        return actor.hasSkill(GameSkills.SPACETRAVELLER);
     }
 }

@@ -1,7 +1,7 @@
 package game.actor;
 
 import edu.monash.fit2099.engine.*;
-import game.MoonSkills;
+import game.GameSkills;
 import game.action.BreakArmorAction;
 import game.item.Exoskeleton;
 import game.item.Spacesuit;
@@ -27,8 +27,8 @@ public class YugoMaxx extends Enemy {
 
         if (isInvulnerable()) {
             for (Item item : otherActor.getInventory()) {
-                if (item.hasSkill(MoonSkills.WATERSKILL)) {
-                    actions.add(new BreakArmorAction(this, item, MoonSkills.WATERSKILL, MoonSkills.INVULNERABLE));
+                if (item.hasSkill(GameSkills.WATERSKILL)) {
+                    actions.add(new BreakArmorAction(this, item, GameSkills.WATERSKILL, GameSkills.INVULNERABLE));
                 }
             }
         } else {
@@ -55,7 +55,7 @@ public class YugoMaxx extends Enemy {
     }
 
     private boolean isInvulnerable() {
-        return this.hasSkill(MoonSkills.INVULNERABLE);
+        return this.hasSkill(GameSkills.INVULNERABLE);
     }
 
     private boolean playerIsNextTo(GameMap map) {

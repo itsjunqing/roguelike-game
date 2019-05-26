@@ -17,12 +17,12 @@ public class GameActor extends Actor {
         super(name, displayChar, priority, hitPoints);
     }
 
-//    @Override
+    //    @Override
     public void addBehaviour(ActionFactory behaviour) {
         actionFactories.add(behaviour);
     }
 
-//    @Override
+    //    @Override
     public Action executeBehaviours(GameMap map) {
         for (ActionFactory factory : actionFactories) {
             Action action = factory.getAction(this, map);

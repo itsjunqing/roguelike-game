@@ -77,14 +77,14 @@ public class Application {
         earth.addItem(new RocketPlans("Rocket plans"), 1, 3);
         earth.addItem(new Spacesuit(),1, 4);
 //        earth.add(new RocketPad(moon.at(7,4)), new Location(earth, 1, 2));
-        Location rocketPadLocation = new Location(earth, 6, 2);
-        earth.add(new RocketPad(), earth.at(6,2));
+        Location rocketPadLocation = earth.at(6,2);
+        earth.add(new RocketPad(), rocketPadLocation);
 //        earth.add(new OxygenDispenser(), new Location(earth, 3, 0));
 
         earth.addItem(new WaterPistol("Air Gun"), 0, 4);
 
         // earth.at(6,2) cannot be replaced with rocketPadLocation, the list of exits will be empty, because exits are created via the map
-        GamePlayer player = new GamePlayer("Player", 1, 100, earth.at(6, 2));
+        GamePlayer player = new GamePlayer("Player", 1, 100, rocketPadLocation);
         world.addPlayer(player, earth, 2, 2);
 
 //        Grunt grunt = new Grunt("Mongo", player);
@@ -103,11 +103,11 @@ public class Application {
         earth.addActor(goon, 17, 9);
 
 
-//        YugoMaxx Yugo = new YugoMaxx("Yugo Maxx", player);
-//        earth.addActor(Yugo, 0, 5);
 
         Q q = new Q("Q", player);
         earth.addActor(q, 0, 2);
+        YugoMaxx Yugo = new YugoMaxx("Yugo Maxx");
+        moon.addActor(Yugo, 0, 5);
 
         world.run();
     }

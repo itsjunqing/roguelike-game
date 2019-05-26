@@ -1,7 +1,7 @@
 package game.ground;
 
 import edu.monash.fit2099.engine.*;
-import game.MoonSkills;
+import game.GameSkills;
 import game.action.FillItemSkillAction;
 
 import java.util.ArrayList;
@@ -23,8 +23,8 @@ public class Water extends Ground {
     public Actions allowableActions(Actor actor, Location location, String direction) {
         Actions actions = new Actions();
         for (Item item : actor.getInventory()) {
-            if (waterPistols.contains(item) && !item.hasSkill(MoonSkills.WATERSKILL)) {
-                actions.add(new FillItemSkillAction(item, MoonSkills.WATERSKILL));
+            if (waterPistols.contains(item) && !item.hasSkill(GameSkills.WATERSKILL)) {
+                actions.add(new FillItemSkillAction(item, GameSkills.WATERSKILL));
             }
         }
         return actions;

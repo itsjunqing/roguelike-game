@@ -2,7 +2,7 @@ package game.item;
 
 import edu.monash.fit2099.engine.Item;
 import game.actor.GamePlayer;
-import game.MoonSkills;
+import game.GameSkills;
 import game.action.PickUpOxygenTankAction;
 
 public class OxygenTank extends Item {
@@ -13,7 +13,7 @@ public class OxygenTank extends Item {
 
     public OxygenTank(String name) {
         super(name, OXYGENTANK_CHAR);
-        addSkill(MoonSkills.OXYGENSUPPLY);
+        addSkill(GameSkills.OXYGENSUPPLY);
         allowableActions.clear();
         allowableActions.add(new PickUpOxygenTankAction(this, player));
     }

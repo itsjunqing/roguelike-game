@@ -4,7 +4,7 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
-import game.MoonSkills;
+import game.GameSkills;
 
 import java.util.Random;
 
@@ -15,12 +15,12 @@ public class BreakArmorAction extends Action {
 
     private Actor target;
     private Item item;
-    private MoonSkills itemSkill;
-    private MoonSkills armorSkill;
+    private GameSkills itemSkill;
+    private GameSkills armorSkill;
     private Random random = new Random();
 
     // breaks the armor with an item's skill
-    public BreakArmorAction(Actor target, Item item, MoonSkills itemSkill, MoonSkills armorSkill) {
+    public BreakArmorAction(Actor target, Item item, GameSkills itemSkill, GameSkills armorSkill) {
         this.target = target;
         this.item = item;
         this.itemSkill = itemSkill;
