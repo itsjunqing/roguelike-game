@@ -107,7 +107,7 @@ public class Application {
         Q q = new Q("Q", player);
         earth.addActor(q, 0, 2);
         YugoMaxx Yugo = new YugoMaxx("Yugo Maxx");
-        moon.addActor(Yugo, 0, 5);
+        earth.addActor(Yugo, 0, 5);
 
         world.run();
     }

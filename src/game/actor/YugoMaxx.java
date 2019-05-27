@@ -2,6 +2,7 @@ package game.actor;
 
 import edu.monash.fit2099.engine.*;
 import game.GameSkills;
+import game.action.BetterAttackAction;
 import game.action.BreakArmorAction;
 import game.item.Exoskeleton;
 import game.item.Spacesuit;
@@ -14,6 +15,7 @@ public class YugoMaxx extends Enemy {
         super(name, YUGO_MAXX_CHAR, 20, 10);
         addItemToInventory(new Exoskeleton());
         addItemToInventory(new Spacesuit());
+        addSkill(GameSkills.BOSS);
     }
 
     @Override
@@ -32,7 +34,7 @@ public class YugoMaxx extends Enemy {
                 }
             }
         } else {
-            actions.add(new AttackAction(otherActor, this));
+            actions.add(new BetterAttackAction(otherActor, this));
         }
         return actions;
     }

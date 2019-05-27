@@ -15,17 +15,31 @@ public class GameWorld extends World {
         if (player == null)
             throw new IllegalStateException();
         boolean cont;
+        boolean win = false;
         while (stillRunning()) {
             GameMap playersMap = actorLocations.locationOf(player).map();
             playersMap.draw(display);
             for (Actor actor : actorLocations) {
                 cont = false;
                 if (actorLocations.contains(player)) {
-                    cont = true;
+                    for (Item item : actorLocations.locationOf(player).getItems()){
+                        // Checks if Player has dropped the YugoMaxx's dead body
+                        if (item.hasSkill(GameSkills.BOSS) && playersMap.equals(Application.getEarthMap())){
+                            win = true;
+                            break;
+                        }
+                    }
+                    if (!win){
+                        cont = true;
+                    }
                 }
 
                 if (cont) {
                     processActorTurn(actor);
+                } else if (win){
+                    display.println(playerWin());
+                    actorLocations.remove(player);
+                    break;
                 } else {
                     display.println(playerLose());
                     break;
@@ -38,4 +52,6 @@ public class GameWorld extends World {
     public String playerLose() {
         return "You lose.";
     }
+
+    public String playerWin(){return "You win.";}
 }
