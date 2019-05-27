@@ -1,6 +1,7 @@
 package game.actor;
 
 import edu.monash.fit2099.engine.*;
+import game.GameWorld;
 import game.item.Key;
 
 /**
@@ -50,7 +51,7 @@ public abstract class Enemy extends GameActor {
             Location destination = exit.getDestination();
             if (map.isAnActorAt(destination)) {
                 Actor actor = map.actorAt(destination);
-                if (actor == player) {
+                if (actor == GameWorld.getGamePlayer()) {
 //                if (players.contains(actor)) {
                     actions.add(new AttackAction(enemy, actor));
                 }

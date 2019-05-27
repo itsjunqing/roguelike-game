@@ -1,6 +1,7 @@
 package game.actor;
 
 import edu.monash.fit2099.engine.*;
+import game.GameWorld;
 import game.action.TalkAction;
 import game.behaviour.FollowBehaviour;
 
@@ -26,7 +27,7 @@ public class Goon extends Enemy {
 //    public Goon(String name, Actor player) {
         super(name, GOON_CHAR, 10, 5);
         addInsults();
-        addBehaviour(new FollowBehaviour(player));
+        addBehaviour(new FollowBehaviour(GameWorld.getGamePlayer()));
     }
 
     /**

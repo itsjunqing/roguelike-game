@@ -1,6 +1,7 @@
 package game.actor;
 
 import edu.monash.fit2099.engine.*;
+import game.GameWorld;
 import game.action.DisappearAction;
 import game.action.GiveItemAction;
 import game.action.TalkAction;
@@ -53,6 +54,7 @@ public class Q extends GameActor {
             actions.clear();
             for (Exit exit : qLocation.getExits()) {
                 Location destination = exit.getDestination();
+                GamePlayer player = GameWorld.getGamePlayer();
                 if (map.locationOf(player) == destination) {
                     Item plan = getRocketPlan();
                     if (plan != null) {
@@ -126,7 +128,7 @@ public class Q extends GameActor {
             return actions;
         }
 
-        if (otherActor == player) {
+        if (otherActor == GameWorld.getGamePlayer()) {
             for (Item plan : otherActor.getInventory()) {
                 if (rocketPlans.contains(plan)) {
                     actions.add(new TalkAction("Hand the rocket plans over, I don't have all day", this));

@@ -11,7 +11,7 @@ import java.util.List;
 public class GameActor extends Actor {
 
     private List<ActionFactory> actionFactories = new ArrayList<>();
-    protected static GamePlayer player;
+//    protected static GamePlayer player;
 
     public GameActor(String name, char displayChar, int priority, int hitPoints) {
         super(name, displayChar, priority, hitPoints);
@@ -32,7 +32,7 @@ public class GameActor extends Actor {
         return null;
     }
 
-    public static void setPlayer(GamePlayer player) {
-        GameActor.player = player;
-    }
+//    public static void setPlayer(GamePlayer player) {
+//        GameActor.player = player;
+//    }
 }

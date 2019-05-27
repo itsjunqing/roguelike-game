@@ -1,6 +1,10 @@
 package game.actor;
 
-import edu.monash.fit2099.engine.*;
+import edu.monash.fit2099.engine.Action;
+import edu.monash.fit2099.engine.Actions;
+import edu.monash.fit2099.engine.Display;
+import edu.monash.fit2099.engine.GameMap;
+import game.GameWorld;
 import game.behaviour.FollowBehaviour;
 
 /**
@@ -19,7 +23,7 @@ public class Grunt extends Enemy {
     public Grunt(String name) {
 //    public Grunt(String name, Actor player) {
         super(name, GRUNT_CHAR, 5, 5);
-        addBehaviour(new FollowBehaviour(player));
+        addBehaviour(new FollowBehaviour(GameWorld.getGamePlayer()));
     }
 
     /**
