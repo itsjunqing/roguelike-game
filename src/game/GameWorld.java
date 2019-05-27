@@ -63,4 +63,8 @@ public class GameWorld extends World {
     public static GamePlayer getGamePlayer() {
         return gamePlayer;
     }
+
+    public String playerWin(){
+        return "You win.";
+    }
 }
