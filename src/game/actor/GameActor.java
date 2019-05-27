@@ -4,25 +4,25 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import game.behaviour.ActionFactory;
+import game.behaviour.ActorBehaviours;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameActor extends Actor {
+public class GameActor extends Actor implements ActorBehaviours {
 
     private List<ActionFactory> actionFactories = new ArrayList<>();
-//    protected static GamePlayer player;
 
     public GameActor(String name, char displayChar, int priority, int hitPoints) {
         super(name, displayChar, priority, hitPoints);
     }
 
-    //    @Override
+    @Override
     public void addBehaviour(ActionFactory behaviour) {
         actionFactories.add(behaviour);
     }
 
-    //    @Override
+    @Override
     public Action executeBehaviours(GameMap map) {
         for (ActionFactory factory : actionFactories) {
             Action action = factory.getAction(this, map);
@@ -31,8 +31,4 @@ public class GameActor extends Actor {
         }
         return null;
     }
-
-//    public static void setPlayer(GamePlayer player) {
-//        GameActor.player = player;
-//    }
 }

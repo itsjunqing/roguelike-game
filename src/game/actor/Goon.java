@@ -24,7 +24,6 @@ public class Goon extends Enemy {
      * @param name the name of the Goon
      */
     public Goon(String name) {
-//    public Goon(String name, Actor player) {
         super(name, GOON_CHAR, 10, 5);
         addInsults();
         addBehaviour(new FollowBehaviour(GameWorld.getGamePlayer()));

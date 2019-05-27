@@ -13,7 +13,6 @@ public class Ninja extends Enemy {
     public static final char NINJA_CHAR = 'N';
     private boolean stunThrown = false;
     private Item stunPowder = new StunPowder("Stun Powder");
-//    private Actor player;
 
     /**
      * Constructor to create an Enemy of type Ninja with a name.
@@ -23,7 +22,6 @@ public class Ninja extends Enemy {
      */
     public Ninja(String name) {
         super(name, NINJA_CHAR, 15, 50);
-//        this.player = player;
         addBehaviour(new ThrowStunBehaviour(GameWorld.getGamePlayer(), stunPowder));
     }
 

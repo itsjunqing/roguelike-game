@@ -69,6 +69,5 @@ public class YugoMaxx extends Enemy {
             }
         }
         return false;
-
     }
 }
