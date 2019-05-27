@@ -24,8 +24,6 @@ public class Application {
         FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new LockedDoor(),
                 new RocketPad(), new Crater(), new Water(), new OxygenDispenser());
 
-        GameMap gameMap;
-
 //        List<String> earth = Arrays.asList(
 //                ".......................",
 //                "....#####....######....",
@@ -73,39 +71,39 @@ public class Application {
         world.addMap(earth);
 
 
-        // adding items and grounds onto earth map
+        // Add to Earth
         earth.addItem(new RocketPlans("Rocket plans"), 1, 3);
+
         earth.addItem(new Spacesuit(),1, 4);
-//        earth.add(new RocketPad(moon.at(7,4)), new Location(earth, 1, 2));
-        Location rocketPadLocation = earth.at(6,2);
-        earth.add(new RocketPad(), rocketPadLocation);
-//        earth.add(new OxygenDispenser(), new Location(earth, 3, 0));
 
         earth.addItem(new WaterPistol("Air Gun"), 0, 4);
 
-        // earth.at(6,2) cannot be replaced with rocketPadLocation, the list of exits will be empty, because exits are created via the map
+        Location rocketPadLocation = earth.at(6,2);
+
+        earth.add(new RocketPad(), rocketPadLocation);
         GamePlayer player = new GamePlayer("Player", 1, 100, rocketPadLocation);
+
         world.addPlayer(player, earth, 2, 2);
 
-//        Grunt grunt = new Grunt("Mongo", player);
+//        Grunt grunt = new Grunt("Mongo");
 //        earth.addActor(grunt, 1, 5);
 
-//        Grunt grunt2 = new Grunt("Norbert", player);
-//        gameMap.addActor(grunt2, 20, 6);
+//        Grunt grunt2 = new Grunt("Norbert");
+//        earth.addActor(grunt2, 20, 6);
 
-//        Ninja ninja = new Ninja("Ninja", player);
-//        gameMap.addActor(ninja, 10, 5);
+//        Ninja ninja = new Ninja("Ninja");
+//        earth.addActor(ninja, 10, 5);
 
-        DoctorMaybe drMaybe = new DoctorMaybe("Maybe");
-        earth.addActor(drMaybe, 0, 0);
+//        DoctorMaybe drMaybe = new DoctorMaybe("Maybe");
+//        earth.addActor(drMaybe, 0, 0);
 
-        Goon goon = new Goon("Goonie");
-        earth.addActor(goon, 17, 9);
+//        Goon goon = new Goon("Goonie");
+//        earth.addActor(goon, 17, 9);
 
-
-
-        Q q = new Q("Q", player);
+        Q q = new Q("Q");
         earth.addActor(q, 0, 2);
+
+        // Add to Moon
         YugoMaxx Yugo = new YugoMaxx("Yugo Maxx");
         earth.addActor(Yugo, 0, 5);
 

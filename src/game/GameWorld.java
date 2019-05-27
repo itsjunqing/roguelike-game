@@ -1,9 +1,11 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
+import game.actor.GamePlayer;
 
 public class GameWorld extends World {
 
+    private static GamePlayer gamePlayer;
 
     // use this to access the map instead of accessing via the Application
     public GameWorld(Display display) {
@@ -53,5 +55,12 @@ public class GameWorld extends World {
         return "You lose.";
     }
 
-    public String playerWin(){return "You win.";}
+    public void addPlayer(GamePlayer gamePlayer, GameMap map, int y, int x) {
+        super.addPlayer(gamePlayer, map, y, x);
+        GameWorld.gamePlayer = gamePlayer;
+    }
+
+    public static GamePlayer getGamePlayer() {
+        return gamePlayer;
+    }
 }

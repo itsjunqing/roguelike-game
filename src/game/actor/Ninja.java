@@ -1,6 +1,7 @@
 package game.actor;
 
 import edu.monash.fit2099.engine.*;
+import game.GameWorld;
 import game.behaviour.ThrowStunBehaviour;
 import game.item.StunPowder;
 
@@ -12,7 +13,6 @@ public class Ninja extends Enemy {
     public static final char NINJA_CHAR = 'N';
     private boolean stunThrown = false;
     private Item stunPowder = new StunPowder("Stun Powder");
-//    private Actor player;
 
     /**
      * Constructor to create an Enemy of type Ninja with a name.
@@ -22,8 +22,7 @@ public class Ninja extends Enemy {
      */
     public Ninja(String name) {
         super(name, NINJA_CHAR, 15, 50);
-//        this.player = player;
-        addBehaviour(new ThrowStunBehaviour(player, stunPowder));
+        addBehaviour(new ThrowStunBehaviour(GameWorld.getGamePlayer(), stunPowder));
     }
 
     /**
@@ -75,7 +74,7 @@ public class Ninja extends Enemy {
      * @return a boolean stating if the stun powder bomb exists
      */
     private boolean hasStunPowder(GameMap map) {
-        for (Item item : map.locationOf(player).getItems()) {
+        for (Item item : map.locationOf(GameWorld.getGamePlayer()).getItems()) {
             if (item == stunPowder) {
                 return true;
             }

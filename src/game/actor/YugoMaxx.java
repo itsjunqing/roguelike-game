@@ -2,6 +2,7 @@ package game.actor;
 
 import edu.monash.fit2099.engine.*;
 import game.GameSkills;
+import game.GameWorld;
 import game.action.BetterAttackAction;
 import game.action.BreakArmorAction;
 import game.item.Exoskeleton;
@@ -61,7 +62,7 @@ public class YugoMaxx extends Enemy {
     }
 
     private boolean playerIsNextTo(GameMap map) {
-        Location playerLocation = map.locationOf(player);
+        Location playerLocation = map.locationOf(GameWorld.getGamePlayer());
         Location yugoLocation = map.locationOf(this);
 
         for (Exit exit : yugoLocation.getExits()) {
@@ -70,6 +71,5 @@ public class YugoMaxx extends Enemy {
             }
         }
         return false;
-
     }
 }

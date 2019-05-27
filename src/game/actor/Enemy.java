@@ -1,6 +1,7 @@
 package game.actor;
 
 import edu.monash.fit2099.engine.*;
+import game.GameWorld;
 import game.item.Key;
 
 /**
@@ -9,8 +10,6 @@ import game.item.Key;
 public abstract class Enemy extends GameActor {
 
     protected static final int BASE_DAMAGE = 5;
-//    protected static ArrayList<Actor> players = new ArrayList<>();
-
 
     /**
      * Constructor that creates a new enemy and adds a Key item in its inventory.
@@ -50,8 +49,7 @@ public abstract class Enemy extends GameActor {
             Location destination = exit.getDestination();
             if (map.isAnActorAt(destination)) {
                 Actor actor = map.actorAt(destination);
-                if (actor == player) {
-//                if (players.contains(actor)) {
+                if (actor == GameWorld.getGamePlayer()) {
                     actions.add(new AttackAction(enemy, actor));
                 }
             } else {
@@ -61,30 +59,4 @@ public abstract class Enemy extends GameActor {
         }
         actions.add(new SkipTurnAction());
     }
-
-//    /**
-//     * Adds a Player the list of recognizable players as references.
-//     *
-//     * @param player an Actor signifying the Player
-//     */
-//    public static void addPlayer(Actor player) {
-//        players.add(player);
-//    }
-
-
-
-//    @Override
-//    public void addBehaviour(ActionFactory behaviour) {
-//        actionFactories.add(behaviour);
-//    }
-//
-//    @Override
-//    public Action executeBehaviours(GameMap map) {
-//        for (ActionFactory factory : actionFactories) {
-//            Action action = factory.getAction(this, map);
-//            if (action != null)
-//                return action;
-//        }
-//        return null;
-//    }
 }
