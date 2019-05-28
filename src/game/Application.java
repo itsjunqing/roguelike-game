@@ -85,17 +85,17 @@ public class Application {
 
         world.addPlayer(player, earth, 2, 2);
 
-//        Grunt grunt = new Grunt("Mongo");
-//        earth.addActor(grunt, 1, 5);
+        Grunt grunt = new Grunt("Mongo");
+        moon.addActor(grunt, 1, 5);
 
-//        Grunt grunt2 = new Grunt("Norbert");
-//        earth.addActor(grunt2, 20, 6);
+        Grunt grunt2 = new Grunt("Norbert");
+        moon.addActor(grunt2, 3, 6);
 
-//        Ninja ninja = new Ninja("Ninja");
-//        earth.addActor(ninja, 10, 5);
+        Ninja ninja = new Ninja("Ninja");
+        moon.addActor(ninja, 10, 5);
 
-//        DoctorMaybe drMaybe = new DoctorMaybe("Maybe");
-//        earth.addActor(drMaybe, 0, 0);
+        DoctorMaybe drMaybe = new DoctorMaybe("Maybe");
+        earth.addActor(drMaybe, 0, 0);
 
 //        Goon goon = new Goon("Goonie");
 //        earth.addActor(goon, 17, 9);
@@ -105,7 +105,7 @@ public class Application {
 
         // Add to Moon
         YugoMaxx Yugo = new YugoMaxx("Yugo Maxx");
-        earth.addActor(Yugo, 0, 5);
+        moon.addActor(Yugo, 0, 5);
 
         world.run();
     }

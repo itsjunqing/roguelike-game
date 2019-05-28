@@ -6,13 +6,12 @@ import game.GameSkills;
 import java.util.Random;
 
 public class BetterAttackAction extends AttackAction {
-    private Actor actor;
+
     private Actor subject;
     private Random rand = new Random();
 
     public BetterAttackAction(Actor actor, Actor subject){
         super(actor, subject);
-        this.actor = actor;
         this.subject = subject;
     }
 
@@ -42,8 +41,8 @@ public class BetterAttackAction extends AttackAction {
             }
 
             // Modified from original AttackAction. To add skills to the unconscious actors.
-            if (subject.hasSkill(GameSkills.BOSS)){
-                sleepingActor.addSkill(GameSkills.BOSS);
+            if (subject.hasSkill(GameSkills.SPACEBOSSPOWER)){
+                sleepingActor.addSkill(GameSkills.SPACEBOSSPOWER);
             }
             // Modified from original AttackAction
 

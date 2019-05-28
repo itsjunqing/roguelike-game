@@ -31,7 +31,7 @@ public class BreakArmorAction extends Action {
     public String execute(Actor actor, GameMap map) {
         item.removeSkill(itemSkill);
 
-        if (random.nextDouble() <= 0.7) {
+        if (random.nextDouble() <= 1.0) {
             for (Item item : target.getInventory()) {
                 if (item.hasSkill(armorSkill)) {
                     target.removeItemFromInventory(item);

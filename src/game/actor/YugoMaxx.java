@@ -16,7 +16,7 @@ public class YugoMaxx extends Enemy {
         super(name, YUGO_MAXX_CHAR, 20, 10);
         addItemToInventory(new Exoskeleton());
         addItemToInventory(new Spacesuit());
-        addSkill(GameSkills.BOSS);
+        addSkill(GameSkills.SPACEBOSSPOWER);
     }
 
     @Override

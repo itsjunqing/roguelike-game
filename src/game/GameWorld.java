@@ -24,9 +24,15 @@ public class GameWorld extends World {
             for (Actor actor : actorLocations) {
                 cont = false;
                 if (actorLocations.contains(player)) {
-                    for (Item item : actorLocations.locationOf(player).getItems()){
-                        // Checks if Player has dropped the YugoMaxx's dead body
-                        if (item.hasSkill(GameSkills.BOSS) && playersMap.equals(Application.getEarthMap())){
+//                    for (Item item : actorLocations.locationOf(player).getItems()){
+//                    Checks if Player has dropped the YugoMaxx 's dead body
+//                        if (item.hasSkill(GameSkills.SPACEBOSSPOWER) && playersMap.equals(Application.getEarthMap())){
+//                            win = true;
+//                            break;
+//                        }
+
+                    for (Item item : player.getInventory()) {
+                        if (item.hasSkill(GameSkills.SPACEBOSSPOWER) && playersMap == Application.getEarthMap()) {
                             win = true;
                             break;
                         }
