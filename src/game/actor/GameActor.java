@@ -9,7 +9,7 @@ import game.behaviour.ActorBehaviours;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameActor extends Actor implements ActorBehaviours {
+public abstract class GameActor extends Actor implements ActorBehaviours {
 
     private List<ActionFactory> actionFactories = new ArrayList<>();
 

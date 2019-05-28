@@ -4,7 +4,7 @@ import edu.monash.fit2099.engine.*;
 
 import java.util.Random;
 
-public class WanderBehaviour implements ActionFactory{
+public class WanderBehaviour implements ActionFactory {
 
     private Random random = new Random();
 

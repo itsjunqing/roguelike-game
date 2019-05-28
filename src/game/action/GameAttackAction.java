@@ -5,12 +5,12 @@ import game.GameSkills;
 
 import java.util.Random;
 
-public class BetterAttackAction extends AttackAction {
+public class GameAttackAction extends AttackAction {
 
     private Actor subject;
     private Random rand = new Random();
 
-    public BetterAttackAction(Actor actor, Actor subject){
+    public GameAttackAction(Actor actor, Actor subject){
         super(actor, subject);
         this.subject = subject;
     }

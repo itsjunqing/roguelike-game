@@ -3,7 +3,7 @@ package game.actor;
 import edu.monash.fit2099.engine.*;
 import game.GameSkills;
 import game.GameWorld;
-import game.action.BetterAttackAction;
+import game.action.GameAttackAction;
 import game.action.BreakArmorAction;
 import game.item.Exoskeleton;
 import game.item.Spacesuit;
@@ -35,7 +35,7 @@ public class YugoMaxx extends Enemy {
                 }
             }
         } else {
-            actions.add(new BetterAttackAction(otherActor, this));
+            actions.add(new GameAttackAction(otherActor, this));
         }
         return actions;
     }

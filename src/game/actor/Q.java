@@ -45,7 +45,6 @@ public class Q extends GameActor {
      */
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
-        // first type
         if (!passedItem) {
             Location qLocation = map.locationOf(this);
             actions.clear();
@@ -69,40 +68,6 @@ public class Q extends GameActor {
         } else {
             return new DisappearAction();
         }
-
-        // second type
-//        if (!passedItem) {
-//            Location qLocation = map.locationOf(this);
-//            actions.clear();
-//            for (Exit exit : qLocation.getExits()) {
-//                Location destination = exit.getDestination();
-//                if (map.isAnActorAt(destination)) {
-//                    Actor actor = map.actorAt(destination);
-//                    if (actor == player) {
-//                        for (Item plan : this.getInventory()) {
-//                            if (rocketPlans.contains(plan)) {
-//                                rocketPlans.remove(plan);
-//                                for (Item body : this.getInventory()) {
-//                                    if (rocketBodies.contains(body)) {
-//                                        passedItem = true;
-//                                        rocketBodies.remove(body);
-//                                        return new GiveItemAction(actor, body);
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
-//                } else {
-//                    Ground adjacentGround = map.groundAt(destination);
-//                    actions.add(adjacentGround.getMoveAction(this, destination, exit.getName(), exit.getHotKey()));
-//                }
-//            }
-//            actions.add(new SkipTurnAction());
-//            return super.playTurn(actions, map, display);
-//
-//        } else {
-//            return new DisappearAction();
-//        }
     }
 
 

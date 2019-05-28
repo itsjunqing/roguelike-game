@@ -50,11 +50,7 @@ public class Goon extends Enemy {
         if (action != null) {
             return action;
         }
-//        for (ActionFactory factory : getActionFactories()) {
-//            Action action = factory.getAction(this, map);
-//            if (action != null)
-//                return action;
-//        }
+
         super.addActions(actions, this, map);
         return super.playTurn(actions, map, display);
     }

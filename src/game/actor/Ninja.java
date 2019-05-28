@@ -55,14 +55,6 @@ public class Ninja extends Enemy {
             stunThrown = true;
             return action;
         }
-
-//        for (ActionFactory factory : getActionFactories()) {
-//            Action action = factory.getAction(this, map);
-//            if (action != null) {
-//                stunThrown = true;
-//                return action;
-//            }
-//        }
         actions.add(new SkipTurnAction());
         return super.playTurn(actions, map, display);
     }

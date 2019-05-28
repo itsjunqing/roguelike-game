@@ -6,7 +6,6 @@ import game.action.EndGameAction;
 import game.behaviour.ActionFactory;
 import game.behaviour.ActorBehaviours;
 import game.behaviour.OxygenSafetyBehaviour;
-import game.ground.LockedDoor;
 import game.item.OxygenTank;
 
 import java.util.ArrayList;
@@ -33,8 +32,6 @@ public class GamePlayer extends Player implements ActorBehaviours {
      */
     public GamePlayer(String name, int priority, int hitPoints, Location safeLocation) {
         super(name, GAME_PLAYER_CHAR, priority, hitPoints);
-        LockedDoor.addPlayer(this);
-        OxygenTank.setPlayer(this);
         addBehaviour(new OxygenSafetyBehaviour(safeLocation, this));
     }
 
@@ -80,21 +77,6 @@ public class GamePlayer extends Player implements ActorBehaviours {
             updateStunnedActions(actions, map);
         }
 
-//        Location playerLocation = map.locationOf(this);
-//        for (Item item : playerLocation.getItems()) {
-//            if (stunPowders.contains(item)) {
-//                if (stunCount != 2) {
-//                    actions.clear();
-//                    actions.add(new SkipTurnAction());
-//                    stunCount++;
-//                    break;
-//                } else {
-//                    stunCount = 0;
-//                    playerLocation.removeItem(item);
-//                    break;
-//                }
-//            }
-//        }
         return super.playTurn(actions, map, display);
     }
 

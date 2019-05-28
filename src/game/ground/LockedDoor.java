@@ -1,6 +1,7 @@
 package game.ground;
 
 import edu.monash.fit2099.engine.*;
+import game.GameWorld;
 import game.action.UnlockDoorAction;
 
 import java.util.ArrayList;
@@ -11,7 +12,6 @@ import java.util.ArrayList;
 public class LockedDoor extends Ground {
 
     private static ArrayList<Item> keys = new ArrayList<>();
-    private static ArrayList<Actor> players = new ArrayList<>();
 
     /**
      * Constructor to create a LockedDoor.
@@ -43,7 +43,7 @@ public class LockedDoor extends Ground {
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
         Actions actions = super.allowableActions(actor, location, direction);
-        if (players.contains(actor)) {
+        if (actor == GameWorld.getGamePlayer()) {
             for (Item item : actor.getInventory()) {
                 if (keys.contains(item)) {
                     actions.add(new UnlockDoorAction(direction, location, item));
@@ -79,14 +79,5 @@ public class LockedDoor extends Ground {
      */
     public static void removeKey(Item key) {
         keys.remove(key);
-    }
-
-    /**
-     * Adds an Actor to a list that signifies the Player is able to unlock the Door
-     *
-     * @param player an Actor that can unlock the Door
-     */
-    public static void addPlayer(Actor player) {
-        players.add(player);
     }
 }

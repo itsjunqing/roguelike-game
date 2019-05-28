@@ -30,13 +30,11 @@ public class GameWorld extends World {
 //                            win = true;
 //                            break;
 //                        }
-
-                    for (Item item : player.getInventory()) {
-                        if (item.hasSkill(GameSkills.SPACEBOSSPOWER) && playersMap == Application.getEarthMap()) {
-                            win = true;
-                            break;
-                        }
+                    if (player.hasSkill(GameSkills.SPACEBOSSPOWER) && playersMap == Application.getEarthMap()) {
+                        win = true;
+                        break;
                     }
+
                     if (!win){
                         cont = true;
                     }
