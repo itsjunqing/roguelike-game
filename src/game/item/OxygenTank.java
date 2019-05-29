@@ -2,7 +2,6 @@ package game.item;
 
 import edu.monash.fit2099.engine.Item;
 import game.GameSkills;
-import game.GameWorld;
 import game.action.PickUpOxygenTankAction;
 
 public class OxygenTank extends Item {
@@ -14,7 +13,7 @@ public class OxygenTank extends Item {
         super(name, OXYGENTANK_CHAR);
         addSkill(GameSkills.OXYGENSUPPLY);
         allowableActions.clear();
-        allowableActions.add(new PickUpOxygenTankAction(this, GameWorld.getGamePlayer()));
+        allowableActions.add(new PickUpOxygenTankAction(this));
     }
 
     public boolean hasOxygen() {

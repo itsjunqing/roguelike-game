@@ -1,6 +1,7 @@
 package game.item;
 
 import edu.monash.fit2099.engine.*;
+import game.GameWorld;
 
 /**
  * Class representing a Rocket.
@@ -8,7 +9,6 @@ import edu.monash.fit2099.engine.*;
 public class Rocket extends Item {
 
     public static final char ROCKET_CHAR = '^';
-    private Actor player;
     private Location earthLocation;
     private Location moonLocation;
 
@@ -17,9 +17,8 @@ public class Rocket extends Item {
      *
      * @param name the name of the rocket
      */
-    public Rocket(String name, Actor player, Location earthLocation, Location moonLocation) {
+    public Rocket(String name, Location earthLocation, Location moonLocation) {
         super(name, ROCKET_CHAR);
-        this.player = player;
         this.earthLocation = earthLocation;
         this.moonLocation = moonLocation;
         allowableActions.clear();
@@ -29,9 +28,9 @@ public class Rocket extends Item {
     public Actions getAllowableActions() {
         allowableActions.clear();
 
-        if (earthLocation.getActor() == player) {
+        if (earthLocation.getActor() == GameWorld.getGamePlayer()) {
             allowableActions.add(new MoveActorAction(moonLocation, "to Moon!"));
-        } else if (moonLocation.getActor() == player) {
+        } else if (moonLocation.getActor() == GameWorld.getGamePlayer()) {
             allowableActions.add(new MoveActorAction(earthLocation, "to Earth!"));
         }
         return allowableActions;

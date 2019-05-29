@@ -3,7 +3,7 @@ package game.action;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
-import game.actor.GamePlayer;
+import game.GameWorld;
 import game.item.OxygenTank;
 
 /**
@@ -12,17 +12,14 @@ import game.item.OxygenTank;
 public class PickUpOxygenTankAction extends Action {
 
     private OxygenTank oxygenTank;
-    private GamePlayer player;
 
     /**
      * Constructor for an Action that picks up an Oxygen Tank.
      *
      * @param oxygenTank an Oxygen Tank to be picked up
-     * @param player a GamePlayer that picks up the OxygenTank
      */
-    public PickUpOxygenTankAction(OxygenTank oxygenTank, GamePlayer player) {
+    public PickUpOxygenTankAction(OxygenTank oxygenTank) {
         this.oxygenTank = oxygenTank;
-        this.player = player;
     }
 
     /**
@@ -35,7 +32,7 @@ public class PickUpOxygenTankAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         map.locationOf(actor).removeItem(oxygenTank);
-        player.addTank(oxygenTank);
+        GameWorld.getGamePlayer().addTank(oxygenTank);
         oxygenTank.getAllowableActions().remove(this);
         return menuDescription(actor);
     }

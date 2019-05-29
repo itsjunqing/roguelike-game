@@ -1,6 +1,7 @@
 package game.ground;
 
 import edu.monash.fit2099.engine.*;
+import game.GameWorld;
 import game.action.GenerateOxygenTankAction;
 
 public class OxygenDispenser extends Ground {
@@ -12,7 +13,7 @@ public class OxygenDispenser extends Ground {
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
         Actions actions = super.allowableActions(actor, location, direction);
-        if (actor instanceof Player) {
+        if (actor == GameWorld.getGamePlayer()) {
             actions.add(new GenerateOxygenTankAction(location));
         }
         return actions;
