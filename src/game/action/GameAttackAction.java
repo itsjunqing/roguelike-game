@@ -43,8 +43,9 @@ public class GameAttackAction extends AttackAction {
             }
 
             // Modified from original AttackAction. To add skills to the unconscious actors.
-            if (subject.hasSkill(GameSkills.SPACEBOSSPOWER)){
-                sleepingActor.addSkill(GameSkills.SPACEBOSSPOWER);
+            for (GameSkills skill : GameSkills.values())
+            if (subject.hasSkill(skill)){
+                sleepingActor.addSkill(skill);
             }
             // Modified from original AttackAction
 

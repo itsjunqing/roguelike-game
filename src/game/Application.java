@@ -113,17 +113,17 @@ public class Application {
         DoctorMaybe drMaybe = new DoctorMaybe("Maybe");
         earth.addActor(drMaybe, 0, 0);
 
-        Enemy necromancer = new Necromancer("Necromancer");
-        earth.addActor(necromancer, 1, 3);
+//        Enemy necromancer = new Necromancer("Necromancer");
+//        earth.addActor(necromancer, 1, 3);
 //        Goon goon = new Goon("Goonie");
 //        earth.addActor(goon, 17, 9);
 
-//        Q q = new Q("Q");
-//        earth.addActor(q, 0, 2);
+        Q q = new Q("Q");
+        earth.addActor(q, 0, 2);
 
         // Add to Moon
-//        YugoMaxx Yugo = new YugoMaxx("Yugo Maxx");
-//        moon.addActor(Yugo, 0, 5);
+        YugoMaxx Yugo = new YugoMaxx("Yugo Maxx");
+        moon.addActor(Yugo, 0, 5);
 
         world.run();
     }

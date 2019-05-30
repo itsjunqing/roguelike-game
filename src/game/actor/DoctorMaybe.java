@@ -17,7 +17,7 @@ public class DoctorMaybe extends Enemy {
      * @param name the name of the DoctorMaybe
      */
     public DoctorMaybe(String name) {
-        super(name, DOCTOR_MAYBE_CHAR, 10, 100);
+        super(name, DOCTOR_MAYBE_CHAR, 10, 10);
         addItemToInventory(new RocketEngine("Rocket Engine"));
     }
 
