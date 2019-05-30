@@ -2,6 +2,7 @@ package game.actor;
 
 import edu.monash.fit2099.engine.*;
 import game.Application;
+import game.GameSkills;
 import game.action.EndGameAction;
 import game.behaviour.ActionFactory;
 import game.behaviour.ActorBehaviours;
@@ -22,6 +23,7 @@ public class GamePlayer extends Player implements ActorBehaviours {
     private ArrayList<OxygenTank> oxygenTanks = new ArrayList<>();
     private Item stunPowderOnMap = null;
     private List<ActionFactory> actionFactories = new ArrayList<>();
+    private ArrayList<WeaponItem> weaponItems = new ArrayList<>();
 
     /**
      * Constructor to create a GamePlayer.
@@ -70,7 +72,7 @@ public class GamePlayer extends Player implements ActorBehaviours {
         }
 
         if (map.equals(Application.getMoonMap())) {
-            updateTankStatus();
+            updateOxygenStatus();
         }
 
         if (isStunned(map)) {
@@ -111,7 +113,7 @@ public class GamePlayer extends Player implements ActorBehaviours {
         oxygenTanks.add(tank);
     }
 
-    private void updateTankStatus() {
+    private void updateOxygenStatus() {
         OxygenTank tank = oxygenTanks.get(0);
         tank.decreaseCount();
         if (!tank.hasOxygen()) {
@@ -121,5 +123,29 @@ public class GamePlayer extends Player implements ActorBehaviours {
 
     public ArrayList<OxygenTank> getOxygenTanks() {
         return oxygenTanks;
+    }
+
+    public ArrayList<WeaponItem> getWeaponItems() {
+        return weaponItems;
+    }
+
+    public void addWeapon(WeaponItem weaponItem) {
+        weaponItems.add(weaponItem);
+    }
+
+    public void removeWeapon(WeaponItem weaponItem) {
+        weaponItems.remove(weaponItem);
+    }
+
+    @Override
+    public Weapon getWeapon() {
+        for (Item item : inventory) {
+            if (item.asWeapon() != null) {
+                if (item.hasSkill(GameSkills.WEAPONSKILL)) {
+                    return item.asWeapon();
+                }
+            }
+        }
+        return getIntrinsicWeapon();
     }
 }

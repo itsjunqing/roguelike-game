@@ -53,7 +53,7 @@ public abstract class Enemy extends GameActor {
             Location destination = exit.getDestination();
             if (map.isAnActorAt(destination)) {
                 Actor actor = map.actorAt(destination);
-                if (actor == GameWorld.getGamePlayer()) {
+                if (actor.equals(GameWorld.getGamePlayer())) {
                     actions.add(new AttackAction(enemy, actor));
                 }
             } else {

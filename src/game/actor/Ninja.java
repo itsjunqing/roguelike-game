@@ -67,7 +67,7 @@ public class Ninja extends Enemy {
      */
     private boolean hasStunPowder(GameMap map) {
         for (Item item : map.locationOf(GameWorld.getGamePlayer()).getItems()) {
-            if (item == stunPowder) {
+            if (item.equals(stunPowder)) {
                 return true;
             }
         }
