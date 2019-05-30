@@ -17,6 +17,7 @@ public class EndGameAction extends Action {
 
     /**
      * Ends the Game by removing the Player from the Map thus resulting in the player loses the Game.
+     *
      * @param actor The actor performing the action.
      * @param map The map the actor is on.
      * @return a String stating that the player decided to end the Game.
@@ -29,6 +30,7 @@ public class EndGameAction extends Action {
 
     /**
      * A string suitable for describing the action in the UI display.
+     *
      * @param actor The actor performing the action.
      * @return a string
      */
@@ -39,6 +41,7 @@ public class EndGameAction extends Action {
 
     /**
      * A string to determine if the Player wants to end the game.
+     *
      * @return a string
      */
     @Override

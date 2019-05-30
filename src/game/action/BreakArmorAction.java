@@ -20,6 +20,15 @@ public class BreakArmorAction extends Action {
     private Random random = new Random();
 
     // breaks the armor with an item's skill
+
+    /**
+     * Constructor to create an Action that removes an item with a Skill using an Item with a given skill
+     *
+     * @param target the Actor holding the Item with the given skill
+     * @param item the Item containing the given skill
+     * @param itemSkill the Skill required to remove the Item
+     * @param armorSkill the Skill possessed by an Item to be removed
+     */
     public BreakArmorAction(Actor target, Item item, GameSkills itemSkill, GameSkills armorSkill) {
         this.target = target;
         this.item = item;
@@ -27,6 +36,13 @@ public class BreakArmorAction extends Action {
         this.armorSkill = armorSkill;
     }
 
+    /**
+     * Removes the Item in the target's inventory if the Item has a given Skill at a 70% success rate.
+     *
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return a suitable description to display in the UI
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         item.removeSkill(itemSkill);
@@ -42,11 +58,22 @@ public class BreakArmorAction extends Action {
         return "Failed to destroy " + target + "'s armor";
     }
 
+    /**
+     * A string describing the action suitable for displaying in the UI menu.
+     *
+     * @param actor The actor performing the action.
+     * @return a string, e.g. "Player squirts Yugo Maxx to remove armor"
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor + " squirts " + target + " to remove armor";
     }
 
+    /**
+     * Returns an empty string, as breaking armor does not have a dedicated hotkey.
+     *
+     * @return an empty string
+     */
     @Override
     public String hotKey() {
         return "";
