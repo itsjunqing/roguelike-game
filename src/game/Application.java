@@ -1,7 +1,13 @@
 package game;
 
-import edu.monash.fit2099.engine.*;
-import game.actor.*;
+import edu.monash.fit2099.engine.Display;
+import edu.monash.fit2099.engine.FancyGroundFactory;
+import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Location;
+import game.actor.DoctorMaybe;
+import game.actor.GamePlayer;
+import game.actor.Q;
+import game.actor.YugoMaxx;
 import game.ground.*;
 import game.item.RocketPlans;
 import game.item.Spacesuit;
@@ -74,25 +80,26 @@ public class Application {
         // Add to Earth
         earth.addItem(new RocketPlans("Rocket plans"), 1, 3);
 
-        earth.addItem(new Spacesuit(),1, 4);
+        earth.addItem(new Spacesuit("NASA SpaceSuit"),1, 4);
 
         earth.addItem(new WaterPistol("Air Gun"), 0, 4);
 
-        Location rocketPadLocation = earth.at(6,2);
+        Location rocketPadLocation = earth.at(6, 2);
 
         earth.add(new RocketPad(), rocketPadLocation);
         GamePlayer player = new GamePlayer("Player", 1, 100, rocketPadLocation);
 
         world.addPlayer(player, earth, 2, 2);
+//        earth.addItem(new Bow("Abyss Bow", 30), 1, 2);
 
-        Grunt grunt = new Grunt("Mongo");
-        moon.addActor(grunt, 1, 5);
+//        Grunt grunt = new Grunt("Mongo");
+//        earth.addActor(grunt, 1, 5);
 
-        Grunt grunt2 = new Grunt("Norbert");
-        moon.addActor(grunt2, 3, 6);
+//        Grunt grunt2 = new Grunt("Norbert");
+//        moon.addActor(grunt2, 3, 6);
 
-        Ninja ninja = new Ninja("Ninja");
-        moon.addActor(ninja, 10, 5);
+//        Ninja ninja = new Ninja("Ninja");
+//        moon.addActor(ninja, 10, 5);
 
         DoctorMaybe drMaybe = new DoctorMaybe("Maybe");
         earth.addActor(drMaybe, 0, 0);

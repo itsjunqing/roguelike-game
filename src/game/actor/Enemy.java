@@ -2,8 +2,8 @@ package game.actor;
 
 import edu.monash.fit2099.engine.*;
 import game.GameWorld;
+import game.item.Cybernetic;
 import game.item.Key;
-import game.item.Spacesuit;
 
 /**
  * An Enemy base class that generalizes the properties and methods which an enemy is capable of doing.
@@ -23,9 +23,9 @@ public abstract class Enemy extends GameActor {
     protected Enemy(String name, char displayChar, int priority, int hitPoints) {
         super(name, displayChar, priority, hitPoints);
         addItemToInventory(new Key("Key"));
-        Item spacesuit = new Spacesuit();
-        spacesuit.getAllowableActions().clear();
-        addItemToInventory(spacesuit);
+        Item cybernetic = new Cybernetic("Cyborg Implants");
+        cybernetic.getAllowableActions().clear();
+        addItemToInventory(cybernetic);
     }
 
     /**

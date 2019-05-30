@@ -13,16 +13,52 @@ public class GameWorld extends World {
     }
 
     @Override
+    protected void processActorTurn(Actor actor) {
+        Location here = actorLocations.locationOf(actor);
+        GameMap map = here.map();
+
+        Actions actions = new Actions();
+        for (Item item : actor.getInventory()) {
+            actions.add(item.getAllowableActions());
+        }
+
+        for (WeaponItem weaponItem : gamePlayer.getWeaponItems()) {
+            actions.add(weaponItem.getAllowableActions());
+        }
+
+        for (Exit exit : here.getExits()) {
+            Location destination = exit.getDestination();
+            if (actorLocations.isAnActorAt(destination)) {
+                Actor adjacentActor = actorLocations.actorAt(destination);
+                actions.add(adjacentActor.getAllowableActions(actor, exit.getName(), map));
+            } else {
+                Ground adjacentGround = map.groundAt(destination);
+                actions.add(adjacentGround.allowableActions(actor, destination, exit.getName()));
+                actions.add(adjacentGround.getMoveAction(actor, destination, exit.getName(), exit.getHotKey()));
+            }
+        }
+
+        for (Item item : here.getItems()) {
+            actions.add(item.getAllowableActions());
+        }
+        actions.add(new SkipTurnAction());
+
+        Action action = actor.playTurn(actions, map, display);
+        String result = action.execute(actor, map);
+        display.println(result);
+    }
+
+    @Override
     public void run() {
         if (player == null)
             throw new IllegalStateException();
-        boolean cont;
+        boolean resume;
         boolean win = false;
         while (stillRunning()) {
             GameMap playersMap = actorLocations.locationOf(player).map();
             playersMap.draw(display);
             for (Actor actor : actorLocations) {
-                cont = false;
+                resume = false;
                 if (actorLocations.contains(player)) {
 //                    for (Item item : actorLocations.locationOf(player).getItems()){
 //                    Checks if Player has dropped the YugoMaxx 's dead body
@@ -32,17 +68,16 @@ public class GameWorld extends World {
 //                        }
                     if (player.hasSkill(GameSkills.SPACEBOSSPOWER) && playersMap == Application.getEarthMap()) {
                         win = true;
-                        break;
                     }
 
-                    if (!win){
-                        cont = true;
+                    if (!win) {
+                        resume = true;
                     }
                 }
 
-                if (cont) {
+                if (resume) {
                     processActorTurn(actor);
-                } else if (win){
+                } else if (win) {
                     display.println(playerWin());
                     actorLocations.remove(player);
                     break;
@@ -68,7 +103,7 @@ public class GameWorld extends World {
         return gamePlayer;
     }
 
-    public String playerWin(){
+    public String playerWin() {
         return "You win.";
     }
 }

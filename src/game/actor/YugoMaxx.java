@@ -3,10 +3,9 @@ package game.actor;
 import edu.monash.fit2099.engine.*;
 import game.GameSkills;
 import game.GameWorld;
-import game.action.GameAttackAction;
 import game.action.BreakArmorAction;
-import game.item.Exoskeleton;
-import game.item.Spacesuit;
+import game.action.GameAttackAction;
+import game.item.Armor;
 
 public class YugoMaxx extends Enemy {
 
@@ -14,8 +13,7 @@ public class YugoMaxx extends Enemy {
 
     public YugoMaxx(String name) {
         super(name, YUGO_MAXX_CHAR, 20, 10);
-        addItemToInventory(new Exoskeleton());
-        addItemToInventory(new Spacesuit());
+        addItemToInventory(new Armor("Exoskeleton"));
         addSkill(GameSkills.SPACEBOSSPOWER);
     }
 

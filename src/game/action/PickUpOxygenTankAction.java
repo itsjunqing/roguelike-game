@@ -32,8 +32,8 @@ public class PickUpOxygenTankAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         map.locationOf(actor).removeItem(oxygenTank);
-        GameWorld.getGamePlayer().addTank(oxygenTank);
         oxygenTank.getAllowableActions().remove(this);
+        GameWorld.getGamePlayer().addTank(oxygenTank);
         return menuDescription(actor);
     }
 

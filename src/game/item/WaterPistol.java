@@ -6,7 +6,7 @@ import game.ground.Water;
 public class WaterPistol extends Item {
 
     public WaterPistol(String name) {
-        super(name, 'P');
+        super(name, 'G');
         Water.addWaterPistol(this);
     }
 }

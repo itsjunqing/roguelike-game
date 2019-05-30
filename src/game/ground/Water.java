@@ -23,11 +23,18 @@ public class Water extends Ground {
     public Actions allowableActions(Actor actor, Location location, String direction) {
         Actions actions = new Actions();
         for (Item item : actor.getInventory()) {
-            if (waterPistols.contains(item) && !item.hasSkill(GameSkills.WATERSKILL)) {
+            if (canRefill(item)) {
                 actions.add(new FillItemSkillAction(item, GameSkills.WATERSKILL));
             }
         }
         return actions;
+    }
+
+    private boolean canRefill(Item item) {
+        if (waterPistols.contains(item) && !item.hasSkill(GameSkills.WATERSKILL)) {
+            return true;
+        }
+        return false;
     }
 
     public static void addWaterPistol(Item waterPistol) {

@@ -5,10 +5,10 @@ import game.GameSkills;
 
 public class Spacesuit extends Item {
 
-    public static final char SPACESUIT_CHAR = '[';
+    public static final char SPACESUIT_CHAR = 'P';
 
-    public Spacesuit() {
-        super("Spacesuit", SPACESUIT_CHAR);
+    public Spacesuit(String name) {
+        super(name, SPACESUIT_CHAR);
         addSkill(GameSkills.SPACETRAVELLER);
     }
 }

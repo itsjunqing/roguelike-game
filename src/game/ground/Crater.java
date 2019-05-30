@@ -11,6 +11,6 @@ public class Crater extends Ground {
 
     @Override
     public boolean canActorEnter(Actor actor) {
-        return actor.hasSkill(GameSkills.SPACETRAVELLER);
+        return actor.hasSkill(GameSkills.SPACETRAVELLER) || actor.hasSkill(GameSkills.SPACEENERGY);
     }
 }
