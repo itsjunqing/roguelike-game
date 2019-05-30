@@ -1,10 +1,10 @@
 package game;
 
-import edu.monash.fit2099.engine.*;
-import game.actor.DoctorMaybe;
-import game.actor.GamePlayer;
-import game.actor.Q;
-import game.actor.YugoMaxx;
+import edu.monash.fit2099.engine.Display;
+import edu.monash.fit2099.engine.FancyGroundFactory;
+import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Location;
+import game.actor.*;
 import game.ground.*;
 import game.item.RocketPlans;
 import game.item.Spacesuit;
@@ -88,21 +88,21 @@ public class Application {
 
         world.addPlayer(player, earth, 2, 2);
 
-        Item bow = new WeaponItem("Abyss Bow", 'B', 10, "bows");
-        earth.addItem(bow, 1, 2);
+//        Item bow = new WeaponItem("Abyss Bow", 'B', 10, "bows");
+//        earth.addItem(bow, 1, 2);
 
-        Item sword = new WeaponItem("Infinity Blade", '/', 20, "slices");
-        earth.addItem(sword, 1, 1);
+//        Item sword = new WeaponItem("Infinity Blade", '/', 20, "slices");
+//        earth.addItem(sword, 1, 1);
 
-        Item gun = new WeaponItem("Revolver", '!', 50, "shoots");
-        earth.addItem(gun, 2, 1);
+//        Item gun = new WeaponItem("Revolver", '!', 50, "shoots");
+//        earth.addItem(gun, 2, 1);
 
-        Item katana = new WeaponItem("Katana Blade", 'W', 50, "double-edged attack");
-        earth.addItem(katana, 1, 3);
+//        Item katana = new WeaponItem("Katana Blade", 'W', 50, "double-edged attack");
+//        earth.addItem(katana, 1, 3);
 
 
-//        Grunt grunt = new Grunt("Mongo");
-//        earth.addActor(grunt, 1, 5);
+        Grunt grunt = new Grunt("Mongo");
+        earth.addActor(grunt, 1, 5);
 
 //        Grunt grunt2 = new Grunt("Norbert");
 //        moon.addActor(grunt2, 3, 6);
@@ -113,15 +113,17 @@ public class Application {
         DoctorMaybe drMaybe = new DoctorMaybe("Maybe");
         earth.addActor(drMaybe, 0, 0);
 
+        Enemy necromancer = new Necromancer("Necromancer");
+        earth.addActor(necromancer, 1, 3);
 //        Goon goon = new Goon("Goonie");
 //        earth.addActor(goon, 17, 9);
 
-        Q q = new Q("Q");
-        earth.addActor(q, 0, 2);
+//        Q q = new Q("Q");
+//        earth.addActor(q, 0, 2);
 
         // Add to Moon
-        YugoMaxx Yugo = new YugoMaxx("Yugo Maxx");
-        moon.addActor(Yugo, 0, 5);
+//        YugoMaxx Yugo = new YugoMaxx("Yugo Maxx");
+//        moon.addActor(Yugo, 0, 5);
 
         world.run();
     }

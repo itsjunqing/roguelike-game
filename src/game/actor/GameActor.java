@@ -1,8 +1,10 @@
 package game.actor;
 
 import edu.monash.fit2099.engine.Action;
+import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import game.action.GameAttackAction;
 import game.behaviour.ActionFactory;
 import game.behaviour.ActorBehaviours;
 
@@ -15,6 +17,11 @@ public abstract class GameActor extends Actor implements ActorBehaviours {
 
     public GameActor(String name, char displayChar, int priority, int hitPoints) {
         super(name, displayChar, priority, hitPoints);
+    }
+
+    @Override
+    public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
+        return new Actions(new GameAttackAction(otherActor, this));
     }
 
     @Override

@@ -2,6 +2,7 @@ package game.actor;
 
 import edu.monash.fit2099.engine.*;
 import game.GameWorld;
+import game.action.GameAttackAction;
 import game.item.Cybernetic;
 import game.item.Key;
 
@@ -54,7 +55,7 @@ public abstract class Enemy extends GameActor {
             if (map.isAnActorAt(destination)) {
                 Actor actor = map.actorAt(destination);
                 if (actor.equals(GameWorld.getGamePlayer())) {
-                    actions.add(new AttackAction(enemy, actor));
+                    actions.add(new GameAttackAction(enemy, actor));
                 }
             } else {
                 Ground adjacentGround = map.groundAt(destination);

@@ -2,6 +2,7 @@ package game.action;
 
 import edu.monash.fit2099.engine.*;
 import game.GameSkills;
+import game.actor.Necromancer;
 
 import java.util.Random;
 
@@ -30,6 +31,7 @@ public class GameAttackAction extends AttackAction {
         if (!subject.isConscious()) {
             //Drop all the items that are droppable.
             Item sleepingActor = new Item("Sleeping " + subject, '%');
+            Necromancer.addDeadEnemy(sleepingActor);
             map.locationOf(subject).addItem(sleepingActor);
             for (Item item : subject.getInventory()) {
                 for (Action action : item.getAllowableActions()) {
