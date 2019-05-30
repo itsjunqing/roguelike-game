@@ -3,7 +3,9 @@ package game.actor;
 import edu.monash.fit2099.engine.*;
 import game.Application;
 import game.GameSkills;
+import game.action.DeselectWeaponAction;
 import game.action.EndGameAction;
+import game.action.SelectWeaponAction;
 import game.behaviour.ActionFactory;
 import game.behaviour.ActorBehaviours;
 import game.behaviour.OxygenSafetyBehaviour;
@@ -77,6 +79,20 @@ public class GamePlayer extends Player implements ActorBehaviours {
 
         if (isStunned(map)) {
             updateStunnedActions(actions, map);
+        }
+
+        if (!this.hasSkill(GameSkills.WEAPONSKILL)){
+            for (Item item : this.getInventory()){
+                if (item.asWeapon() != null){
+                    actions.add(new SelectWeaponAction(item));
+                }
+            }
+        } else{
+            for (Item item : this.getInventory()){
+                if (item.hasSkill(GameSkills.WEAPONSKILL)){
+                    actions.add(new DeselectWeaponAction(item));
+                }
+            }
         }
 
         return super.playTurn(actions, map, display);

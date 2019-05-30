@@ -1,14 +1,12 @@
 package game;
 
-import edu.monash.fit2099.engine.Display;
-import edu.monash.fit2099.engine.FancyGroundFactory;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.*;
 import game.actor.DoctorMaybe;
 import game.actor.GamePlayer;
 import game.actor.Q;
 import game.actor.YugoMaxx;
 import game.ground.*;
+//import game.item.Bow;
 import game.item.RocketPlans;
 import game.item.Spacesuit;
 import game.item.WaterPistol;
@@ -90,7 +88,15 @@ public class Application {
         GamePlayer player = new GamePlayer("Player", 1, 100, rocketPadLocation);
 
         world.addPlayer(player, earth, 2, 2);
-//        earth.addItem(new Bow("Abyss Bow", 30), 1, 2);
+
+        Item bow = new WeaponItem("Abyss Bow", 'B', 10, "bows");
+        earth.addItem(bow, 1, 2);
+
+        Item sword = new WeaponItem("Infinity Blade", '/', 20, "slices");
+        earth.addItem(sword, 1, 1);
+
+        Item gun = new WeaponItem("Revolver", '!', 50, "shoots");
+        earth.addItem(gun, 2, 1);
 
 //        Grunt grunt = new Grunt("Mongo");
 //        earth.addActor(grunt, 1, 5);

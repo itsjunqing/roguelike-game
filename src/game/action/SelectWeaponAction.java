@@ -1,29 +1,36 @@
 package game.action;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.WeaponItem;
+import edu.monash.fit2099.engine.*;
 import game.GameSkills;
 import game.GameWorld;
 import game.actor.GamePlayer;
 
 public class SelectWeaponAction extends Action {
 
-    private WeaponItem weaponItem;
+    private Item weaponItem;
 
-    public SelectWeaponAction(WeaponItem weaponItem) {
+    public SelectWeaponAction(Item weaponItem) {
         this.weaponItem = weaponItem;
     }
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        GamePlayer gamePlayer = GameWorld.getGamePlayer();
+//        GamePlayer gamePlayer = GameWorld.getGamePlayer();
 //        weaponItem.getAllowableActions().remove(this);
 //        weaponItem.getAllowableActions().add(new DeselectWeaponAction(weaponItem));
 //        gamePlayer.removeWeapon(weaponItem);
 //        gamePlayer.addItemToInventory(weaponItem);
-        weaponItem.addSkill(GameSkills.WEAPONSKILL);
+        for (Item item : actor.getInventory()){
+            if (item.equals(weaponItem)){
+                item.addSkill(GameSkills.WEAPONSKILL);
+                for (Action action : item.getAllowableActions()){
+                    if (action instanceof DropItemAction){
+                        item.getAllowableActions().remove(action);
+                    }
+                }
+            }
+        }
+
         return actor + " equipped the " + weaponItem;
     }
 
