@@ -25,7 +25,6 @@ public class GamePlayer extends Player implements ActorBehaviours {
     private ArrayList<OxygenTank> oxygenTanks = new ArrayList<>();
     private Item stunPowderOnMap = null;
     private List<ActionFactory> actionFactories = new ArrayList<>();
-    private ArrayList<WeaponItem> weaponItems = new ArrayList<>();
 
     /**
      * Constructor to create a GamePlayer.
@@ -151,17 +150,5 @@ public class GamePlayer extends Player implements ActorBehaviours {
 
     public ArrayList<OxygenTank> getOxygenTanks() {
         return oxygenTanks;
-    }
-
-    public ArrayList<WeaponItem> getWeaponItems() {
-        return weaponItems;
-    }
-
-    public void addWeapon(WeaponItem weaponItem) {
-        weaponItems.add(weaponItem);
-    }
-
-    public void removeWeapon(WeaponItem weaponItem) {
-        weaponItems.remove(weaponItem);
     }
 }
