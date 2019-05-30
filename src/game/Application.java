@@ -6,7 +6,6 @@ import game.actor.GamePlayer;
 import game.actor.Q;
 import game.actor.YugoMaxx;
 import game.ground.*;
-//import game.item.Bow;
 import game.item.RocketPlans;
 import game.item.Spacesuit;
 import game.item.WaterPistol;
@@ -78,7 +77,7 @@ public class Application {
         // Add to Earth
         earth.addItem(new RocketPlans("Rocket plans"), 1, 3);
 
-        earth.addItem(new Spacesuit("NASA SpaceSuit"),1, 4);
+        earth.addItem(new Spacesuit("NASA SpaceSuit"), 1, 4);
 
         earth.addItem(new WaterPistol("Air Gun"), 0, 4);
 
@@ -97,6 +96,10 @@ public class Application {
 
         Item gun = new WeaponItem("Revolver", '!', 50, "shoots");
         earth.addItem(gun, 2, 1);
+
+        Item katana = new WeaponItem("Katana Blade", 'W', 50, "double-edged attack");
+        earth.addItem(katana, 1, 3);
+
 
 //        Grunt grunt = new Grunt("Mongo");
 //        earth.addActor(grunt, 1, 5);
@@ -123,7 +126,7 @@ public class Application {
         world.run();
     }
 
-    public static GameMap getEarthMap(){
+    public static GameMap getEarthMap() {
         return earthMap;
     }
 

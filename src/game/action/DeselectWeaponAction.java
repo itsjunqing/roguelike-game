@@ -1,9 +1,8 @@
 package game.action;
 
+
 import edu.monash.fit2099.engine.*;
 import game.GameSkills;
-import game.GameWorld;
-import game.actor.GamePlayer;
 
 public class DeselectWeaponAction extends Action {
 
@@ -15,23 +14,14 @@ public class DeselectWeaponAction extends Action {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-//        GamePlayer gamePlayer = GameWorld.getGamePlayer();
-//        weaponItem.getAllowableActions().remove(this);
-//        weaponItem.getAllowableActions().add(new SelectWeaponAction(weaponItem));
-//        gamePlayer.removeItemFromInventory(weaponItem);
-//        gamePlayer.addWeapon(weaponItem);
-        for (Item item : actor.getInventory()){
-            if (item.equals(weaponItem)){
-                item.removeSkill(GameSkills.WEAPONSKILL);
-                item.getAllowableActions().add(new DropItemAction(item));
-            }
-        }
+        weaponItem.removeSkill(GameSkills.WEAPONSKILL);
+        weaponItem.getAllowableActions().add(new DropItemAction(weaponItem));
         return actor + " unequipped the " + weaponItem;
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " deselects the " + weaponItem;
+        return actor + " unequip the " + weaponItem;
     }
 
     @Override

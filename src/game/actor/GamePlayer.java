@@ -81,16 +81,16 @@ public class GamePlayer extends Player implements ActorBehaviours {
             updateStunnedActions(actions, map);
         }
 
-        if (!this.hasSkill(GameSkills.WEAPONSKILL)){
-            for (Item item : this.getInventory()){
-                if (item.asWeapon() != null){
-                    actions.add(new SelectWeaponAction(item));
+        if (this.hasSkill(GameSkills.WEAPONSKILL)) {
+            for (Item item : inventory) {
+                if (item.hasSkill(GameSkills.WEAPONSKILL)) {
+                    actions.add(new DeselectWeaponAction(item));
                 }
             }
-        } else{
-            for (Item item : this.getInventory()){
-                if (item.hasSkill(GameSkills.WEAPONSKILL)){
-                    actions.add(new DeselectWeaponAction(item));
+        } else {
+            for (Item item : inventory) {
+                if (item.asWeapon() != null) {
+                    actions.add(new SelectWeaponAction(item));
                 }
             }
         }
@@ -98,6 +98,18 @@ public class GamePlayer extends Player implements ActorBehaviours {
         return super.playTurn(actions, map, display);
     }
 
+
+    @Override
+    public Weapon getWeapon() {
+        for (Item item : inventory) {
+            if (item.asWeapon() != null) {
+                if (item.hasSkill(GameSkills.WEAPONSKILL)) {
+                    return item.asWeapon();
+                }
+            }
+        }
+        return getIntrinsicWeapon();
+    }
 
     private boolean isStunned(GameMap map) {
         for (Item item : map.locationOf(this).getItems()) {
@@ -151,17 +163,5 @@ public class GamePlayer extends Player implements ActorBehaviours {
 
     public void removeWeapon(WeaponItem weaponItem) {
         weaponItems.remove(weaponItem);
-    }
-
-    @Override
-    public Weapon getWeapon() {
-        for (Item item : inventory) {
-            if (item.asWeapon() != null) {
-                if (item.hasSkill(GameSkills.WEAPONSKILL)) {
-                    return item.asWeapon();
-                }
-            }
-        }
-        return getIntrinsicWeapon();
     }
 }
