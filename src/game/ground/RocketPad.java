@@ -44,7 +44,7 @@ public class RocketPad extends Ground {
             }
         }
         if ((rocketEngine != null) && (rocketBody != null)) {
-            Location rocketDestination = Application.getMoonMap().at(7,4);
+            Location rocketDestination = Application.getMoonMap().at(2,8);
             actions.add(new BuildRocketAction(rocketBody, rocketEngine, location, rocketDestination));
             return actions;
         }

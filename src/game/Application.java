@@ -38,15 +38,15 @@ public class Application {
 //                "...................#...");
 
         List<String> moonList = Arrays.asList(
+                "ooooooooo#ooooo",
+                "ooooooooo#ooooo",
+                "ooooooooo###+##",
                 "ooooooooooooooo",
                 "ooooooooooooooo",
                 "ooooooooooooooo",
+                "#+#############",
                 "ooooooooooooooo",
-                "ooooooo=ooooooo",
-                "ooooooooooooooo",
-                "ooooooooooooooo",
-                "ooooooooooooooo",
-                "ooooooooooooooo",
+                "oo=oooooooooooo",
                 "ooooooooooooooo");
         GameMap moon = new GameMap(groundFactory, moonList);
         moonMap = moon;
@@ -55,12 +55,12 @@ public class Application {
 
 
         List<String> earthList = Arrays.asList(
-                "...$...................",
-                "....#####....######....",
-                "......=.#....#....#....",
-                "........+....#....#....",
-                "....#####.......###....",
                 ".......................",
+                "....#####....######....",
+                "....#.=.#....#....#....",
+                "#####...+....#....#....",
+                "....#####....##+###....",
+                "$......................",
                 ".......................",
                 "#####.#################",
                 "***................#...",
@@ -72,11 +72,9 @@ public class Application {
 
 
         // Add to Earth
-        earth.addItem(new RocketPlans("Rocket plans"), 1, 3);
+        earth.addItem(new RocketPlans("Rocket plans"), 21, 9);
 
-        earth.addItem(new Spacesuit("NASA SpaceSuit"), 1, 4);
-
-        earth.addItem(new WaterPistol("Air Gun"), 0, 4);
+        earth.addItem(new Spacesuit("NASA SpaceSuit"), 17, 2);
 
         Location rocketPadLocation = earth.at(6, 2);
 
@@ -85,42 +83,48 @@ public class Application {
 
         world.addPlayer(player, earth, 2, 2);
 
-//        Item bow = new WeaponItem("Abyss Bow", 'B', 10, "bows");
-//        earth.addItem(bow, 1, 2);
+        Item bow = new WeaponItem("Abyss Bow", 'B', 20, "bows");
+        earth.addItem(bow, 5, 2);
 
-//        Item sword = new WeaponItem("Infinity Blade", '/', 20, "slices");
-//        earth.addItem(sword, 1, 1);
-
-        Item gun = new WeaponItem("Revolver", '!', 50, "shoots");
-        earth.addItem(gun, 2, 1);
-
-//        Item katana = new WeaponItem("Katana Blade", 'W', 50, "double-edged attack");
-//        earth.addItem(katana, 1, 3);
+        Item katana = new WeaponItem("Wrench", 'W', 10, "whacks");
+        earth.addItem(katana, 22, 9);
 
 
         Grunt grunt = new Grunt("Mongo");
-        earth.addActor(grunt, 1, 5);
+        earth.addActor(grunt, 1, 4);
 
-//        Grunt grunt2 = new Grunt("Norbert");
-//        moon.addActor(grunt2, 3, 6);
+        Grunt grunt2 = new Grunt("Jonesy");
+        earth.addActor(grunt2, 1, 4);
 
         Ninja ninja = new Ninja("Ninja");
         earth.addActor(ninja, 10, 5);
 
-//        DoctorMaybe drMaybe = new DoctorMaybe("Maybe");
-//        earth.addActor(drMaybe, 0, 0);
+        DoctorMaybe drMaybe = new DoctorMaybe("Maybe");
+        earth.addActor(drMaybe, 16, 2);
 
-//        Enemy necromancer = new Necromancer("Necromancer");
-//        earth.addActor(necromancer, 1, 3);
-//        Goon goon = new Goon("Goonie");
-//        earth.addActor(goon, 17, 9);
+        Enemy necromancer = new Necromancer("Necromancer");
+        earth.addActor(necromancer, 10, 9);
+
+        Goon goon = new Goon("Goonie");
+        earth.addActor(goon, 15, 9);
 
         Q q = new Q("Q");
-        earth.addActor(q, 0, 2);
+        earth.addActor(q, 7, 9);
 
         // Add to Moon
         YugoMaxx Yugo = new YugoMaxx("Yugo Maxx");
-        moon.addActor(Yugo, 0, 5);
+        moon.addActor(Yugo, 6, 3);
+
+        Goon goon2 = new Goon("Norbert");
+        moon.addActor(goon2, 0, 0);
+
+        Item sword = new WeaponItem("Lightsaber", '/', 50, "slices");
+        moon.addItem(sword, 10, 8);
+
+        Item gauntlet = new WeaponItem("Infinity Gauntlet", '!', 100, "punches");
+        moon.addItem(gauntlet, 14, 0);
+        
+        moon.addItem(new WaterPistol("Air Gun"), 10, 8);
 
         world.run();
     }
