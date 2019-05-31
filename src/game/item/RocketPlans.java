@@ -4,16 +4,16 @@ import edu.monash.fit2099.engine.Item;
 import game.actor.Q;
 
 /**
- * Class representing a RocketPlan that can be exchanged for a RocketBody.
+ * Class representing a RocketPlans that can be exchanged for a RocketBody.
  */
 public class RocketPlans extends Item {
 
     public static final char ROCKET_PLANS_CHAR = '~';
 
     /**
-     * Constructor to create rocket plans with a name.
+     * Constructor to create RocketPlans.
      *
-     * @param name name of the rocket plans
+     * @param name name of the RocketPlans
      */
     public RocketPlans(String name) {
         super(name, ROCKET_PLANS_CHAR);

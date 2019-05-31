@@ -18,5 +18,6 @@ public class Cybernetic extends Item {
     public Cybernetic(String name) {
         super(name, CYBERNETIC_CHAR);
         addSkill(GameSkills.SPACEENERGY);
+        allowableActions.clear();
     }
 }

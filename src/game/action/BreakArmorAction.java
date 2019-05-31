@@ -9,7 +9,7 @@ import game.GameSkills;
 import java.util.Random;
 
 /**
- * An Action that removes the Invulnerable skill from an Actor.
+ * An Action that breaks an Actor's armor.
  */
 public class BreakArmorAction extends Action {
 
@@ -19,15 +19,13 @@ public class BreakArmorAction extends Action {
     private GameSkills armorSkill;
     private Random random = new Random();
 
-    // breaks the armor with an item's skill
-
     /**
-     * Constructor to create an Action that removes an item with a Skill using an Item with a given skill
+     * Constructor to create an Action that breaks an armor by using an item's skill.
      *
-     * @param target the Actor holding the Item with the given skill
-     * @param item the Item containing the given skill
-     * @param itemSkill the Skill required to remove the Item
-     * @param armorSkill the Skill possessed by an Item to be removed
+     * @param target     the Actor holding the Item with the given skill
+     * @param item       the Item containing the skill to remove the Armor
+     * @param itemSkill  the skill required to remove the Armor
+     * @param armorSkill the skill possessed by the Armor
      */
     public BreakArmorAction(Actor target, Item item, GameSkills itemSkill, GameSkills armorSkill) {
         this.target = target;
@@ -37,10 +35,11 @@ public class BreakArmorAction extends Action {
     }
 
     /**
-     * Removes the Item in the target's inventory if the Item has a given Skill at a 70% success rate.
+     * Removes the target's Armor in its inventory by utilizing the skill required to remove the Armor
+     * with a 70% chance of success.
      *
      * @param actor The actor performing the action.
-     * @param map The map the actor is on.
+     * @param map   The map the actor is on.
      * @return a suitable description to display in the UI
      */
     @Override
@@ -62,7 +61,7 @@ public class BreakArmorAction extends Action {
      * A string describing the action suitable for displaying in the UI menu.
      *
      * @param actor The actor performing the action.
-     * @return a string, e.g. "Player squirts Yugo Maxx to remove armor"
+     * @return a string, e.g. "Player squirts YugoMaxx to remove armor"
      */
     @Override
     public String menuDescription(Actor actor) {

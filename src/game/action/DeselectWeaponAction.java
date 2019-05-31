@@ -5,14 +5,14 @@ import edu.monash.fit2099.engine.*;
 import game.GameSkills;
 
 /**
- * An Action that removes the Weapon from being equipped by the Player
+ * An Action that unequips a Weapon from the Player.
  */
 public class DeselectWeaponAction extends Action {
 
     private Item weaponItem;
 
     /**
-     * Constructor to create an Action that unequips a Weapon from the Player
+     * Constructor to create an Action that unequips a Weapon from the Player.
      *
      * @param weaponItem a weaponItem to unequip from the Player
      */
@@ -22,9 +22,10 @@ public class DeselectWeaponAction extends Action {
 
     /**
      * Removes a skill from the weaponItem to signify that the Player is currently not using the weaponItem.
+     * After unequipped, player would be able to drop the item.
      *
      * @param actor The actor performing the action.
-     * @param map The map the actor is on.
+     * @param map   The map the actor is on.
      * @return a suitable description to display in the UI
      */
     @Override

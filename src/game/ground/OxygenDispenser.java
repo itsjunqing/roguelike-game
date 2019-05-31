@@ -5,7 +5,7 @@ import game.GameWorld;
 import game.action.GenerateOxygenTankAction;
 
 /**
- * Class representing an OxygenDispenser that dispenses an OxygenTank when requested by an Actor.
+ * Class representing an OxygenDispenser that dispenses an OxygenTank.
  */
 public class OxygenDispenser extends Ground {
 
@@ -17,7 +17,7 @@ public class OxygenDispenser extends Ground {
     }
 
     /**
-     * Allows the actor to generate an OxygenTank if the actor is a player.
+     * Allows the Player to generate an OxygenTank.
      *
      * @param actor the Actor beside the OxygenDispenser
      * @param location the Location beside the OxygenDispenser

@@ -11,7 +11,7 @@ import game.item.RocketBody;
 import java.util.ArrayList;
 
 /**
- * Class representing Q as a Non-Playable Character
+ * Class representing Q as a Non-Playable Character.
  */
 public class Q extends GameActor {
 
@@ -21,7 +21,7 @@ public class Q extends GameActor {
 
     /**
      * Constructor to create Q as a Non-Playable Character with a name.
-     * By default, it has RocketBody in its inventory.
+     * It has RocketBody in its inventory and has an ability of wandering around the map at random.
      *
      * @param name name of the Q
      */
@@ -106,6 +106,11 @@ public class Q extends GameActor {
         return actions;
     }
 
+    /**
+     * Gets the RocketBody Item in its inventory.
+     *
+     * @return the RocketBody
+     */
     private Item getRocketBody() {
         for (Item item : this.getInventory()) {
             if (rocketBodies.contains(item)) {
@@ -115,6 +120,11 @@ public class Q extends GameActor {
         return null;
     }
 
+    /**
+     * Gets the RocketPlans in its inventory.
+     *
+     * @return the RocketPlans
+     */
     private Item getRocketPlan() {
         for (Item item : this.getInventory()) {
             if (rocketPlans.contains(item)) {

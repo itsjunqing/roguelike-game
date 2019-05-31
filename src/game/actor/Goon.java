@@ -19,6 +19,7 @@ public class Goon extends Enemy {
 
     /**
      * Constructor to create an Enemy of type Goon with a name.
+     * It has a behaviour of following the player.
      *
      * @param name the name of the Goon
      */

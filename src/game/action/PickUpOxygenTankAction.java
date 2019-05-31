@@ -7,26 +7,26 @@ import game.GameWorld;
 import game.item.OxygenTank;
 
 /**
- * An Action that allows the Actor to pick up an OxygenTank
+ * An Action that allows an Actor to pick up an OxygenTank.
  */
 public class PickUpOxygenTankAction extends Action {
 
     private OxygenTank oxygenTank;
 
     /**
-     * Constructor for an Action that picks up an Oxygen Tank.
+     * Constructor to create an Action that allows Actor to pick up an OxygenTank.
      *
-     * @param oxygenTank an Oxygen Tank to be picked up
+     * @param oxygenTank an OxygenTank to be picked up
      */
     public PickUpOxygenTankAction(OxygenTank oxygenTank) {
         this.oxygenTank = oxygenTank;
     }
 
     /**
-     * Removes the OxygenTank from the map and adds the OxygenTank to the GamePlayer's inventory.
+     * Removes the OxygenTank from the map and adds the OxygenTank to the GamePlayer's list of oxygenTanks.
      *
      * @param actor The actor performing the action.
-     * @param map The map the actor is on.
+     * @param map   The map the actor is on.
      * @return a string stating the OxygenTank is picked up by the GamePlayer
      */
     @Override
@@ -41,7 +41,7 @@ public class PickUpOxygenTankAction extends Action {
      * A string suitable to display picking up an OxygenTank in the UI.
      *
      * @param actor The actor performing the action.
-     * @return a string
+     * @return a string, e.g. "Player picks up the oxygen tank"
      */
     @Override
     public String menuDescription(Actor actor) {

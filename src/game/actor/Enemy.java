@@ -24,9 +24,7 @@ public class Enemy extends GameActor {
     protected Enemy(String name, char displayChar, int priority, int hitPoints) {
         super(name, displayChar, priority, hitPoints);
         addItemToInventory(new Key("Key"));
-        Item cybernetic = new Cybernetic("Cyborg Implants");
-        cybernetic.getAllowableActions().clear();
-        addItemToInventory(cybernetic);
+        addItemToInventory(new Cybernetic("Cyborg Implants"));
     }
 
     /**

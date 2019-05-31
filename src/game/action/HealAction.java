@@ -6,7 +6,7 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 
 /**
- * An Action to represent healing an Actor.
+ * An Action that heals an Actor by a heal amount.
  */
 public class HealAction extends Action {
 
@@ -16,7 +16,7 @@ public class HealAction extends Action {
     /**
      * Constructor to create an Action that heals an Actor.
      *
-     * @param potion an Item that heals an Actor
+     * @param potion    an Item that heals an Actor
      * @param healCount the amount of hitpoints to heal an Actor
      */
     public HealAction(Item potion, int healCount) {
@@ -25,14 +25,14 @@ public class HealAction extends Action {
     }
 
     /**
-     * Heals the Actor that calls the Action.
+     * Heals the Actor by removing the potion from the map and increases the Actor's hitpoints by the healCount.
      *
      * @param actor The actor performing the action.
-     * @param map The map the actor is on.
+     * @param map   The map the actor is on.
      * @return a suitable description to display in the UI
      */
     @Override
-    public String execute(Actor actor, GameMap map){
+    public String execute(Actor actor, GameMap map) {
         map.locationOf(actor).removeItem(potion);
         actor.heal(healCount);
         return actor + " is healed with " + healCount + "hp";
@@ -45,7 +45,7 @@ public class HealAction extends Action {
      * @return a string, e.g. "Player heals with the potion"
      */
     @Override
-    public String menuDescription(Actor actor){
+    public String menuDescription(Actor actor) {
         return actor + " heals with the " + potion;
     }
 

@@ -16,6 +16,7 @@ public class Ninja extends Enemy {
 
     /**
      * Constructor to create an Enemy of type Ninja with a name.
+     * It has an ability of throwing stun to a player.
      *
      * @param name name of the Ninja
      */
@@ -59,10 +60,10 @@ public class Ninja extends Enemy {
     }
 
     /**
-     * Checks the location of the player if there exists a stun powder bomb.
+     * Returns true if a StunPowder is detected on the player's location.
      *
      * @param map the map containing the player
-     * @return a boolean stating if the stun powder bomb exists
+     * @return true if and only if the StunPowder exists on the player's location
      */
     private boolean hasStunPowder(GameMap map) {
         for (Item item : map.locationOf(GameWorld.getGamePlayer()).getItems()) {

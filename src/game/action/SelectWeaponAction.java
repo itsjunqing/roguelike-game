@@ -11,7 +11,7 @@ public class SelectWeaponAction extends Action {
     private Item weaponItem;
 
     /**
-     * Constructor to create an Action that equips a Weapon to the Player
+     * Constructor to create an Action that equips a Weapon to the Player.
      *
      * @param weaponItem a weaponItem to equip to the Player
      */
@@ -21,9 +21,10 @@ public class SelectWeaponAction extends Action {
 
     /**
      * Adds a skill to the weaponItem to signify that the Player is currently using the weaponItem.
+     * After equipped, player would not be able to drop the equipped WeaponItem unless unequipped.
      *
      * @param actor The actor performing the action.
-     * @param map The map the actor is on.
+     * @param map   The map the actor is on.
      * @return a suitable description to display in the UI
      */
     @Override

@@ -4,14 +4,14 @@ import edu.monash.fit2099.engine.*;
 import game.item.OxygenTank;
 
 /**
- * An Action that represents creating an OxygenTank
+ * An Action that creates an OxygenTank.
  */
 public class GenerateOxygenTankAction extends Action {
 
     private Location dispenserLocation;
 
     /**
-     * Constructor to create an Action that signifies creating an OxygenTank
+     * Constructor to create an Action that signifies creating an OxygenTank.
      *
      * @param dispenserLocation the Location to create an OxygenTank
      */
@@ -20,11 +20,10 @@ public class GenerateOxygenTankAction extends Action {
     }
 
     /**
-     * Checks if the Location already contains an OxygenTank. Creates a new OxygenTank if the Location doesn't already
-     * have an OxygenTank.
+     * Generates an OxygenTank on the dispenserLocation if it does not consists of any OxygenTank.
      *
      * @param actor The actor performing the action.
-     * @param map The map the actor is on.
+     * @param map   The map the actor is on.
      * @return a suitable description to display in the UI
      */
     @Override

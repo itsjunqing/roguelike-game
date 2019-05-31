@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.Item;
 import game.GameSkills;
 
 /**
- * An Action that fills up the WaterPistol.
+ * An Action that fills up an Item with a Skill.
  */
 public class FillItemSkillAction extends Action {
 
@@ -17,7 +17,7 @@ public class FillItemSkillAction extends Action {
     /**
      * Constructor for an Action that fills up the item.
      *
-     * @param item the item to be filled up
+     * @param item  the item to be filled up
      * @param skill the skill to add to the item that signifies "filling it up"
      */
     public FillItemSkillAction(Item item, GameSkills skill) {
@@ -29,7 +29,7 @@ public class FillItemSkillAction extends Action {
      * Adds a skill to the item to signify that the item is "filled up"
      *
      * @param actor The actor performing the action.
-     * @param map The map the actor is on.
+     * @param map   The map the actor is on.
      * @return a string stating the item is refilled
      */
     @Override

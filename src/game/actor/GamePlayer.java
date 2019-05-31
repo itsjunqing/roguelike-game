@@ -41,9 +41,8 @@ public class GamePlayer extends Player implements ActorBehaviours {
     /**
      * Play a turn by displaying a menu to the user and getting their selected Action returned.
      * If it is stunned, can only skip its current action until the stun effect is gone (after 2 stuns).
-     * <p>
-     * // add the description for selecting and deselecting weapon here
      * Otherwise, it runs the default implementation of a Player.
+     * This GamePlayer has the capability of selecting and deselecting weapons to be used for the next attack.
      *
      * @param actions the actions to display
      * @param map     the map to display
@@ -133,7 +132,7 @@ public class GamePlayer extends Player implements ActorBehaviours {
      * Returns true if the GamePlayer is stunned by checking if the GamePlayer's location has a StunPowder.
      *
      * @param map map which the GamePlayer is on
-     * @return true or false
+     * @return true if and only if there exists a StunPowder on the GamePlayer's location
      */
     private boolean isStunned(GameMap map) {
         for (Item item : map.locationOf(this).getItems()) {

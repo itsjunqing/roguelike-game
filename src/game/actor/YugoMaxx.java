@@ -16,7 +16,7 @@ public class YugoMaxx extends Enemy {
 
     /**
      * Constructor to create a YugoMaxx.
-     * By default, it has an Armor in its inventory.
+     * It has an Armor in its inventory and have a bossing power in space.
      *
      * @param name name of the YugoMaxx.
      */
@@ -46,7 +46,6 @@ public class YugoMaxx extends Enemy {
                 }
             }
         }
-
         return super.playTurn(actions, map, display);
     }
 
@@ -89,7 +88,7 @@ public class YugoMaxx extends Enemy {
     /**
      * Returns if it is invulnerable to damage.
      *
-     * @return true if it invulnerable to damage
+     * @return true if and only if it is invulnerable to damage
      */
     private boolean isInvulnerable() {
         return this.hasSkill(GameSkills.INVULNERABLE);
@@ -99,7 +98,7 @@ public class YugoMaxx extends Enemy {
      * Returns true if player is next to it.
      *
      * @param map map which the YugoMaxx is on
-     * @return true if player is next to the YugoMaxx
+     * @return true if and only if player is next to the YugoMaxx
      */
     private boolean playerIsNextTo(GameMap map) {
         Location playerLocation = map.locationOf(GameWorld.getGamePlayer());

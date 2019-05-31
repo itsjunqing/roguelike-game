@@ -3,13 +3,14 @@ package game.action;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import game.actor.Enemy;
 
 /**
- * An Action that creates a new Enemy at a Location.
+ * An Action that spawns a new Enemy at a Location.
  */
 public class SpawnEnemyAction extends Action {
 
-    private Actor enemy;
+    private Enemy enemy;
     private int x;
     private int y;
 
@@ -17,10 +18,10 @@ public class SpawnEnemyAction extends Action {
      * Constructor to create an Action that creates a new Enemy at a given Location.
      *
      * @param enemy the Actor to create
-     * @param x the X Location to create the Enemy
-     * @param y the Y Location to create the Enemy
+     * @param x     the X Location to create the Enemy
+     * @param y     the Y Location to create the Enemy
      */
-    public SpawnEnemyAction(Actor enemy, int x, int y) {
+    public SpawnEnemyAction(Enemy enemy, int x, int y) {
         this.enemy = enemy;
         this.x = x;
         this.y = y;
@@ -30,7 +31,7 @@ public class SpawnEnemyAction extends Action {
      * Creates a new Enemy at the Location.
      *
      * @param actor The actor performing the action.
-     * @param map The map the actor is on.
+     * @param map   The map the actor is on.
      * @return a suitable description to display in the UI
      */
     @Override
@@ -43,7 +44,7 @@ public class SpawnEnemyAction extends Action {
      * A string describing the action suitable for displaying in the UI menu.
      *
      * @param actor The actor performing the action.
-     * @return a string, e.g. "Necromances spawns a Zombie"
+     * @return a string, e.g. "Necromancer spawns a Zombie"
      */
     @Override
     public String menuDescription(Actor actor) {

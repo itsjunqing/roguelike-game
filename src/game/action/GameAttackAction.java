@@ -17,10 +17,10 @@ public class GameAttackAction extends AttackAction {
     /**
      * Constructor to create an Action to damage an Actor
      *
-     * @param actor the Actor that inflicts the damage
+     * @param actor   the Actor that inflicts the damage
      * @param subject the Actor to be damaged
      */
-    public GameAttackAction(Actor actor, Actor subject){
+    public GameAttackAction(Actor actor, Actor subject) {
         super(actor, subject);
         this.subject = subject;
     }
@@ -32,7 +32,7 @@ public class GameAttackAction extends AttackAction {
      * unconscious body.
      *
      * @param actor The actor performing the action.
-     * @param map The map the actor is on.
+     * @param map   The map the actor is on.
      * @return a suitable description to display in the UI
      */
     @Override

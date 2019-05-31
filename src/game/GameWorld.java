@@ -3,11 +3,18 @@ package game;
 import edu.monash.fit2099.engine.*;
 import game.actor.GamePlayer;
 
+/**
+ * Class representing the GameWorld that extends from the World.
+ */
 public class GameWorld extends World {
 
     private static GamePlayer gamePlayer;
 
-    // use this to access the map instead of accessing via the Application
+    /**
+     * Constructor to create a GameWorld.
+     *
+     * @param display the display of the GameWorld
+     */
     public GameWorld(Display display) {
         super(display);
     }
@@ -48,15 +55,30 @@ public class GameWorld extends World {
         display.println(endGameMessage());
     }
 
+    /**
+     * Returns a player losing string.
+     * @return a string
+     */
     public String playerLose() {
         return "You lose.";
     }
 
+    /**
+     * Adds a GamePlayer into the GameWorld.
+     * @param gamePlayer a GamePlayer to add
+     * @param map the map where the GamePlayer is to be added
+     * @param y y coordinate of the GamePlayer
+     * @param x x coordinate of the GamePlayer
+     */
     public void addPlayer(GamePlayer gamePlayer, GameMap map, int y, int x) {
         super.addPlayer(gamePlayer, map, y, x);
         GameWorld.gamePlayer = gamePlayer;
     }
 
+    /**
+     * Gets the GamePlayer
+     * @return
+     */
     public static GamePlayer getGamePlayer() {
         return gamePlayer;
     }
