@@ -1,3 +1,8 @@
 edu.monash.fit2099.demo
 edu.monash.fit2099.engine
 game
+game.action
+game.actor
+game.behaviour
+game.ground
+game.item
