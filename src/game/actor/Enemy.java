@@ -14,7 +14,7 @@ public abstract class Enemy extends GameActor {
     protected static final int BASE_DAMAGE = 5;
 
     /**
-     * Constructor that creates a new enemy and adds a Key item in its inventory.
+     * Constructor that creates a new enemy, adds a Key and Cybernetic item in its inventory,
      *
      * @param name        a String the resembles the name of the enemy
      * @param displayChar a Character to identify the enemy on the GameMap

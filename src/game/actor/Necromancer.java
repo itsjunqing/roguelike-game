@@ -6,14 +6,17 @@ import game.item.Potion;
 
 import java.util.ArrayList;
 
+/**
+ * Class representing a Necromancer that is able to resurrecting sleeping enemies as Zombies.
+ */
 public class Necromancer extends Enemy {
 
     private static ArrayList<Item> deadEnemies = new ArrayList<>();
 
     /**
-     * Constructor to create a Necromancer as a form of an Enemy.
+     * Constructor to create a Necromancer.
      *
-     * @param name a String representing the name of the Wizard
+     * @param name name of the Necromancer
      */
     public Necromancer(String name) {
         super(name, '?', 20, 5);
@@ -21,9 +24,8 @@ public class Necromancer extends Enemy {
     }
 
     /**
-     * Necromancers are capable of resurrecting sleeping enemies as Zombies
-     * if the sleeping enemy is beside the Necromancer.
-     * Necromancers are unable to attack and can only move around at random or skip its run.
+     * Resurrect a sleeping Enemy as a Zombie if a sleeping Enemy is beside the Necromancer.
+     * By default, it is unable to attack and can only move around the map at random and resurrect an Enemy.
      *
      * @param actions collection of possible Actions for this Actor
      * @param map     the map containing the Actor
@@ -56,6 +58,11 @@ public class Necromancer extends Enemy {
         return super.playTurn(actions, map, display);
     }
 
+    /**
+     * Adds a dead sleeping Enemy to the list of recognizable deadEnemy items.
+     *
+     * @param deadEnemy a sleeping dead Enemy
+     */
     public static void addDeadEnemy(Item deadEnemy) {
         deadEnemies.add(deadEnemy);
     }

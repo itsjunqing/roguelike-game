@@ -2,20 +2,22 @@ package game.actor;
 
 import edu.monash.fit2099.engine.*;
 
+/**
+ * Class representing a Zombie.
+ */
 public class Zombie extends Enemy {
 
     /**
-     * Constructor to create a Zombie as a form of an Enemy.
+     * Constructor to create a Zombie.
      *
-     * @param name a String representing the Zombie's name.
+     * @param name name of the Zombie
      */
     public Zombie(String name) {
         super(name, 'Z', 21, 5);
     }
 
     /**
-     * Zombie are capable of performing all the actions of a basic Enemy which are Attacking the player, skipping its
-     * turn and moving around the map.
+     * Attack the player if it is detected next to it and moves randomly in the map.
      *
      * @param actions collection of possible Actions for this Actor
      * @param map     the map containing the Actor

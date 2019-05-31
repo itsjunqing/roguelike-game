@@ -38,21 +38,6 @@ public class GamePlayer extends Player implements ActorBehaviours {
         addBehaviour(new OxygenSafetyBehaviour(safeLocation, this));
     }
 
-    @Override
-    public void addBehaviour(ActionFactory behaviour) {
-        actionFactories.add(behaviour);
-    }
-
-    @Override
-    public Action executeBehaviours(GameMap map) {
-        for (ActionFactory factory : actionFactories) {
-            Action action = factory.getAction(this, map);
-            if (action != null)
-                return action;
-        }
-        return null;
-    }
-
     /**
      * Play a turn by displaying a menu to the user and getting their selected Action returned.
      * If it is stunned, can only skip its current action until the stun effect is gone (after 2 stuns).
@@ -77,7 +62,7 @@ public class GamePlayer extends Player implements ActorBehaviours {
         }
 
         if (isStunned(map)) {
-            updateStunnedActions(actions, map);
+            updateStunnedStatus(actions, map);
         }
 
         if (this.hasSkill(GameSkills.WEAPONSKILL)) {
@@ -97,7 +82,39 @@ public class GamePlayer extends Player implements ActorBehaviours {
         return super.playTurn(actions, map, display);
     }
 
+    /**
+     * Adds a behaviour into the list of behaviours.
+     *
+     * @param behaviour the behaviour which the Actor has
+     */
+    @Override
+    public void addBehaviour(ActionFactory behaviour) {
+        actionFactories.add(behaviour);
+    }
 
+    /**
+     * Execute the GamePlayer's behaviour.
+     *
+     * @param map map which the GamePlayer is on
+     * @return the Action to be executed for the behaviour
+     */
+    @Override
+    public Action executeBehaviours(GameMap map) {
+        for (ActionFactory factory : actionFactories) {
+            Action action = factory.getAction(this, map);
+            if (action != null)
+                return action;
+        }
+        return null;
+    }
+
+
+    /**
+     * Returns the item in the inventory as a Weapon if the item is a WeaponItem and has a WEAPONSKILL.
+     * Otherwise, it returns the default IntrinsicWeapon.
+     *
+     * @return a Weapon of IntrinsicWeapon or a WeaponItem to be used as the GamePlayer's weapon for attacking
+     */
     @Override
     public Weapon getWeapon() {
         for (Item item : inventory) {
@@ -110,6 +127,12 @@ public class GamePlayer extends Player implements ActorBehaviours {
         return getIntrinsicWeapon();
     }
 
+    /**
+     * Returns true if the GamePlayer is stunned by checking if the GamePlayer's location has a StunPowder.
+     *
+     * @param map map which the GamePlayer is on
+     * @return true or false
+     */
     private boolean isStunned(GameMap map) {
         for (Item item : map.locationOf(this).getItems()) {
             if (stunPowders.contains(item)) {
@@ -120,7 +143,14 @@ public class GamePlayer extends Player implements ActorBehaviours {
         return false;
     }
 
-    private void updateStunnedActions(Actions actions, GameMap map) {
+    /**
+     * Updates the stunned status by decreasing the stunCount by 1 if it is stunned and forces the GamePlayer to
+     * skip its turn. Otherwise, it removes the StunPowder from the GamePlayer's location.
+     *
+     * @param actions a list of actions to be returned
+     * @param map     the map which the GamePlayer is on
+     */
+    private void updateStunnedStatus(Actions actions, GameMap map) {
         if (stunCount != 2) {
             actions.clear();
             actions.add(new SkipTurnAction());
@@ -132,14 +162,28 @@ public class GamePlayer extends Player implements ActorBehaviours {
         }
     }
 
+    /**
+     * Adds a StunPowder into the list of recognizable stunPowders as reference.
+     *
+     * @param stunPowder a StunPowder
+     */
     public static void addStunPowder(Item stunPowder) {
         stunPowders.add(stunPowder);
     }
 
+    /**
+     * Adds an OxygenTank into the list of oxygenTanks.
+     *
+     * @param tank an OxygenTank
+     */
     public void addTank(OxygenTank tank) {
         oxygenTanks.add(tank);
     }
 
+    /**
+     * Updates the oxygen status by decreasing the oxygen count for the first OxygenTank
+     * in the list of oxygenTanks and remove it from the list if there isn't any oxygen left.
+     */
     private void updateOxygenStatus() {
         OxygenTank tank = oxygenTanks.get(0);
         tank.decreaseCount();
@@ -148,6 +192,11 @@ public class GamePlayer extends Player implements ActorBehaviours {
         }
     }
 
+    /**
+     * Returns the list of oxygenTanks.
+     *
+     * @return list of oxygenTanks
+     */
     public ArrayList<OxygenTank> getOxygenTanks() {
         return oxygenTanks;
     }
