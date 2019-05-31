@@ -67,7 +67,7 @@ public class ThrowStunBehaviour extends Action implements ActionFactory {
             Location playerLocation = map.locationOf(target);
             boolean stunExists = false;
             for (Item item : playerLocation.getItems()) {
-                if (item == stunPowder) {
+                if (item.equals(stunPowder)) {
                     stunExists = true;
                     break;
                 }

@@ -43,7 +43,7 @@ public class LockedDoor extends Ground {
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
         Actions actions = super.allowableActions(actor, location, direction);
-        if (actor == GameWorld.getGamePlayer()) {
+        if (actor.equals(GameWorld.getGamePlayer())) {
             for (Item item : actor.getInventory()) {
                 if (keys.contains(item)) {
                     actions.add(new UnlockDoorAction(direction, location, item));

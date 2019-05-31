@@ -51,7 +51,7 @@ public class Q extends GameActor {
             for (Exit exit : qLocation.getExits()) {
                 Location destination = exit.getDestination();
                 GamePlayer player = GameWorld.getGamePlayer();
-                if (map.locationOf(player) == destination) {
+                if (map.locationOf(player).equals(destination)) {
                     Item plan = getRocketPlan();
                     if (plan != null) {
                         rocketPlans.remove(plan);
@@ -90,7 +90,7 @@ public class Q extends GameActor {
             return actions;
         }
 
-        if (otherActor == GameWorld.getGamePlayer()) {
+        if (otherActor.equals(GameWorld.getGamePlayer())) {
             for (Item plan : otherActor.getInventory()) {
                 if (rocketPlans.contains(plan)) {
                     actions.add(new TalkAction("Hand the rocket plans over, I don't have all day", this));

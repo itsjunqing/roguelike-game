@@ -28,9 +28,12 @@ public class Rocket extends Item {
     public Actions getAllowableActions() {
         allowableActions.clear();
 
-        if (earthLocation.getActor().equals(GameWorld.getGamePlayer())) {
+        if (earthLocation.containsActor() && earthLocation.getActor().equals(GameWorld.getGamePlayer())) {
+            // alternative method, both works
+//        if (earthLocation.getActor() == GameWorld.getGamePlayer())) {
             allowableActions.add(new MoveActorAction(moonLocation, "to Moon!"));
-        } else if (moonLocation.getActor().equals(GameWorld.getGamePlayer())) {
+        } else if (moonLocation.containsActor() && moonLocation.getActor().equals(GameWorld.getGamePlayer())) {
+//        } else if (moonLocation.getActor() == GameWorld.getGamePlayer())) {
             allowableActions.add(new MoveActorAction(earthLocation, "to Earth!"));
         }
         return allowableActions;

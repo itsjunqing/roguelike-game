@@ -64,7 +64,7 @@ public class YugoMaxx extends Enemy {
         Location yugoLocation = map.locationOf(this);
 
         for (Exit exit : yugoLocation.getExits()) {
-            if (exit.getDestination() == playerLocation) {
+            if (exit.getDestination().equals(playerLocation)) {
                 return true;
             }
         }
