@@ -20,7 +20,7 @@ public class Necromancer extends Enemy {
      */
     public Necromancer(String name) {
         super(name, '?', 20, 25);
-        addItemToInventory(new Potion("Potion", 30));
+        addItemToInventory(new Potion("Potion", 100));
     }
 
     /**

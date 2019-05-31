@@ -24,19 +24,6 @@ public class Application {
         FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new LockedDoor(),
                 new RocketPad(), new Crater(), new Water(), new OxygenDispenser());
 
-//        List<String> earth = Arrays.asList(
-//                ".......................",
-//                "....#####....######....",
-//                "....#.=.#....#....#....",
-//                "#####...+....#....#....",
-//                "....#####....##+###....",
-//                ".......................",
-//                ".......................",
-//                "#####+#################",
-//                "...................#...",
-//                "...................+...",
-//                "...................#...");
-
         List<String> moonList = Arrays.asList(
                 "ooooooooo#ooooo",
                 "ooooooooo#ooooo",
