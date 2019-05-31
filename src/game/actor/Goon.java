@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Class representing a Goon.
+ * Class representing a Goon as a type of an Enemy.
  */
 public class Goon extends Enemy {
 
@@ -19,7 +19,6 @@ public class Goon extends Enemy {
 
     /**
      * Constructor to create an Enemy of type Goon with a name.
-     * It takes in a player of Actor type as a target to follow.
      *
      * @param name the name of the Goon
      */
@@ -65,6 +64,9 @@ public class Goon extends Enemy {
         return new IntrinsicWeapon(BASE_DAMAGE * 2, "punches");
     }
 
+    /**
+     * Adds insults into the list of insults
+     */
     private void addInsults() {
         insults.add("Weak!");
         insults.add("Slow!");

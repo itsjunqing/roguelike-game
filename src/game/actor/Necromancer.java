@@ -7,7 +7,7 @@ import game.item.Potion;
 import java.util.ArrayList;
 
 /**
- * Class representing a Necromancer that is able to resurrecting sleeping enemies as Zombies.
+ * Class representing a Necromancer as a type of an Enemy who is able to resurrecting sleeping enemies as Zombies.
  */
 public class Necromancer extends Enemy {
 

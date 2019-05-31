@@ -8,7 +8,7 @@ import game.GameWorld;
 import game.behaviour.FollowBehaviour;
 
 /**
- * Class representing a Grunt.
+ * Class representing a Grunt as a type of an Enemy.
  */
 public class Grunt extends Enemy {
 
@@ -16,7 +16,6 @@ public class Grunt extends Enemy {
 
     /**
      * Constructor to create an Enemy of type Grunt with a name.
-     * It takes in a player of Actor type as target to follow.
      *
      * @param name the name of the Grunt
      */
