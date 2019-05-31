@@ -8,7 +8,7 @@ import game.GameSkills;
  */
 public class Spacesuit extends Item {
 
-    public static final char SPACESUIT_CHAR = ']';
+    public static final char SPACESUIT_CHAR = '>';
 
     /**
      * Constructor to create a Spacesuit.

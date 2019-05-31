@@ -79,7 +79,7 @@ public class Application {
         Location rocketPadLocation = earth.at(6, 2);
 
         earth.add(new RocketPad(), rocketPadLocation);
-        GamePlayer player = new GamePlayer("Player", 1, 100, rocketPadLocation);
+        GamePlayer player = new GamePlayer("Player", 1, 200, rocketPadLocation);
 
         world.addPlayer(player, earth, 2, 2);
 
@@ -92,9 +92,6 @@ public class Application {
 
         Grunt grunt = new Grunt("Mongo");
         earth.addActor(grunt, 1, 4);
-
-        Grunt grunt2 = new Grunt("Jonesy");
-        earth.addActor(grunt2, 1, 4);
 
         Ninja ninja = new Ninja("Ninja");
         earth.addActor(ninja, 10, 5);
@@ -118,12 +115,18 @@ public class Application {
         Goon goon2 = new Goon("Norbert");
         moon.addActor(goon2, 0, 0);
 
+        Grunt grunt2 = new Grunt("Jonesy");
+        moon.addActor(grunt2, 11, 4);
+
+        Goon goon3 = new Goon("Tfue");
+        moon.addActor(goon3, 14, 1);
+
         Item sword = new WeaponItem("Lightsaber", '/', 50, "slices");
         moon.addItem(sword, 10, 8);
 
         Item gauntlet = new WeaponItem("Infinity Gauntlet", '!', 100, "punches");
         moon.addItem(gauntlet, 14, 0);
-        
+
         moon.addItem(new WaterPistol("Air Gun"), 10, 8);
 
         world.run();

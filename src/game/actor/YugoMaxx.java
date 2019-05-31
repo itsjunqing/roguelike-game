@@ -21,7 +21,7 @@ public class YugoMaxx extends Enemy {
      * @param name name of the YugoMaxx.
      */
     public YugoMaxx(String name) {
-        super(name, YUGO_MAXX_CHAR, 20, 10);
+        super(name, YUGO_MAXX_CHAR, 20, 100);
         addItemToInventory(new Armor("Exoskeleton"));
         addSkill(GameSkills.SPACEBOSSPOWER);
     }

@@ -8,6 +8,8 @@ import game.action.HealAction;
  */
 public class Potion extends Item {
 
+    public static final char POTION_CHAR = ',';
+
     /**
      * Constructor to create a Potion.
      *
@@ -15,7 +17,7 @@ public class Potion extends Item {
      * @param healCount the heal amount of the Potion
      */
     public Potion(String name, int healCount) {
-        super(name, 'a');
+        super(name, POTION_CHAR);
         allowableActions.clear();
         allowableActions.add(new DropItemAction(this));
         allowableActions.add(new HealAction(this, healCount));

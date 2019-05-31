@@ -21,7 +21,7 @@ public class Grunt extends Enemy {
      * @param name the name of the Grunt
      */
     public Grunt(String name) {
-        super(name, GRUNT_CHAR, 5, 5);
+        super(name, GRUNT_CHAR, 5, 30);
         addBehaviour(new FollowBehaviour(GameWorld.getGamePlayer()));
     }
 

@@ -13,7 +13,7 @@ public class Zombie extends Enemy {
      * @param name name of the Zombie
      */
     public Zombie(String name) {
-        super(name, 'Z', 21, 5);
+        super(name, 'Z', 21, 10);
     }
 
     /**
@@ -38,7 +38,7 @@ public class Zombie extends Enemy {
      */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(1, "bites");
+        return new IntrinsicWeapon(5, "bites");
     }
 
 }

@@ -19,7 +19,7 @@ public class Necromancer extends Enemy {
      * @param name name of the Necromancer
      */
     public Necromancer(String name) {
-        super(name, '?', 20, 5);
+        super(name, '?', 20, 25);
         addItemToInventory(new Potion("Potion", 30));
     }
 
