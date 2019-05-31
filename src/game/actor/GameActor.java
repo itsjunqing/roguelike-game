@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * A GameActor base class that generalizes the properties and methods which an actor is capable of doing.
  */
-public abstract class GameActor extends Actor implements ActorBehaviours {
+public class GameActor extends Actor implements ActorBehaviours {
 
     private List<ActionFactory> actionFactories = new ArrayList<>();
 
@@ -37,7 +37,7 @@ public abstract class GameActor extends Actor implements ActorBehaviours {
      * @param otherActor the GameActor that might be performing attack
      * @param direction  String representing the direction of the other Actor
      * @param map        current GameMap
-     * @return
+     * @return A collection of Actions.
      */
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {

@@ -9,7 +9,7 @@ import game.item.Key;
 /**
  * An Enemy base class that generalizes the properties and methods which an enemy is capable of doing.
  */
-public abstract class Enemy extends GameActor {
+public class Enemy extends GameActor {
 
     protected static final int BASE_DAMAGE = 5;
 

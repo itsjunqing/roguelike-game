@@ -20,7 +20,7 @@ public class Necromancer extends Enemy {
      */
     public Necromancer(String name) {
         super(name, '?', 20, 5);
-        super.addItemToInventory(new Potion("Potion", 30));
+        addItemToInventory(new Potion("Potion", 30));
     }
 
     /**
@@ -43,6 +43,7 @@ public class Necromancer extends Enemy {
                     if (deadEnemies.contains(item)) {
                         Enemy zombie = new Zombie("Zombie");
                         destination.removeItem(item);
+                        deadEnemies.remove(item);
                         return new SpawnEnemyAction(zombie, destination.x(), destination.y());
                     }
                 }
