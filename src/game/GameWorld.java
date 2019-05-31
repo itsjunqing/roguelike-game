@@ -19,6 +19,35 @@ public class GameWorld extends World {
         super(display);
     }
 
+    /**
+     * Adds a GamePlayer into the GameWorld.
+     *
+     * @param gamePlayer a GamePlayer to add
+     * @param map        the map where the GamePlayer is to be added
+     * @param y          y coordinate of the GamePlayer
+     * @param x          x coordinate of the GamePlayer
+     */
+    public void addPlayer(GamePlayer gamePlayer, GameMap map, int y, int x) {
+        super.addPlayer(gamePlayer, map, y, x);
+        GameWorld.gamePlayer = gamePlayer;
+    }
+
+    /**
+     * Run the game.
+     *
+     * On each iteration the game loop does the following:
+     * - displays the player's map
+     * - processes the actions of every Actor in the game, regardless of map
+     *
+     * It stops the game if detects that the player has brought back the unconscious YugoMaxx body to earth.
+     * Otherwise, it runs the game continuously until player is knocked out.
+     *
+     * We could either only process the actors on the current map, which would make
+     * time stop on the other maps, or we could process all the actors.  We chose to
+     * process all the actors.
+     *
+     * @throws IllegalStateException if the player doesn't exist
+     */
     @Override
     public void run() {
         if (player == null)
@@ -31,7 +60,7 @@ public class GameWorld extends World {
             for (Actor actor : actorLocations) {
                 resume = false;
                 if (actorLocations.contains(player)) {
-                    if (player.hasSkill(GameSkills.SPACEBOSSPOWER) && playersMap == Application.getEarthMap()) {
+                    if (player.hasSkill(GameSkills.SPACEBOSSPOWER) && playersMap.equals(Application.getEarthMap())) {
                         win = true;
                     }
 
@@ -56,7 +85,17 @@ public class GameWorld extends World {
     }
 
     /**
-     * Returns a player losing string.
+     * Gets the GamePlayer that is running in the world.
+     *
+     * @return the gamePlayer
+     */
+    public static GamePlayer getGamePlayer() {
+        return gamePlayer;
+    }
+
+    /**
+     * Returns a string stating player losing.
+     *
      * @return a string
      */
     public String playerLose() {
@@ -64,25 +103,10 @@ public class GameWorld extends World {
     }
 
     /**
-     * Adds a GamePlayer into the GameWorld.
-     * @param gamePlayer a GamePlayer to add
-     * @param map the map where the GamePlayer is to be added
-     * @param y y coordinate of the GamePlayer
-     * @param x x coordinate of the GamePlayer
+     * Returns a string stating player winning.
+     *
+     * @return a string
      */
-    public void addPlayer(GamePlayer gamePlayer, GameMap map, int y, int x) {
-        super.addPlayer(gamePlayer, map, y, x);
-        GameWorld.gamePlayer = gamePlayer;
-    }
-
-    /**
-     * Gets the GamePlayer
-     * @return
-     */
-    public static GamePlayer getGamePlayer() {
-        return gamePlayer;
-    }
-
     public String playerWin() {
         return "You win.";
     }
