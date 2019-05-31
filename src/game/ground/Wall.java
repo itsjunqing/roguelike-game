@@ -9,16 +9,16 @@ import edu.monash.fit2099.engine.Ground;
 public class Wall extends Ground {
 
     /**
-     * Constructor to create a wall.
+     * Constructor to create a Wall.
      */
     public Wall() {
         super('#');
     }
 
     /**
-     * Stops the actor from passing through the wall.
+     * Stops the actor from passing through the Wall.
      *
-     * @param actor actor approaching the door
+     * @param actor actor approaching the Wall
      * @return false
      */
     @Override
@@ -27,7 +27,7 @@ public class Wall extends Ground {
     }
 
     /**
-     * Blocks any object thrown over the wall.
+     * Blocks any object thrown over the Wall.
      *
      * @return true
      */

@@ -25,7 +25,7 @@ public class RocketPad extends Ground {
      * Allows the actor to build a rocket when the RocketPad detects that it has both RocketBody and RocketEngine on it.
      *
      * @param actor     the Actor beside the RocketPad
-     * @param location  the Location of the RocketPad
+     * @param location  the Location beside the RocketPad
      * @param direction the direction the Actor is beside the RocketPad
      * @return a collection of Action which the actor adjacent to it can perform
      */

@@ -32,11 +32,11 @@ public class LockedDoor extends Ground {
     }
 
     /**
-     * Allows actor to unlock the door if it detects the actor has a key in its inventory and the Actor is recognised
-     * by the Door.
+     * Allows actor to unlock the door if it detects the actor has a key in its inventory
+     * and the actor is a player.
      *
      * @param actor     the Actor beside the LockedDoor
-     * @param location  the Location of the LockedDoor
+     * @param location  the Location beside the LockedDoor
      * @param direction the direction the Actor is beside the LockedDoor
      * @return a collection of Action which the actor adjacent to it can perform
      */

@@ -24,6 +24,11 @@ public class Rocket extends Item {
         allowableActions.clear();
     }
 
+    /**
+     * Allows Actor to move to Moon while it is on Earth and move to Earth while it is on Moon.
+     *
+     * @return a collection of Action which the actor can perform
+     */
     @Override
     public Actions getAllowableActions() {
         allowableActions.clear();

@@ -12,10 +12,10 @@ public class Key extends Item {
     public static final char KEY_CHAR = 'K';
 
     /**
-     * Constructor to create a key with a name.
+     * Constructor to create a Key with a name.
      * This Key can only be dropped by an enemy.
      *
-     * @param name the name of the key
+     * @param name the name of the Key
      */
     public Key(String name) {
         super(name, KEY_CHAR);

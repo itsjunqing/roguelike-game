@@ -8,7 +8,7 @@ import edu.monash.fit2099.engine.Ground;
 public class Floor extends Ground {
 
     /**
-     * Constructor to create a floor on the GameMap and is represented as ".".
+     * Constructor to create a Floor on the GameMap and is represented as ".".
      */
     public Floor() {
         super('.');
